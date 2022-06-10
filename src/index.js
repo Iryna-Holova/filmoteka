@@ -13,5 +13,6 @@ import './js/fetch_movies_by_name';
 import './js/fetch_movie_by_id';
 import './js/fetch_users_movies';
 import './js/modal';
+import './js/modal-gallery';
 import './js/loader';
 
