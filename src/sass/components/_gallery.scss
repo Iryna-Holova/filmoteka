@@ -1,0 +1,25 @@
+.list_film {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: calc(-1 * 16px);
+    margin-bottom: calc(-1 * 32px);
+}
+
+.item_film {
+    flex-basis: calc(100% / 3 - 16px);
+    margin-right: 16px;
+    margin-bottom: 32px;
+}
+
+.img_film {
+    border-radius: 5px;
+}
+
+.title_film {
+    margin: 8px 0;
+}
+
+.description_film > span {
+    margin: 0 3px;
+}
