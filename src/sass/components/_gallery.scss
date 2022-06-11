@@ -1,8 +1,4 @@
-.container {
-    background-color: darkolivegreen;
-}
 .list_film {
-    background-color: darkorange;
     margin-top: 60px;
     display: flex;
     flex-wrap: wrap;
@@ -21,7 +17,6 @@
 }
 
 .item_film {
-    background-color: darkmagenta;
     @media screen and (min-width: 320px) {
         flex-basis: calc(100% / 1 - 20px);
         margin-bottom: 20px;
