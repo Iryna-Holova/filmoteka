@@ -9,11 +9,12 @@
 @import './base/base';
 @import './base/container';
 @import './base/modal';
+@import './base/_button';
 
 
 // Стили для файлов
 @import './components/header';
 @import './components/gallery';
-@import './components/modal-gallery';
+@import './components/_modal-gallery';
 @import './components/footer';
 @import './components/modal-footer';
