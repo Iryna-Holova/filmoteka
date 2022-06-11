@@ -1,3 +1,50 @@
-<header class="header container">
-  <h1>This is header</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmoteka</title>
+ <!-- <link rel="stylesheet" href="../sass/main.scss"/>-->
+</head>
+<body>
+  
+</body>
+</html>
+<header class="header">
+  <div class="header-container">
+    <div class="header-menu">
+      <svg class="header-container__icon" width="24" height="24">
+        <use href="./images/icons.svg#icon-film"></use>
+      </svg>
+      <h1 class="header-container__title">Filmoteka</h1>
+      <nav class="header-nav">
+        <ul class="header-nav__list list">
+          <li class="header-nav__item">
+            <a class="header-nav__link header-nav--current" href="">home</a></li>
+          <li class="header-nav__item">
+            <a class="header-nav__link" href="">my library</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-search">
+      <form class="header-search__form">
+        <label class="header-search__point">
+      <input class="header-search__form-input" type="search" name="q" placeholder="Поиск фильмов">
+        <svg class="header-search__icon" width="12" height="12">
+          <use href="./images/icons.svg#icon-search"></use>
+        </svg>
+      </label>
+      </form>
+    </div>
+    <div class="headers-button">
+      <button type="button" class="header-button__watch">
+        Watched
+      </button>
+      <button type="button" class="header-button__que">
+        Queue
+      </button>
+    </div>
+  </div>
+ 
 </header>
