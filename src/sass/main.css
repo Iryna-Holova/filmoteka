@@ -76,6 +76,20 @@ body {
   padding: 48px 20px 40px;
   font-weight: 500;
 }
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 40px 72px 40px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modal {
+    padding: 40px 16px;
+    width: 814px;
+  }
+}
 .modal__close {
   position: absolute;
   top: 16px;
@@ -87,10 +101,40 @@ body {
   background-color: transparent;
   cursor: pointer;
 }
+@media screen and (min-width: 768px) {
+  .modal__flex-thumb {
+    display: flex;
+    justify-content: space-between;
+  }
+}
 .modal__thumb {
   border-radius: 5px;
   width: 100%;
   margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .modal__thumb {
+    flex-basis: calc((100% - 68px) / 2);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modal__thumb {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+}
+.modal__thumb img {
+  width: 100%;
+  height: 357px;
+}
+@media screen and (min-width: 768px) {
+  .modal__thumb img {
+    height: 374px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modal__thumb img {
+    height: 478px;
+  }
 }
 .modal__title {
   font-weight: inherit;
@@ -107,6 +151,7 @@ body {
 }
 .modal-about__text {
   line-height: 1.6666666667;
+  letter-spacing: -0.05px;
 }
 
 .modal-list {
