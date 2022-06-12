@@ -1,10 +1,12 @@
 .header.home {
    
-    background-repeat: no-repeat; 
-    background-size: cover;
+   /*background-size: cover;*/
+    background-size: 320px;
+    background-position-x: center;
+    background-color: #000;
+    background-repeat: no-repeat;
 
-    @media screen and (max-width: 767px) {
-        background-image: url('../images/home/320/rectangle.png');
+    background-image: url('../images/home/320/rectangle.png');
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
@@ -12,10 +14,10 @@
             .box {
                 background-image: url('../images/home/320/rectangle@2x.png');
             }
-        }
-    }    
+        } 
 
     @media screen and (min-width: 768px) {
+        background-size: 768px;
         background-image: url('../images/home/768/rectangle.png');
 
         @media (min-device-pixel-ratio: 2),
@@ -28,6 +30,8 @@
     }
 
     @media screen and (min-width: 1024px) {
+        background-size: 1024px;
+        
         background-image: url('../images/home/1024/rectangle.png');
 
         @media (min-device-pixel-ratio: 2),
@@ -172,9 +176,10 @@
     }
 }
 .headers-button {
-    display: flex;
+    
+    //display: flex;
+    display: none;
     justify-content: center;
-
     padding-bottom: 62px;
 
     @media screen and (min-width: 768px) {
@@ -183,7 +188,7 @@
 }
 .header-button__watch,
 .header-button__que {
-    //display: none;
+   
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
