@@ -38,7 +38,7 @@ function renderMovieList(movies) {
     refs.gallery.insertAdjacentHTML('beforeend', makeMovieCardListMarkup(movies));
 };
 
-function clearMovieList() {
+export default function clearMovieList() {
     refs.gallery.innerHTML = '';
 };
 
