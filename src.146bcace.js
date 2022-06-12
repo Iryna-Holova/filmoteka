@@ -11,4 +11,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./fetch_movies":"jZPh"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/section-header"),require("./js/section-gallery"),require("./js/section-footer"),require("./js/fetch_trending_movies"),require("./js/fetch_movies_by_name"),require("./js/fetch_movie_by_id"),require("./js/fetch_users_movies"),require("./js/modal"),require("./js/modal-gallery"),require("./js/loader");
 },{"./sass/main.scss":"clu1","./js/section-header":"clu1","./js/section-gallery":"clu1","./js/section-footer":"clu1","./js/fetch_trending_movies":"dqXu","./js/fetch_movies_by_name":"WEsN","./js/fetch_movie_by_id":"jSeZ","./js/fetch_users_movies":"clu1","./js/modal":"clu1","./js/modal-gallery":"clu1","./js/loader":"clu1"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.d55237d8.js.map
+//# sourceMappingURL=/filmoteka/src.146bcace.js.map
