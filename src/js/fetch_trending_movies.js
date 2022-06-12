@@ -5,41 +5,48 @@ import FetchMoviesApiService from "./fetch_movies";
 const fetchMoviesApiService = new FetchMoviesApiService();
 const refs = {
     gallery: document.querySelector('.film-list'),
+    form: document.querySelector('.header-search__form'),
 };
 
-async function onShowTrendingsMovies() {
-    clearMovieList();
+export default class RenderMovies {
+    constructor() { };
+
+    makeMovieCardListMarkup(movies) {
+    const movieCardListMarkup = movies.results
+        .map(({ title, poster_path, release_date, genre_ids }) => {
+            return `<li class="film-list__item">
+            <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-src="" alt="Постер фільму" class="lazyload film-list__img" onerror="src='./images/poster-film.png'">
+            <h2 class="film-list__title">${title}</h2>
+            <p class="film-list__description">${genre_ids.map(id => id)}<span>|</span>${release_date.slice(0, 4)}</p>
+            </li>`
+        }).join('');
+    
+    return movieCardListMarkup;
+    };
+    
+    renderMovieList(movies) {
+       refs.gallery.insertAdjacentHTML('beforeend', this.makeMovieCardListMarkup(movies));
+    };
+    
+    clearMovieList() {
+       refs.gallery.innerHTML = '';
+    };
+
+    async onShowTrendingsMovies() {
+    this.clearMovieList();
 
     fetchMoviesApiService.resetPage();
 
     try {
         const movies = await fetchMoviesApiService.fetchTrendingMovies();
         const genres = await fetchMoviesApiService.fetchGenres();
-        renderMovieList(movies);
+        this.renderMovieList(movies);
     } catch (error) {
         console.log(error.message);
     };
+    };
 };
 
-function makeMovieCardListMarkup(movies) {
-    const movieCardListMarkup = movies.results
-        .map(({ title, poster_path, release_date }) => {
-            return `<li class="film-list__item">
-            <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-src="" alt="Постер фільму" class="lazyload film-list__img" onerror="src='./images/poster-film.png'">
-            <h2 class="film-list__title">${title}</h2>
-            <p class="film-list__description">Жанр фільму<span>|</span>${release_date.slice(0, 4)}</p>
-            </li>`
-        }).join('');
-    
-    return movieCardListMarkup;
-};
+const renderMovies = new RenderMovies();
 
-function renderMovieList(movies) {
-    refs.gallery.insertAdjacentHTML('beforeend', makeMovieCardListMarkup(movies));
-};
-
-function clearMovieList() {
-    refs.gallery.innerHTML = '';
-};
-
-onShowTrendingsMovies();
+renderMovies.onShowTrendingsMovies();
