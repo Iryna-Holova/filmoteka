@@ -1,4 +1,9 @@
-.list_film {
+.container {
+    background-color: darkgreen;
+}
+
+.film-list {
+    background-color: darkorange;
     margin-top: 60px;
     display: flex;
     flex-wrap: wrap;
@@ -16,7 +21,8 @@
     }
 }
 
-.item_film {
+.film-list__item {
+    background-color: darkmagenta;
     @media screen and (min-width: 320px) {
         flex-basis: calc(100% / 1 - 20px);
         margin-bottom: 20px;
@@ -36,14 +42,23 @@
     }
 }
 
-.img_film {
+.film-list__img {
     border-radius: 5px;
 }
 
-.title_film {
+.film-list__title {
     margin: 8px 0;
 }
 
-.description_film > span {
-    margin: 0 3px;
+.film-list__description {
+    display: inline-block;
+
+    > span {
+        margin: 0 3px;
+    }
+}
+
+.film-list__rating {
+    display: inline-block;
+    margin-left: 5px;
 }
