@@ -9,13 +9,13 @@ axios.defaults.baseURL = URL;
 export default class FetchMoviesApiService {
     constructor() {
         this.page = 1;
-    }
+    };
 
     async fetchTrendingMovies() {
         const response = await axios.get(`/trending/movie/week?api_key=${API_KEY}`);
-                this.incrementPage();
+        this.incrementPage();
 
-                return response.data;
+        return response.data;
     };
 
     async fetchMoviesByName(movieName) {
@@ -23,24 +23,24 @@ export default class FetchMoviesApiService {
             language: 'en-US',
             page: this.page,
             include_adult: false,
-        }); 
+        });
         
-    const response = await axios.get(`/search/movie?api_key=${API_KEY}&query=${movieName}&${searchParams}`);
-                this.incrementPage();
+        const response = await axios.get(`/search/movie?api_key=${API_KEY}&query=${movieName}&${searchParams}`);
+        this.incrementPage();
 
-                return response.data;
+        return response.data;
     };
 
     async fetchMovieByID(movieID) {
-    const response = await axios.get(`/movie/${movieID}?api_key=${API_KEY}`);
-                this.incrementPage();
+        const response = await axios.get(`/movie/${movieID}?api_key=${API_KEY}`);
+        this.incrementPage();
 
-                return response.data;
+        return response.data;
     };
 
     async fetchGenres() {
         const response = await axios.get(`/genre/movie/list?api_key=${API_KEY}`);
-            return response.data.genres;
+        return response.data.genres;
     };
 
     incrementPage() {
@@ -50,4 +50,4 @@ export default class FetchMoviesApiService {
     resetPage() {
         this.page = 1;
     };
-}    
+}
