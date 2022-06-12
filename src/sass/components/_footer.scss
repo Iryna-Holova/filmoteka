@@ -3,8 +3,8 @@
     text-align: center;
     padding-top: 20px;
     padding-bottom: 28px;
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .footer-option {
@@ -24,16 +24,25 @@
         font-size: 16px;
         line-height: 1.19;
     }
+
     // @media screen and (min-width: 1280px) {
-    //     
+    //    
     // }
 }
 
 .footer-text,
 .footer-heart,
-.footer__link
-{
+.footer__link {
     color: $clr-footer;
+}
+
+.footer-heart {
+    margin-left: 5px;
+}
+
+.heart {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .footer__link {
