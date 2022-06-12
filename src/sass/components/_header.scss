@@ -1,19 +1,42 @@
-.header {
+.header.home {
    
     background-repeat: no-repeat; 
+    background-size: cover;
 
     @media screen and (max-width: 767px) {
         background-image: url('../images/home/320/rectangle.png');
-        background-color: rgba(0, 0, 0, 0.56);
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            .box {
+                background-image: url('../images/home/320/rectangle@2x.png');
+            }
+        }
     }    
 
     @media screen and (min-width: 768px) {
         background-image: url('../images/home/768/rectangle.png');
-     
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            .box {
+                background-image: url('../images/home/768/rectangle@2x.png');
+            }
+        }
     }
 
     @media screen and (min-width: 1024px) {
         background-image: url('../images/home/1024/rectangle.png');
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            .box {
+                background-image: url('../images/home/1024/rectangle@2x.png');
+            }
+        }
         
     }
 }
@@ -22,8 +45,8 @@
     align-items: center;
 
     padding-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
+   // padding-left: 20px;
+    //padding-right: 20px;
     padding-bottom: 56px;
 
 
@@ -33,13 +56,12 @@
         padding-right: 32px;
     }
 }
-.header-container__icon {
-    @media screen and (min-width: 768px) {
-  
-    }
-    @media screen and (min-width: 1024px) {
-   
-    }
+
+.header-container__link {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    text-align: center;
 }
 .header-container__title {
     font-style: normal;
@@ -47,8 +69,6 @@
     font-size: 30px;
     line-height: 1.16;
     display: flex;
-    align-items: center;
-    text-align: center;
 
     display: none;
 
@@ -56,11 +76,16 @@
 
     @media screen and (min-width: 768px) {
         display: flex;
-        margin-left: 8px;
     }
+}
+.header-container__icon {
+    display: block;
+        
     @media screen and (min-width: 768px) {
-       
-        margin-left: 10px;
+        margin-right: 8px;
+    }
+    @media screen and (min-width: 1024px) {
+        margin-right: 10px;
     }
 }
 .header-nav {
@@ -78,17 +103,19 @@
         border-radius: 2px;
     }
 }
+.header-nav--current {
+    color: $clr-light;
+}
 .header-nav__list {
     display: flex;
 }
 .header-nav__item {
     padding-left: 40px;
+    text-transform: uppercase;
 }
-.header-nav--current {
-    color: $clr-accent;
+.header-nav__link {
+    color: $clr-light;
 }
-
-
 .header-search {
     display: flex;
     text-align: center;
@@ -124,7 +151,14 @@
     left: 96%;
 }
 
-.header-search__form-input {
+.header-search__input {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    display: flex;
+    align-items: center;
+
     background-color: transparent;
     color: $clr-light;
     border: none;
@@ -132,23 +166,59 @@
     width: 280px;
     height: 20px;
 
+
     @media screen and (min-width: 768px) {
         width: 336px;
     }
 }
-/*.header-search__point::after {
-    content: "";
-    display: block;
-    position: relative;
-    top: 32px;
-    bottom: -1px;
-    width: 12px;
-    height: 12px;
-    background-image: url('../images/icon-search.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-}*/
+.headers-button {
+    display: flex;
+    justify-content: center;
+
+    padding-bottom: 62px;
+
+    @media screen and (min-width: 768px) {
+        padding-bottom: 60px;
+    }
+}
 .header-button__watch,
 .header-button__que {
-    display: none;
+    //display: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+
+    /* or 133% */
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $clr-light;
+
+    width: 148px;
+    height: 42px;
+
+    background-color: transparent;
+   
+    border-radius: 3px;
+    border: 1px solid $clr-light;
+}
+.header-button__watch:focus,
+.header-button__que:focus {
+    background-color: $clr-accent-btn;
+}
+.header-button__watch:hover,
+.header-button__que:hover {
+    background-color: $clr-accent-btn;
+}
+.header-button__watch {
+    margin-right: 20px;
+   
+        @media screen and (min-width: 768px) {
+            margin-right: 32px;
+        }
+        @media screen and (min-width: 1024px) {
+            margin-right: 16px;
+        }
 }
