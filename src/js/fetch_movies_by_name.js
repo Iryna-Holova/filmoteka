@@ -3,13 +3,16 @@
 import FetchMoviesApiService from "./fetch_movies";
 
 const fetchMoviesApiService = new FetchMoviesApiService();
+const refs = {
+    gallery: document.querySelector('.film-list'),
+};
 
 async function onSearch(event) {
     event.preventDefault();
 
-    // clearMovieList();
+    clearMovieList();
 
-    const movieName = event.currentTarget.elements.searchQuery.value;
+    const movieName = event.currentTarget.elements.searchQuery.value.trim();
     fetchMoviesApiService.resetPage();
 
     try {
@@ -19,4 +22,6 @@ async function onSearch(event) {
     }
 };
 
-function clearMovieList() { };
+function clearMovieList() {
+    refs.gallery.innerHTML = '';
+};
