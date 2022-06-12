@@ -1,8 +1,20 @@
-<section class="gallery container">
-  <h2>This is gallery</h2>
-  <p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, laudantium nesciunt nostrum
-    ratione hic at, aspernatur cumque unde culpa maxime molestiae id, ducimus aliquid consequatur
-    qui recusandae reprehenderit quae quis.
-  </p>
+<section class="gallery">
+  <div class="container">
+    <h1 hidden>Film gallery</h1>
+    <ul class="film-list">
+<!-- шаблон розмітки одного фільму для Home -->
+      <li class="film-list__item">
+        <img src="./images/poster-film.png" data-src="" alt="Постер фільму" class="lazyload film-list__img">
+        <h2 class="film-list__title">Назва фільму</h2>
+        <p class="film-list__description">Жанр фільму<span>|</span>рік випуску</p>
+      </li>
+<!-- шаблон розмітки одного фільму для My Library -->
+      <li class="film-list__item">
+        <img src="./images/poster-film.png" data-src="" alt="Постер фільму" class="lazyload film-list__img">
+        <h2 class="film-list__title">Назва фільму</h2>
+        <p class="film-list__description">Жанр фільму<span>|</span>рік випуску</p>
+        <p class="film-list__rating">Рейтинг фільму</p>
+      </li>
+    </ul>
+  </div>
 </section>

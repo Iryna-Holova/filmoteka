@@ -1,0 +1,58 @@
+.film-list {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    @media screen and (min-width: 320px) {
+        margin-right: calc(-1 * 20px);
+        margin-bottom: calc(-1 * 20px);
+    }
+    @media screen and (min-width: 768px) {
+        margin-right: calc(-1 * 32px);
+        margin-bottom: calc(-1 * 32px);
+    }
+    @media screen and (min-width: 1024px) {
+        margin-right: calc(-1 * 16px);
+        margin-bottom: calc(-1 * 32px);
+    }
+}
+
+.film-list__item {
+    @media screen and (min-width: 320px) {
+        flex-basis: calc(100% / 1 - 20px);
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+    
+    @media screen and (min-width: 768px) {
+        flex-basis: calc(100% / 2 - 32px);
+        margin-bottom: 32px;
+        margin-right: 32px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        flex-basis: calc(100% / 3 - 16px);
+        margin-bottom: 32px;
+        margin-right: 16px;
+    }
+}
+
+.film-list__img {
+    border-radius: 5px;
+}
+
+.film-list__title {
+    margin: 8px 0;
+}
+
+.film-list__description {
+    display: inline-block;
+
+    > span {
+        margin: 0 3px;
+    }
+}
+
+.film-list__rating {
+    display: inline-block;
+    margin-left: 5px;
+}
