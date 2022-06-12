@@ -1,7 +1,15 @@
 .modal {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: 48px 20px 40px;
     font-weight: 500;
+    transform: scale(0.6);
+    opacity: 0;
+    pointer-events: none;
+    background-color: $clr-light;
+    transition: transform $transition-time $cubic, 
+        opacity $transition-time $cubic;
 
     @media screen and (min-width: 768px) {
         padding: 40px 72px 40px 36px;
@@ -13,6 +21,12 @@
     @media screen and (min-width: 1024px) {
         padding: 40px 16px;
         width: 814px;
+    }
+
+    &__shown {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: auto;
     }
 
     &__close {
@@ -152,3 +166,5 @@
         font-weight: 500;
     }
 }
+
+
