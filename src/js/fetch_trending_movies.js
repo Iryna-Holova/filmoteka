@@ -31,12 +31,12 @@ export default class RenderMovies {
 
     makeMovieCardMarkup(movies) {
         let genres = [];
-        let releaseDate = "n/a";
+        let releaseDate = "No date";
         const movieCardMarkup = movies.results
             .map(({ title, poster_path, release_date, genre_ids, id }) => {
                 if (genre_ids.length === 0) {
                 genres = genre_ids.slice(0, 1);
-                genres.splice(0, 0, "n/a");
+                genres.splice(0, 0, "No genre");
             } else if (genre_ids.length > 2) {
                 genres = genre_ids.slice(0, 2);
                 genres.splice(2, 0, "Other");
