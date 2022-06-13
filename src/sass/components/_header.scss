@@ -227,8 +227,8 @@
         }
 }
 .headers-button {
-    display: flex;
-    //display: none;
+    //display: flex;
+    display: none;
     justify-content: center;
     padding-bottom: 62px;
 
@@ -255,6 +255,11 @@
     background-color: transparent;
     border-radius: 3px;
     border: 1px solid $clr-light;
+
+   transition-property: background-color, border-color, border-radius;
+   transition-duration: $transition-time;
+   transition-timing-function: $cubic;
+   transition-delay: $transition-time;;
 }
 .header-button__watch:focus,
 .header-button__que:focus {
