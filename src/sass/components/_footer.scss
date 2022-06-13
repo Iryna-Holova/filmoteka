@@ -3,8 +3,7 @@
     text-align: center;
     padding-top: 20px;
     padding-bottom: 28px;
-    margin-right: auto;
-    margin-left: auto;
+  
 }
 
 .footer-option {
@@ -25,9 +24,6 @@
         line-height: 1.19;
     }
 
-    // @media screen and (min-width: 1280px) {
-    //    
-    // }
 }
 
 .footer-text,
@@ -47,4 +43,10 @@
 
 .footer__link {
     text-decoration: underline;
+    cursor: pointer;
 }
+.footer__link:focus,
+.footer__link:hover {
+  color: $clr-accent;
+}
+
