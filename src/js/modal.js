@@ -13,7 +13,7 @@ export const openModal = id => {
 // const element = document.querySelector('SELECTOR');
 
 // element.addEventListener('click', () => {
-//   openModal(ID_OF_MODAL);
+//   openModal('ID_OF_MODAL');
 // });
 
 // ***** base markup of modal
