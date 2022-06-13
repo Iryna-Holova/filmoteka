@@ -1,11 +1,20 @@
 .modal {
+    position: absolute;
     max-width: 280px;
+    padding: 48px 20px 40px;
+    font-weight: 500;
+    background-color: $clr-light;
 
     @media screen and (min-width: 768px) {
         max-width: 704px;
+        padding: 40px 72px 40px 36px;
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
     }
 
     @media screen and (min-width: 1024px) {
+        padding: 40px 16px;
         max-width: 814px;
     }
 
@@ -22,7 +31,7 @@
     }
 
     &__cross {
-        pointer-events: none;
+        // pointer-events: none;
     }
 
     // -------------start here-------------
