@@ -94,4 +94,4 @@ module.exports=require("./lib/axios");
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/section-header"),require("./js/section-gallery"),require("./js/section-footer"),require("./js/fetch_trending_movies"),require("./js/fetch_users_movies"),require("./js/modal"),require("./js/modal-gallery"),require("./js/loader");
 },{"./sass/main.scss":"clu1","./js/section-header":"ZJCk","./js/section-gallery":"ZJCk","./js/section-footer":"ZJCk","./js/fetch_trending_movies":"dqXu","./js/fetch_users_movies":"ZJCk","./js/modal":"RSqK","./js/modal-gallery":"ZJCk","./js/loader":"vQE2"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.9b029f44.js.map
+//# sourceMappingURL=/filmoteka/src.a9222022.js.map
