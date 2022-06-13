@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "axios": "^0.27.2",
+    "micromodal": "^0.4.10",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",
