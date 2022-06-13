@@ -9,8 +9,6 @@ import './js/section-footer';
 
 // временно импортированные файлы для работы. После подключения к файлам секций удалить
 import './js/fetch_trending_movies';
-import './js/fetch_movies_by_name';
-import './js/fetch_movie_by_id';
 import './js/fetch_users_movies';
 import './js/modal';
 import './js/modal-gallery';
