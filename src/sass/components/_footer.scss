@@ -43,4 +43,10 @@
 
 .footer__link {
     text-decoration: underline;
+    cursor: pointer;
 }
+.footer__link:focus,
+.footer__link:hover {
+  color: $clr-accent;
+}
+
