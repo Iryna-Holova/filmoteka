@@ -21,7 +21,7 @@ async function onShowTrendingsMovies() {
     };
 };
 
-function makeMovieCardListMarkup(movies) {
+ function makeMovieCardListMarkup(movies) {
     const movieCardListMarkup = movies.results
         .map(({ title, poster_path, release_date }) => {
             return `<li class="film-list__item">
@@ -34,7 +34,7 @@ function makeMovieCardListMarkup(movies) {
     return movieCardListMarkup;
 };
 
-function renderMovieList(movies) {
+ function renderMovieList(movies) {
     refs.gallery.insertAdjacentHTML('beforeend', makeMovieCardListMarkup(movies));
 };
 
