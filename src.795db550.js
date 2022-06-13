@@ -89,7 +89,9 @@ module.exports=require("./lib/axios");
 "use strict";var e=r(require("./fetch_movies")),t=r(require("./fetch_trending_movies"));function r(e){return e&&e.__esModule?e:{default:e}}const n=new e.default,o=new t.default,s={gallery:document.querySelector(".film-list"),form:document.querySelector(".header-search__form")};async function c(e){e.preventDefault(),a();const t=e.currentTarget.elements.q.value.trim();n.resetPage();try{const e=await n.fetchMoviesByName(t);o.renderMovieList(e)}catch(r){console.log(r.message)}s.form.reset()}function a(){s.gallery.innerHTML=""}s.form.addEventListener("submit",c);
 },{"./fetch_movies":"jZPh","./fetch_trending_movies":"dqXu"}],"jSeZ":[function(require,module,exports) {
 "use strict";var e=t(require("./fetch_movies"));function t(e){return e&&e.__esModule?e:{default:e}}const u=new e.default;
-},{"./fetch_movies":"jZPh"}],"Focm":[function(require,module,exports) {
+},{"./fetch_movies":"jZPh"}],"vQE2":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=c;const e='<div class="half-circle-spinner">\n  <div class="circle circle-1"></div>\n  <div class="circle circle-2"></div>\n</div>';function c(c){c.innerHTML=e}
+},{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/section-header"),require("./js/section-gallery"),require("./js/section-footer"),require("./js/fetch_trending_movies"),require("./js/fetch_movies_by_name"),require("./js/fetch_movie_by_id"),require("./js/fetch_users_movies"),require("./js/modal"),require("./js/modal-gallery"),require("./js/loader");
-},{"./sass/main.scss":"clu1","./js/section-header":"ZJCk","./js/section-gallery":"ZJCk","./js/section-footer":"ZJCk","./js/fetch_trending_movies":"dqXu","./js/fetch_movies_by_name":"WEsN","./js/fetch_movie_by_id":"jSeZ","./js/fetch_users_movies":"ZJCk","./js/modal":"ZJCk","./js/modal-gallery":"ZJCk","./js/loader":"ZJCk"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.9c21087b.js.map
+},{"./sass/main.scss":"clu1","./js/section-header":"ZJCk","./js/section-gallery":"ZJCk","./js/section-footer":"ZJCk","./js/fetch_trending_movies":"dqXu","./js/fetch_movies_by_name":"WEsN","./js/fetch_movie_by_id":"jSeZ","./js/fetch_users_movies":"ZJCk","./js/modal":"ZJCk","./js/modal-gallery":"ZJCk","./js/loader":"vQE2"}]},{},["Focm"], null)
+//# sourceMappingURL=/filmoteka/src.795db550.js.map
