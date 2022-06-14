@@ -1,30 +1,50 @@
 <section class="gallery">
   <div class="container">
     <h1 hidden>Film gallery</h1>
-    <ul class="film-list">
-      <!-- шаблон розмітки одного фільму для Home -->
-      <li class="film-list__item">
-        <img
-          src="./images/poster-film.png"
-          data-src=""
-          alt="Постер фільму"
-          class="lazyload film-list__img"
-        />
-        <h2 class="film-list__title">Назва фільму</h2>
-        <p class="film-list__description">Жанр фільму<span>|</span>рік випуску</p>
-      </li>
-      <!-- шаблон розмітки одного фільму для My Library -->
-      <li class="film-list__item">
-        <img
-          src="./images/poster-film.png"
-          data-src=""
-          alt="Постер фільму"
-          class="lazyload film-list__img"
-        />
-        <h2 class="film-list__title">Назва фільму</h2>
-        <p class="film-list__description">Жанр фільму<span>|</span>рік випуску</p>
-        <p class="film-list__rating">Рейтинг фільму</p>
-      </li>
-    </ul>
+    <!-- page Home -->
+    <div class="gallery__home">
+      <ul class="film-list">
+        <!-- шаблон розмітки одного фільму для Home -->
+      </ul>
+      <div class="gallery__home--error">
+        <img src="./images/error-not-found.jpg" alt="Not found page">
+      </div>
+    </div>
+    <!-- page My Library Watched-->
+    <div class="gallery__library--watched">
+      <ul class="film-list">
+        <!-- шаблон розмітки одного фільму для My Library Watched -->
+        <li class="film-list__item">
+          <img src="./images/poster-film.png" data-src="" alt="Постер фільму" class="lazyload film-list__img" />
+          <div class="film-list__description">
+            <h2 class="film-list__title">Назва фільму</h2>
+            <p class="film-list__genres">Жанр фільму<span>|</span>рік випуску</p>
+            <p class="film-list__rating">Рейтинг фільму</p>
+          </div>
+        </li>
+      </ul>
+      <div class="gallery__library--watched-error">
+        <img src="./images/error-not-found.jpg" alt="Not found page">
+      </div>
+    </div>
+    <!-- page My Library Queue-->
+    <div class="gallery__library--queue">
+      <ul class="film-list">
+        <!-- шаблон розмітки одного фільму для My Library Queue -->
+        <li class="film-list__item">
+          <img src="./images/poster-film.png" data-src="" alt="Постер фільму" class="lazyload film-list__img" />
+          <div class="film-list__description">
+            <h2 class="film-list__title">Назва фільму</h2>
+            <p class="film-list__genres">Жанр фільму<span>|</span>рік випуску</p>
+            <p class="film-list__rating">Рейтинг фільму</p>
+          </div>
+        </li>
+      </ul>
+      <div class="gallery__library--queue-error">
+        <img src="./images/error-not-found.jpg" alt="Not found page">
+      </div>
+    </div>
   </div>
 </section>
+
+

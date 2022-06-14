@@ -41,7 +41,11 @@
     &:hover {
         box-shadow: rgba(255, 107, 8) 0px 2px 10px 0px;
         border-radius: 5px;
-        transition-duration: 1000ms;
+        transition-duration: 250ms;
+
+        .film-list__description {
+            padding-left: 2px;
+        }
     }
 }
 
@@ -59,7 +63,7 @@
     text-transform: uppercase;
 }
 
-.film-list__description {
+.film-list__genres {
     display: inline-block;
     color: $clr-accent;
     font-weight: 500;
@@ -76,4 +80,25 @@
     height: 16px;
     background-color: $clr-accent-btn;
     border-radius: 5px;
+}
+
+.gallery__home {
+    // display: none;
+}
+
+.film-list {
+    // display: none;
+}
+
+.gallery__home--error > img {
+    width: 100%;
+    display: none;
+}
+
+.gallery__library--watched {
+    display: none;
+}
+
+.gallery__library--queue {
+    display: none;
 }
