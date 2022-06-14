@@ -14,3 +14,4 @@ import './js/modal';
 import './js/modal-gallery';
 import './js/loader';
 
+import './js/firebase';
