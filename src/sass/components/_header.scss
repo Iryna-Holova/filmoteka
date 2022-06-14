@@ -1,97 +1,52 @@
-.header.home {
-   /*background-size: cover;*/
+.header {
     background-size: 320px;
     background-position-x: center;
     background-color: #000;
     background-repeat: no-repeat;
-
-    background-image: url('../images/home/320/rectangle.png');
-
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            .box {
-                background-image: url('../images/home/320/rectangle@2x.png');
-            }
-        } 
-
-    @media screen and (min-width: 768px) {
-        background-size: 768px;
-        background-image: url('../images/home/768/rectangle.png');
-
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            .box {
-                background-image: url('../images/home/768/rectangle@2x.png');
-            }
+        @media screen and (min-width: 768px) {
+            background-size: 768px;
         }
-    }
-
-    @media screen and (min-width: 1024px) {
-        background-size: 1024px;
-        
-        background-image: url('../images/home/1024/rectangle.png');
-
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            .box {
-                background-image: url('../images/home/1024/rectangle@2x.png');
-            }
+        @media screen and (min-width: 1024px) {
+            background-size: 1024px;
         }
-        
+}
+.header.home {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/320/rectangle.webp');    @media screen and (min-width: 768px) {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/768/rectangle.webp');
     }
+        @media screen and (min-width: 1024px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/1024/rectangle.webp');
+        }
 }
 .header.library {
-    /*background-size: cover;*/
-     background-size: 320px;
-     background-position-x: center;
-     background-color: #000;
-     background-repeat: no-repeat;
- 
-     background-image: url('../images/lib/320/rectangle.png');
- 
-         @media (min-device-pixel-ratio: 2),
-         (min-resolution: 192dpi),
-         (min-resolution: 2dppx) {
-             .box {
-                 background-image: url('../images/lib/320/rectangle@2x.png');
-             }
-         } 
- 
-     @media screen and (min-width: 768px) {
-         background-size: 768px;
-         background-image: url('../images/lib/768/rectangle.png');
- 
-         @media (min-device-pixel-ratio: 2),
-         (min-resolution: 192dpi),
-         (min-resolution: 2dppx) {
-             .box {
-                 background-image: url('../images/lib/768/rectangle@2x.png');
-             }
-         }
-     }
- 
-     @media screen and (min-width: 1024px) {
-         background-size: 1024px;
-         
-         background-image: url('../images/lib/1024/rectangle.png');
- 
-         @media (min-device-pixel-ratio: 2),
-         (min-resolution: 192dpi),
-         (min-resolution: 2dppx) {
-             .box {
-                 background-image: url('../images/lib/1024/rectangle@2x.png');
-             }
-         }
-         
-     }
- }
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/320/rectangle.webp');    @media screen and (min-width: 768px) {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/768/rectangle.webp');
+    }
+        @media screen and (min-width: 1024px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/1024/rectangle.webp');
+        }
+}
+    @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+.header.home {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/320/rectangle_2x.webp');        @media screen and (min-width: 768px) {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/768/rectangle_2x.webp');
+    }
+        @media screen and (min-width: 1024px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/1024/rectangle_2x.webp');
+        }
+}
+.header.library {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/320/rectangle_2x.webp');        @media screen and (min-width: 768px) {
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/768/rectangle_2x.webp');
+}
+        @media screen and (min-width: 1024px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/1024/rectangle_2x.webp');
+        }
+    }
+}
 
- .header.container {
-    background-color: $clr-bg-header;
- }
 .header-menu {
     display: flex;
     align-items: center;
@@ -170,6 +125,11 @@
     padding-bottom: 20px;
     padding-top: 20px;
 }
+.header-nav__link:hover,
+.header-nav__link:focus {
+    color: $clr-accent;
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
 .header-search {
     padding-bottom: 92px;
 
@@ -200,8 +160,8 @@
 }
 .header-search__icon {
     position: absolute;
-    top: 0;
-    left: 96%;
+    top: 12%;
+    left: 95%;
 }
 .header-search__input {
     font-style: normal;
@@ -213,11 +173,18 @@
 
     width: 280px;
     height: 20px;
+    padding-bottom: 4px;
 
     background-color: transparent;
+    outline-color: transparent;
     border: none;
     border-bottom: 1px solid $clr-light;
-        
+    color: $clr-light;
+
+    transition-property: border-color;
+    transition-duration: $transition-time;
+    transition-timing-function: $cubic;
+    
         &::placeholder {
             color: $clr-light;
             opacity: 1;
@@ -225,6 +192,10 @@
         @media screen and (min-width: 768px) {
             width: 336px;
         }
+}
+.header-search__input:focus,
+.header-search__input:hover {
+    border-bottom: 1px solid $clr-accent;
 }
 .headers-button {
     //display: flex;
@@ -259,7 +230,7 @@
    transition-property: background-color, border-color, border-radius;
    transition-duration: $transition-time;
    transition-timing-function: $cubic;
-   transition-delay: $transition-time;;
+   transition-delay: $transition-time;
 }
 .header-button__watch:focus,
 .header-button__que:focus {
