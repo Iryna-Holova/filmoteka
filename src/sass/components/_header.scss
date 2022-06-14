@@ -11,17 +11,19 @@
         }
 }
 .header.home {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/320/rectangle.webp');    @media screen and (min-width: 768px) {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/768/rectangle.webp');
-    }
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/320/rectangle.webp');
+        @media screen and (min-width: 768px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/768/rectangle.webp');
+        }
         @media screen and (min-width: 1024px) {
             background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/1024/rectangle.webp');
         }
 }
 .header.library {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/320/rectangle.webp');    @media screen and (min-width: 768px) {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/768/rectangle.webp');
-    }
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/320/rectangle.webp');
+        @media screen and (min-width: 768px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/768/rectangle.webp');
+        }
         @media screen and (min-width: 1024px) {
             background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/1024/rectangle.webp');
         }
@@ -30,17 +32,19 @@
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
 .header.home {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/320/rectangle_2x.webp');        @media screen and (min-width: 768px) {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/768/rectangle_2x.webp');
-    }
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/320/rectangle_2x.webp');
+        @media screen and (min-width: 768px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/768/rectangle_2x.webp');
+        }
         @media screen and (min-width: 1024px) {
             background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/home/1024/rectangle_2x.webp');
         }
 }
 .header.library {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/320/rectangle_2x.webp');        @media screen and (min-width: 768px) {
-    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/768/rectangle_2x.webp');
-}
+    background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/320/rectangle_2x.webp');
+        @media screen and (min-width: 768px) {
+            background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/768/rectangle_2x.webp');
+        }
         @media screen and (min-width: 1024px) {
             background-image: linear-gradient($clr-bg-header, $clr-bg-header), url('../images/lib/1024/rectangle_2x.webp');
         }
@@ -68,6 +72,12 @@
     align-items: center;
     text-align: center;
 }
+
+/*.header-container__icon:hover,
+.header-container__icon:focus {
+    fill: $clr-accent;
+}*/
+
 .header-container__title {
     font-style: normal;
     font-weight: 500;
@@ -79,13 +89,22 @@
 
     color: $clr-light;
 
+    transition-property: color;
+    transition-duration: $transition-time;
+    transition-timing-function: $cubic;
+
     @media screen and (min-width: 768px) {
         display: flex;
     }
 }
+.header-container__title:hover,
+.header-container__title:focus {
+    color: $clr-accent;
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
 .header-container__icon {
     display: block;
-        
+    //transition: all .5s ease;
     @media screen and (min-width: 768px) {
         margin-right: 8px;
     }
@@ -120,13 +139,18 @@
             padding-left: 40px;
         }
 }
+
 .header-nav__link {
     color: $clr-light;
     padding-bottom: 20px;
     padding-top: 20px;
+
+    transition-property: color;
+    transition-duration: $transition-time;
+    transition-timing-function: $cubic;
 }
-.header-nav__link:hover,
-.header-nav__link:focus {
+.header-nav__link:focus,
+.header-nav__link:hover {
     color: $clr-accent;
     filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
 }
