@@ -78,9 +78,11 @@ export default class RenderMovies {
                 releaseDate = release_date.slice(0, 4);
             };
                 return `<li class="film-list__item" data-id="${id}">
-            <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-src="" alt="Постер фільму" class="lazyload film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+            <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+            <div class="film-list__description">
             <h2 class="film-list__title">${title}</h2>
-            <p class="film-list__description">${genres}<span>|</span>${releaseDate}</p>
+            <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
+            </div>
             </li>`   
         }).join('');
     
@@ -105,10 +107,12 @@ export default class RenderMovies {
                     releaseDate = release_date.slice(0, 4);
                 };
                 return `<li class="film-list__item">
-                   <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-src="" alt="Постер фільму" class="lazyload film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+                   <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+                   <div class="film-list__description">
                    <h2 class="film-list__title">${title}</h2>
-                   <p class="film-list__description">${genres}<span>|</span>${releaseDate}</p>
+                   <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
                    <p class="film-list__rating">${vote_average}</p>
+                   </div>
                    </li>`
             }).join('');
     
@@ -119,9 +123,9 @@ export default class RenderMovies {
         const movieDetailMarkup = movies.results
             .map(({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview }) => {
                 return `<div class="modal-gallery__thumb">
-            <img src="${poster_path}" alt="poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
+            <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
           </div>
-          <div class="modal-gallery__thumb">
+          <div class="modal-gallery__thumb-text">
             <h2 class="modal-gallery__title">${title}</h2>
             <ul class="modal-gallery-list">
               <li class="modal-gallery-list__item">
