@@ -13,4 +13,5 @@ import './js/fetch_users_movies';
 import './js/modal';
 import './js/modal-gallery';
 import './js/loader';
+import './js/temp_script.js';
 
