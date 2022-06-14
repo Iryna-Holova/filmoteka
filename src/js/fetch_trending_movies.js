@@ -81,7 +81,7 @@ export default class RenderMovies {
             <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
             <div class="film-list__description">
             <h2 class="film-list__title">${title}</h2>
-            <p class="film-list__genres">${Object.values(genres).join(', ')}<span>|</span>${releaseDate}</p>
+            <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
             </div>
             </li>`   
         }).join('');
@@ -110,7 +110,7 @@ export default class RenderMovies {
                    <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                    <div class="film-list__description">
                    <h2 class="film-list__title">${title}</h2>
-                   <p class="film-list__genres">${Object.values(genres).join(', ')}<span>|</span>${releaseDate}</p>
+                   <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
                    <p class="film-list__rating">${vote_average}</p>
                    </div>
                    </li>`
