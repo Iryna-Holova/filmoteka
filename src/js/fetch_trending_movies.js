@@ -5,44 +5,52 @@ import FetchMoviesApiService from "./fetch_movies";
 const fetchMoviesApiService = new FetchMoviesApiService();
 const refs = {
     gallery: document.querySelector('.film-list'),
-    form: document.querySelector('.header-search__form'),
     modalMovieThumb: document.querySelector('.modal-gallery__flex-thumb'),
-};
+}
 
 export default class RenderMovies {
     constructor() { };
 
-    async fetchAndRenderMovieList(movies) {
-        this.clearMovieList();
-        fetchMoviesApiService.resetPage();
-        const genres = await fetchMoviesApiService.fetchGenres();
-        this.getGenres(movies, genres);
-        refs.gallery.insertAdjacentHTML('beforeend', this.makeMovieCardMarkup(movies));
-    };
-
-    async onShowTrendingsMovies() {
+    async showTrendingsMovies() {
     try {
         const movies = await fetchMoviesApiService.fetchTrendingMovies();
-        this.fetchAndRenderMovieList(movies);
+        this.#fetchAndRenderMovieList(movies);
     } catch (error) {
         console.log(error.message);
     };
     };
 
-    async onSearchMovieByName(event) { 
-        event.preventDefault();
-        const movieName = event.currentTarget.elements.q.value.trim();
+    async searchMoviesByName(movieName) { 
     try {
         const movies = await fetchMoviesApiService.fetchMoviesByName(movieName);
-        this.fetchAndRenderMovieList(movies);
+        this.#fetchAndRenderMovieList(movies);
     } catch (error) {
         console.log(error.message);
     };
-
-    refs.form.reset();
     };
 
-    getGenres(movies, genres) {
+    async searchMovieByID(id) {
+        try {
+            const movie = await fetchMoviesApiService.fetchMovieByID(id);
+            this.#renderMovieDetail(movie);
+        } catch (error) {
+            console.log(error.message);
+        };
+    };
+
+    async #fetchAndRenderMovieList(movies) {
+        this.#clearMovieList();
+        fetchMoviesApiService.resetPage();
+        const genres = await fetchMoviesApiService.fetchGenres();
+        this.#getGenres(movies, genres);
+        refs.gallery.insertAdjacentHTML('beforeend', this.#makeMovieCardMarkup(movies));
+    };
+
+    #renderMovieDetail(movie) {
+        refs.modalMovieThumb.insertAdjacentHTML('beforeend', this.#makeMovieDetailMarkup(movie));
+    };
+
+    #getGenres(movies, genres) {
      movies.results.forEach(element => {
          const id = element.genre_ids;
          for (const genre of genres) {
@@ -60,7 +68,7 @@ export default class RenderMovies {
      });   
     };
 
-    makeMovieCardMarkup(movies) {
+    #makeMovieCardMarkup(movies) {
         let genres = [];
         let releaseDate = "No date";
         const movieCardMarkup = movies.results
@@ -89,7 +97,7 @@ export default class RenderMovies {
     return movieCardMarkup;
     };
 
-    makeLibraryMovieCardMarkup(movies) {
+    #makeLibraryMovieCardMarkup(movies) {
         let genres = [];
         let releaseDate = "No date";
         const libraryMovieCardMarkup = movies.results
@@ -119,7 +127,7 @@ export default class RenderMovies {
     return libraryMovieCardMarkup;
     };
 
-    makeMovieDetailMarkup(movies) {
+    #makeMovieDetailMarkup(movies) {
         const movieDetailMarkup = movies.results
             .map(({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview }) => {
                 return `<div class="modal-gallery__thumb">
@@ -159,13 +167,7 @@ export default class RenderMovies {
     return movieDetailMarkup;
     };
 
-    clearMovieList() {
+    #clearMovieList() {
        refs.gallery.innerHTML = '';
     };
 };
-
-const renderMovies = new RenderMovies();
-
-renderMovies.onShowTrendingsMovies();
-
-refs.form.addEventListener('submit', renderMovies.onSearchMovieByName.bind(renderMovies));
