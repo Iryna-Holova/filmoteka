@@ -16,7 +16,7 @@ export default class RenderMovies {
         const movies = await fetchMoviesApiService.fetchTrendingMovies();
         const movieCardsMarkup = await this.#fetchMovieList(movies);
 
-        return movieCardsMarkup(movies);
+        return movieCardsMarkup;
     } catch (error) {
         console.log(error.message);
     };
@@ -27,7 +27,7 @@ export default class RenderMovies {
         const movies = await fetchMoviesApiService.fetchMoviesByName(movieName);
         const movieCardsMarkup = await this.#fetchMovieList(movies);
 
-        return movieCardsMarkup(movies);
+        return movieCardsMarkup;
     } catch (error) {
         console.log(error.message);
     };
@@ -38,7 +38,7 @@ export default class RenderMovies {
             const movie = await fetchMoviesApiService.fetchMovieByID(id);
             const movieDetailMarkup = await this.#renderMovieDetail(movie);
 
-            return movieDetailMarkup(movie);
+            return movieDetailMarkup;
         } catch (error) {
             console.log(error.message);
         };
