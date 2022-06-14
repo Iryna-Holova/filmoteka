@@ -11,10 +11,12 @@ const refs = {
 export default class RenderMovies {
     constructor() { };
 
-    async showTrendingsMovies() {
+    async searchTrendingsMovies() {
     try {
         const movies = await fetchMoviesApiService.fetchTrendingMovies();
-        this.#fetchAndRenderMovieList(movies);
+        const movieCardsMarkup = await this.#fetchMovieList(movies);
+
+        return movieCardsMarkup;
     } catch (error) {
         console.log(error.message);
     };
@@ -23,7 +25,9 @@ export default class RenderMovies {
     async searchMoviesByName(movieName) { 
     try {
         const movies = await fetchMoviesApiService.fetchMoviesByName(movieName);
-        this.#fetchAndRenderMovieList(movies);
+        const movieCardsMarkup = await this.#fetchMovieList(movies);
+
+        return movieCardsMarkup;
     } catch (error) {
         console.log(error.message);
     };
@@ -32,22 +36,23 @@ export default class RenderMovies {
     async searchMovieByID(id) {
         try {
             const movie = await fetchMoviesApiService.fetchMovieByID(id);
-            this.#renderMovieDetail(movie);
+            const movieDetailMarkup = await this.#renderMovieDetail(movie);
+
+            return movieDetailMarkup;
         } catch (error) {
             console.log(error.message);
         };
     };
 
-    async #fetchAndRenderMovieList(movies) {
-        this.#clearMovieList();
+    async #fetchMovieList(movies) {
         fetchMoviesApiService.resetPage();
         const genres = await fetchMoviesApiService.fetchGenres();
         this.#getGenres(movies, genres);
-        refs.gallery.insertAdjacentHTML('beforeend', this.#makeMovieCardMarkup(movies));
+        this.#makeMovieCardMarkup(movies);
     };
 
     #renderMovieDetail(movie) {
-        refs.modalMovieThumb.insertAdjacentHTML('beforeend', this.#makeMovieDetailMarkup(movie));
+        this.#makeMovieDetailMarkup(movie);
     };
 
     #getGenres(movies, genres) {
@@ -127,10 +132,8 @@ export default class RenderMovies {
     return libraryMovieCardMarkup;
     };
 
-    #makeMovieDetailMarkup(movies) {
-        const movieDetailMarkup = movies.results
-            .map(({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview }) => {
-                return `<div class="modal-gallery__thumb">
+    #makeMovieDetailMarkup(poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview) {
+            const movieDetailMarkup = `<div class="modal-gallery__thumb">
             <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
           </div>
           <div class="modal-gallery__thumb-text">
@@ -162,12 +165,23 @@ export default class RenderMovies {
               <button class="button modal-gallery-button modal-button__queue">Add to queue</button>
             </div>
           </div>`   
-        }).join('');
+        .join('');
     
     return movieDetailMarkup;
     };
 
-    #clearMovieList() {
-       refs.gallery.innerHTML = '';
-    };
+    movieDetail(poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview) {
+        const movieDetail = {
+            title,
+            poster: poster_path,
+            rating: vote_average,
+            votes: vote_count,
+            popularity,
+            original_title,
+            genres,
+            about: overview,
+        };
+
+        return movieDetail;
+    };    
 };
