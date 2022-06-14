@@ -3,7 +3,7 @@ import MicroModal from 'micromodal';
 import '../sass/base/_modal.scss';
 
 export const openModal = id => {
-  MicroModal.show(id);
+  MicroModal.show(id, { disableScroll: true, disableFocus: true });
 };
 
 // ***** in js file example
@@ -18,25 +18,25 @@ export const openModal = id => {
 
 // ***** base markup of modal
 
-// <div class="ENY__CLASS__YOU__NEED micromodal-slide" aria-hidden="true" id="ID_OF_MODAL">
+// <div class="micromodal-slide" id="ID_OF_MODAL" aria-hidden="true">
 //   <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-//     <div>
-//       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-//          -------- START OF BODY
-//         <button class="" aria-label="Close modal" data-micromodal-close>
-//         </button>
-//          -------- END OF BODY
-//       </div>
+//     <div
+//       class="modal__container ENY__CLASS__YOU__NEED"
+//       role="dialog"
+//       aria-modal="true"
+//       aria-labelledby="ID_OF_MODAL-title"
+//     >
+//       -------- START OF BODY
+//       <button class="" aria-label="Close modal" data-micromodal-close></button>
+//       -------- END OF BODY
 //     </div>
 //   </div>
 // </div>;
 
-
-
 const gallery = document.querySelector('.film-list');
 
-gallery.addEventListener('click', (event => {
-        if (event.target.nodeName === 'UL') return;
-        // const id = event.target.closest('.film-list__item').getAttribute('data-id');
-        openModal("modal_gallery")
-    }));
+gallery.addEventListener('click', event => {
+  if (event.target.nodeName === 'UL') return;
+  // const id = event.target.closest('.film-list__item').getAttribute('data-id');
+  openModal('modal_gallery');
+});
