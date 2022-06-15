@@ -132,7 +132,7 @@
     display: flex;
 }
 .header-nav__item {
-    text-transform: uppercase;
+    //text-transform: uppercase;
         &:last-child {
             padding-left: 40px;
         }
@@ -142,7 +142,9 @@
     color: $clr-light;
     padding-bottom: 20px;
     padding-top: 20px;
-
+    text-transform: uppercase;
+    background-color: transparent;
+    border-color: transparent;
     transition: color $transition-time $cubic;
     
 }
@@ -215,6 +217,10 @@
 .header-search__input:focus,
 .header-search__input:hover {
     border-bottom: 1px solid $clr-accent;
+   
+    outline: 0;
+    outline-offset: 0;
+
 }
 .headers-button {
     //display: flex;
@@ -249,7 +255,6 @@
    transition-property: background-color, border-color, border-radius;
    transition-duration: $transition-time;
    transition-timing-function: $cubic;
-   transition-delay: $transition-time;
 }
 .header-button__watch:focus,
 .header-button__que:focus {
