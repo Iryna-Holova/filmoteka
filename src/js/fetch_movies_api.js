@@ -1,5 +1,4 @@
 // скрипт генерации запросов на сервер - популярные, по имени и по айди
-
 import axios from 'axios';
 
 const URL = 'https://api.themoviedb.org/3';
