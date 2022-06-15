@@ -1,5 +1,4 @@
 // скрипт генерации запросов на сервер - популярные, по имени и по айди
-
 import axios from 'axios';
 
 const URL = 'https://api.themoviedb.org/3';
@@ -12,7 +11,7 @@ export default class FetchMoviesApiService {
     };
 
     async fetchTrendingMovies() {
-        const response = await axios.get(`/trending/movie/week?api_key=${API_KEY}`);
+        const response = await axios.get(`/trending/movie/week?api_key=${API_KEY}&page=${this.page}`);
         this.incrementPage();
 
         return response.data;
