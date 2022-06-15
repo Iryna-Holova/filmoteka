@@ -3,7 +3,7 @@
 import FetchMoviesApiService from "./fetch_movies_api";
 const fetchMoviesApiService = new FetchMoviesApiService();
 
-export default class MakeMarcup {
+export default class MakeMarkup {
 
     makeMovieCardMarkup(movies) {
         let genres = [];
@@ -83,7 +83,7 @@ export default class MakeMarcup {
                     Original Title<span class="modal-gallery-list__title">${original_title}</span>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Genre<span class="modal-gallery-list__genre">${genres.map(genre => genre.name)}</span>
+                    Genre<span class="modal-gallery-list__genre">${genres.map(genre => genre.name).join(', ')}</span>
                 </li>
             </ul>
             <article class="modal-gallery-about">

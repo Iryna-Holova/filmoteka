@@ -1,8 +1,8 @@
 import { openModal } from './modal';
 import GetMoviesInfo from './get_movies_info';
 const getMoviesInfo = new GetMoviesInfo;
-import MakeMarcup from './make_markup';
-const makeMarkup = new MakeMarcup;
+import MakeMarkup from './make_markup';
+const makeMarkup = new MakeMarkup;
 
 const gallery = document.querySelector('.gallery__home .film-list');
 const searchForm = document.querySelector('.header-search__form');
