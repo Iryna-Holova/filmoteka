@@ -3,12 +3,17 @@ import FetchMoviesApiService from "./fetch_movies_api";
 const fetchMoviesApiService = new FetchMoviesApiService();
 
 export default class GetMoviesInfo {
+    constructor() {
+        this.page = 1;
+        this.searchQuery = '';
+    };
 
     async searchTrendingsMovies() {
         try {
-            const response = await fetchMoviesApiService.fetchTrendingMovies();
+            const response = await fetchMoviesApiService.fetchTrendingMovies(this.page);
             const genres = await fetchMoviesApiService.fetchGenres();
             this.#getGenres(response, genres);
+            this.incrementPage();
 
             return response.results;
         } catch (error) {
@@ -16,12 +21,12 @@ export default class GetMoviesInfo {
         };
     };
 
-    async searchMoviesByName(movieName) {
-        fetchMoviesApiService.resetPage();
+    async searchMoviesByName() {
         try {
-            const response = await fetchMoviesApiService.fetchMoviesByName(movieName);
+            const response = await fetchMoviesApiService.fetchMoviesByName(this.searchQuery, this.page);
             const genres = await fetchMoviesApiService.fetchGenres();
             this.#getGenres(response, genres);
+            this.incrementPage();
             
             return response.results;
         }
@@ -33,7 +38,6 @@ export default class GetMoviesInfo {
     async searchMovieByID(id) {
         try {
             const response = await fetchMoviesApiService.fetchMovieByID(id);
-            
             return response;
         } catch (error) {
             console.log(error.message);
@@ -71,5 +75,21 @@ export default class GetMoviesInfo {
         };
 
         return movieDetail;
-    };    
+    };   
+    
+    incrementPage() {
+        this.page += 1;
+    };
+
+    resetPage() {
+        this.page = 1;
+    };
+
+    get query() {
+        return this.searchQuery;
+    }
+
+    set query(newQuery) {
+        this.searchQuery = newQuery;
+    }
 };
