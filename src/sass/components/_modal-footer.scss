@@ -119,11 +119,14 @@
 
 @media screen and (min-width: 1032px) {
   .team-container {
-    max-width: 800px;
+    max-width: 900px;
   }
 }
 
 .button-close {
+  position: absolute;
+  top: 3%;
+  right: 4%;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -132,22 +135,18 @@
   text-align: center;
   text-transform: uppercase;
   color: $clr-light;
-  width: 100px;
+  cursor: pointer;
+  width: 30px;
   height: 30px;
   background-color: $clr-accent-btn;
   border-radius: 3px;
   border: 1px solid $clr-light;
-  transition-property: background-color, border-color, border-radius;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 250ms;
-  margin-left: 150px;
 }
 
-.button-close:hover,
-.button-close:focus {
-  color: $clr-accent;
-  background-color: $clr-bg-footer;
-  box-shadow: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
-  border-color: $clr-accent-btn;
-}
+// .button-close:hover,
+// .button-close:focus {
+//   color: $clr-accent;
+//   background-color: $clr-light;
+//   // box-shadow: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+//   border-color: $clr-accent-btn;
+// }
