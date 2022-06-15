@@ -19,7 +19,7 @@ export default class MakeMarkup {
             } else {
                 genres = genre_ids;
             };
-            if (release_date !== '') {
+            if (release_date && release_date !== '') {
                 releaseDate = release_date.slice(0, 4);
             };
                 return `<li class="film-list__item" data-id="${id}">

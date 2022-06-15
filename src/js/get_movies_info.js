@@ -17,6 +17,7 @@ export default class GetMoviesInfo {
     };
 
     async searchMoviesByName(movieName) {
+        fetchMoviesApiService.resetPage();
         try {
             const response = await fetchMoviesApiService.fetchMoviesByName(movieName);
             const genres = await fetchMoviesApiService.fetchGenres();
