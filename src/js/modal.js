@@ -32,11 +32,3 @@ export const openModal = id => {
 //     </div>
 //   </div>
 // </div>;
-
-const gallery = document.querySelector('.film-list');
-
-gallery.addEventListener('click', event => {
-  if (event.target.nodeName === 'UL') return;
-  // const id = event.target.closest('.film-list__item').getAttribute('data-id');
-  openModal('modal_gallery');
-});

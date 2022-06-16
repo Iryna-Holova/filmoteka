@@ -1,4 +1,9 @@
 <section class="gallery">
+    <button class="fas fa-arrow-circle-up" id="buttonUp">
+      <svg class="scroll-up" width="50" height="50">
+        <use href="./images/icons.svg#icon-scrollUp"></use>
+      </svg>
+    </button>
   <div class="container">
     <h1 hidden>Film gallery</h1>
     <!-- page Home -->
@@ -7,7 +12,7 @@
         <!-- шаблон розмітки одного фільму для Home -->
       </ul>
       <div class="gallery__home--error">
-        <img src="./images/error-not-found.jpg" alt="Not found page">
+        <p class="error">Ooopss!..Search result failed. Please enter a valid movie title and try again</p>
       </div>
     </div>
     <!-- page My Library Watched-->
@@ -24,7 +29,7 @@
         </li>
       </ul>
       <div class="gallery__library--watched-error">
-        <img src="./images/error-not-found.jpg" alt="Not found page">
+        <p class="error">No movies added yet!</p>
       </div>
     </div>
     <!-- page My Library Queue-->
@@ -41,7 +46,7 @@
         </li>
       </ul>
       <div class="gallery__library--queue-error">
-        <img src="./images/error-not-found.jpg" alt="Not found page">
+        <p class="error">No movies added yet!</p>
       </div>
     </div>
   </div>
