@@ -94,7 +94,8 @@ export default class MakeMarkup {
                 <button class="button modal-gallery-button" data-id="${id}">Add to watched</button>
                 <button class="button modal-gallery-button modal-button__queue" data-id="${id}">Add to queue</button>
             </div>
-        </div>`;
+        </div>
+        <div class="modal-gallery-buttons__nav"><button class='button__nav' type='button' data-prev>&laquo;</button><button class='button__nav' type='button' data-next>&raquo;</button></div>`;
     
         return movieDetailMarkup;
     };
