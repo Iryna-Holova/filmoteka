@@ -1,3 +1,33 @@
+.button__nav {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  text-align: center;
+  background-color: $clr-light;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+
+ & > svg {
+  width: 100%;
+  height: 100%;
+ }
+
+  &.prev {
+    top: 500px;
+    left: 10px;
+    transform: rotate(-90deg);
+  }
+
+  &.next {
+    top: 500px;
+    right: 10px;
+    transform: rotate(90deg);
+  }
+}
+
 .modal-gallery {
   position: relative;
   width: 280px;
@@ -25,6 +55,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    padding: 7px;
   }
 
   // -------------start here-------------
