@@ -99,3 +99,20 @@
 .gallery__library--watched, .gallery__library--queue, .gallery__home--error {
     display: none;
 }
+
+// Scroll Up
+
+button {
+    position: relative;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    display: none;
+}
+
+.scroll-up {
+    position: fixed;
+    top: 85%;
+    left: 95%;
+}
+
