@@ -32,13 +32,42 @@ async function onFormSubmit(event) {
     searchForm.reset();
 }
 
-async function onCardClick(event) {
+function onCardClick(event) {
     if (event.target.nodeName === 'UL') return;
     openModal("modal_gallery");
-    const id = event.target.closest('.film-list__item').getAttribute('data-id');
+    const movieCard = event.target.closest('.film-list__item');
+    const id = movieCard.getAttribute('data-id');
+    
+    renderMovieDetailMarkup(id, movieCard);
+}
+
+async function renderMovieDetailMarkup(id) {
     const movie = await getMoviesInfo.searchMovieByID(id);
     const markup = makeMarkup.makeMovieDetailMarkup(movie);
     modalMovieThumb.innerHTML = markup;
+
+    const movieCard = document.querySelector(`[data-id="${id}"]`);
+    const navButtons = document.querySelector('.modal-gallery-buttons__nav');
+    navButtons.children.disabled = false;
+
+    let prevID;
+    let nextID;
+
+    if (movieCard.previousSibling.nodeName === 'LI') {
+        prevID = movieCard.previousSibling.getAttribute('data-id');
+    } else navButtons.firstElementChild.disabled = true;
+
+    if (movieCard.nextSibling) {
+        nextID = movieCard.nextSibling.getAttribute('data-id');
+    } else navButtons.lastElementChild.disabled = true;
+
+    navButtons.addEventListener('click', ((event) => {
+        if (event.target.hasAttribute('data-next')) {
+            renderMovieDetailMarkup(nextID);
+        } else if (event.target.hasAttribute('data-prev')) {
+            renderMovieDetailMarkup(prevID);
+        }
+    }))
 }
 
 async function renderHome() {
