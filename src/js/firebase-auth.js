@@ -12,7 +12,7 @@ import {
 const refs = {
   authFormLogin: document.querySelector('#login'),
   authFormSignin: document.querySelector('#register'),
-  loginBtn: document.querySelector('[data-page="sign-in"]'),
+  loginBtn: document.querySelector('[data-page="log-in"]'),
   logOutBtn: document.querySelector('[data-page="log-out"]'),
   libraryBtn: document.querySelector('[data-page="library"]'),
   googleAuth: document.querySelector('[data-link="google"]'),
