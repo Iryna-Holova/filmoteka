@@ -1,14 +1,26 @@
 .form-box {
-  width: 380px;
-  height: 480px;
+  width: 280px;
+  height: 400px;
   position: relative;
-  margin: 6% auto;
+  margin: 0 auto;
   background-color: #fff;
-  padding: 5px;
-  overflow: hidden;
+  padding: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: 420px;
+  }
+
+  // @media screen and (min-width: 1024px) {
+        
+  // }
+  
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 }
 .button-box {
-  width: 220px;
+  width: 100%;
   margin: 35px auto;
   position: relative;
   box-shadow: 0 0 20px 9px $clr-bg-footer;
@@ -45,22 +57,36 @@
   cursor: pointer;
   border-radius: 50%;
 }
+.input-container{
+  position: relative;
+  width: 100%;
+}
 .input-group {
-  top: 180px;
-  position: absolute;
-  width: 280px;
+  top: 0;
+  left: 0;
+  position: relative;
+  width: 260px;
   transition: $transition-time;
+  margin-bottom: 10px;
+  height: auto;
+
+  @media screen and (min-width:768px) {
+    padding: 40px 10px;
+    width: 430px;
+  }
 }
 .input-field {
   width: 100%;
-  padding: 10px 0;
-  margin: 5px 0;
   border-top: 0;
   border-right: 0;
   border-left: 0;
   border-bottom: 1px solid #999;
   outline: none;
   background: transparent;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
 }
 .submit-btn {
   width: 85%;
@@ -74,17 +100,28 @@
   outline: none;
   border-radius: 30px;
 }
-.check-box {
-  margin: 30px 3px 30px 0;
-}
+
 .checkbox-text {
   color: #777;
   font-size: 12px;
-  bottom: 68px;
+  margin-bottom: 15px;
+  text-align: center;
+  display: block;
 }
-#login {
-  left: 50px;
-}
-#register {
+
+.sign-up {
+  position: absolute;
   left: 450px;
+  top: 175px;
+  width: 100%;
 }
+
+.modal__terms {
+  color: $clr-accent-btn;
+  text-decoration: underline;
+}
+
+// .terms__container {
+//   width: 260px;
+//   padding: 20px 10px;
+// }

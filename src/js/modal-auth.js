@@ -13,15 +13,15 @@ refs.loginBtn.addEventListener('click', login);
 refs.registerBtn.addEventListener('click', register);
 
 function register() {
-  refs.loginForm.style.left = '-400px';
-  refs.registerForm.style.left = '50px';
+  refs.loginForm.style.left = '-450px';
+  refs.registerForm.style.left = '10px';
   refs.btnForm.style.left = '110px';
 }
 
 function login() {
-  refs.loginForm.style.left = '50px';
+  refs.loginForm.style.left = '0px';
   refs.registerForm.style.left = '450px';
-  refs.btnForm.style.left = '0px';
+  refs.btnForm.style.left = '10px';
 }
 
 refs.authBtn.addEventListener('click', () => {
