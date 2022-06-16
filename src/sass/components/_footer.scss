@@ -1,55 +1,53 @@
 .footer {
-    background-color: $clr-bg-footer;
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 28px;
-    position: fixed;
-    bottom: 0;
-    overflow: hidden;
-    width: 100%;
+  background-color: $clr-bg-footer;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 28px;
+  position: fixed;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
 }
 
 .footer-option {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    color: $clr-footer;
-    font-size: 14px;
-    line-height: 1.14;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.14;
+  color: $clr-footer;
 
-    @media screen and (min-width: 768px) {
-        flex-wrap: nowrap;
-        padding-top: 30px;
-        padding-bottom: 28px;
-        font-size: 16px;
-        line-height: 1.19;
-    }
-
+  @media screen and (min-width: 768px) {
+    flex-wrap: nowrap;
+    padding-top: 30px;
+    padding-bottom: 28px;
+    font-size: 16px;
+    line-height: 1.19;
+  }
 }
 
 .footer-text,
 .footer-heart,
 .footer__link {
-    color: $clr-footer;
+  color: $clr-footer;
 }
 
 .footer-heart {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .heart {
-    margin-left: 5px;
-    margin-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .footer__link {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .footer__link:focus,
 .footer__link:hover {
   color: $clr-accent;
 }
-

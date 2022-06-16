@@ -32,4 +32,3 @@ export const openModal = id => {
 //     </div>
 //   </div>
 // </div>;
-
