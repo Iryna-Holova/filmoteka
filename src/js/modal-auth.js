@@ -6,7 +6,7 @@ const refs = {
   loginForm: document.querySelector('#login'),
   registerForm: document.querySelector('#register'),
   btnForm: document.querySelector('.btn-form'),
-  authBtn: document.querySelector('[data-page="sign-in"]'),
+  authBtn: document.querySelector('[data-page="log-in"]'),
 };
 
 refs.loginBtn.addEventListener('click', login);
