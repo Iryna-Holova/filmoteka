@@ -11,7 +11,7 @@
   width: 220px;
   margin: 35px auto;
   position: relative;
-  box-shadow: 0 0 20px 9px black;
+  box-shadow: 0 0 20px 9px $clr-bg-footer;
   border-radius: 30px;
 }
 .toggle-btn {
@@ -21,6 +21,7 @@
   border: 0;
   outline: none;
   position: relative;
+  width: 100px;
 }
 .btn-form {
   top: 0;
@@ -28,9 +29,9 @@
   position: absolute;
   width: 110px;
   height: 100%;
-  background: grey;
+  background: linear-gradient(to right, $clr-accent, $clr-accent-btn);
   border-radius: 50px;
-  transition: 0.5s;
+  transition: $transition-time;
 }
 .social-icons {
   margin: 30px auto;
@@ -40,7 +41,7 @@
   display: inline-block;
   width: 35px;
   margin: 0 12px;
-  box-shadow: 0 0 20px 0 black;
+  box-shadow: 0 0 20px 0 $clr-accent;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -48,7 +49,7 @@
   top: 180px;
   position: absolute;
   width: 280px;
-  transition: 0.5s;
+  transition: $transition-time;
 }
 .input-field {
   width: 100%;
@@ -67,7 +68,8 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: linear-gradient(to rigth, black, white);
+  background: $clr-accent-btn;
+  // linear-gradient(to right, red, orange);
   border: 0;
   outline: none;
   border-radius: 30px;

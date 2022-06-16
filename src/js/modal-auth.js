@@ -6,7 +6,7 @@ const refs = {
   loginForm: document.querySelector('#login'),
   registerForm: document.querySelector('#register'),
   btnForm: document.querySelector('.btn-form'),
-  authBtn: document.querySelector('.auth-btn'),
+  authBtn: document.querySelector('[data-page="sign-in"]'),
 };
 
 refs.loginBtn.addEventListener('click', login);
@@ -26,5 +26,4 @@ function login() {
 
 refs.authBtn.addEventListener('click', () => {
   openModal('auth');
-  //   console.log('refs.autnBtn');
 });

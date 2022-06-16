@@ -64,7 +64,7 @@ export default class MakeMarkup {
     return libraryMovieCardMarkup;
     };
 
-    makeMovieDetailMarkup({poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview}) {
+    makeMovieDetailMarkup({poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview, id}) {
         const movieDetailMarkup = `
         <div class="modal-gallery__thumb">
             <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
@@ -91,8 +91,8 @@ export default class MakeMarkup {
                 <p class="modal-gallery-about__text">${overview}</p>
             </article>
             <div class="modal-gallery-buttons__thumb">
-                <button class="button modal-gallery-button">Add to watched</button>
-                <button class="button modal-gallery-button modal-button__queue">Add to queue</button>
+                <button class="button modal-gallery-button" data-id="${id}">Add to watched</button>
+                <button class="button modal-gallery-button modal-button__queue" data-id="${id}">Add to queue</button>
             </div>
         </div>`;
     
