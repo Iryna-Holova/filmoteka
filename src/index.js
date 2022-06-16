@@ -12,5 +12,5 @@ import './js/modal-gallery';
 import './js/loader';
 import './js/temp_script.js';
 
-import './js/firebase';
+import './js/firebase-auth';
 import './js/modal-auth';

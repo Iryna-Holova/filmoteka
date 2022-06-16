@@ -7,25 +7,21 @@
                 <button type="button" class="toggle-btn register">Sign in</button>
             </div>
             <div class="social-icons">
-                <img src="" alt="google" class="google-auth">
+                <img src="" alt="google+" class="google-auth" data-link="google">
             </div>
             <form id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="User ID" required>
-                <input type="password" class="input-field" placeholder="Enter password" required>
-
+                <input type="email" name="email" class="input-field" placeholder="Email ID" required>
+                <input type="password" name="password" class="input-field" placeholder="Enter password" required>
                 <label class="checkbox-text">
-                    <input type="checkbox" name="checkbox" class="check-box">
-                    Remember me</label>
+                    <input type="checkbox" name="checkbox" class="check-box" required>
+                    I agree with the Terms</label>
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
             <form id="register" class="input-group">
-                <input type="text" class="input-field" placeholder="User ID" required>
-                <input type="email" class="input-field" placeholder="Email ID" required>
-                <input type="password" class="input-field" placeholder="Enter password" required>
+                <input type="email" name="email" class="input-field" placeholder="Email ID" required>
+                <input type="password" name="password" class="input-field" placeholder="Enter password" required>
 
-                <label class="checkbox-text">
-                    <input type="checkbox" name="checkbox" class="check-box">
-                    I agree with the Terms</label>
+
                 <button type="submit" class="submit-btn">Sign in</button>
             </form>
         </div>
