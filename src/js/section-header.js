@@ -1,6 +1,6 @@
 //основной скрипт хедера, импортирован в index.js
 import Gallery from "./section-gallery";
-const Galleri = new Gallery();
+const gallery = new Gallery();
 
 const refs = {
     headerBgc: document.querySelector('.header'),
@@ -18,17 +18,16 @@ refs.homePage.addEventListener('click', homePageFilm);
 refs.buttonWatch.addEventListener('click', () => {
     refs.buttonQueue.style.backgroundColor = "";
     refs.buttonWatch.style.backgroundColor = "#FF6B01";
-    Galleri.showMylibraryWatch();
+    gallery.showMylibraryWatch();
 });
 refs.buttonQueue.addEventListener('click', () => {
     refs.buttonQueue.style.backgroundColor = "#FF6B01";
     refs.buttonWatch.style.backgroundColor = "";
-    Galleri.showMylibraryQueue();
+    gallery.showMylibraryQueue();
 })
 
 function myLibraryFilm(e) {
     e.preventDefault();
-    clearMovieList();
     refs.homePage.classList.remove('header-nav--current');
     refs.myLibrary.classList.add('header-nav--current');
     refs.headerBgc.classList.remove('home');
@@ -37,20 +36,16 @@ function myLibraryFilm(e) {
     refs.libButton.style.display = "flex";
     refs.buttonQueue.style.backgroundColor = "#FF6B01";
     refs.buttonWatch.style.backgroundColor = "";
-    Galleri.showMylibraryWatch();
+    gallery.showMylibraryWatch();
 
 }
 function homePageFilm(e){
     e.preventDefault();
-    clearMovieList();
     refs.homePage.classList.add('header-nav--current');
     refs.myLibrary.classList.remove('header-nav--current');
     refs.headerBgc.classList.add('home');
     refs.headerBgc.classList.remove('library');
     refs.form.style.display = "flex";
     refs.libButton.style.display = "none";
-    Galleri.showHome();
+    gallery.showHome();
 }
-function clearMovieList() {
-       refs.gallery.innerHTML = '';
-    };
