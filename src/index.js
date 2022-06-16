@@ -14,4 +14,4 @@ import './js/modal';
 import './js/modal-gallery';
 import './js/loader';
 import './js/temp_script.js';
-
+import './js/modal-auth';
