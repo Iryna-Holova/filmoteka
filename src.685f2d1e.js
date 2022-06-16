@@ -104,4 +104,4 @@ module.exports=require("./lib/axios");
 },{"./modal":"RSqK","./get_movies_info":"jVdt","./make_markup":"z8cc"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/section-header"),require("./js/section-gallery"),require("./js/section-footer"),require("./js/get_movies_info"),require("./js/make_markup"),require("./js/modal"),require("./js/modal-gallery"),require("./js/loader"),require("./js/temp_script.js");
 },{"./sass/main.scss":"clu1","./js/section-header":"ZJCk","./js/section-gallery":"w6yV","./js/section-footer":"UWRJ","./js/get_movies_info":"jVdt","./js/make_markup":"z8cc","./js/modal":"RSqK","./js/modal-gallery":"UWRJ","./js/loader":"vQE2","./js/temp_script.js":"qyEP"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.6ce24a41.js.map
+//# sourceMappingURL=/filmoteka/src.685f2d1e.js.map
