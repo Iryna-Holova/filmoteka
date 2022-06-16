@@ -127,8 +127,8 @@
     display: flex;
 }
 .header-nav__item {
-        &:last-child {
-            padding-left: 40px;
+        &:nth-child(n+2) {
+            padding-left: 15px;
         }
 }
 .header-nav__link {
@@ -152,6 +152,9 @@
 .header-nav__link:hover {
     color: $clr-accent;
     filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
+.header-nav__link[data-page="sign-in"] {
+    display: none;
 }
 .header-search {
     padding-bottom: 92px;
