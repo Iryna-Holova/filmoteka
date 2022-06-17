@@ -62,7 +62,7 @@ function onGoogleAuthClick() {
 
       MicroModal.close('auth');
 
-       Notiflix.Notify.success(`Welcome ${user.email}!!! Enjoy uor service`);
+      Notiflix.Notify.success(`Welcome ${user.email}!!! Enjoy uor service`);
     })
     .catch(error => {
       // Handle Errors here.
@@ -78,8 +78,29 @@ function onGoogleAuthClick() {
 function onLoginFormSubmit(e) {
   e.preventDefault();
 
+  signInWithEmailAndPassword(
+    auth,
+    e.currentTarget.elements.email.value.trim(),
+    e.currentTarget.elements.password.value.trim(),
+  )
+    .then(userCredential => {
+      const user = userCredential.user;
+      MicroModal.close('auth');
+
+      Notiflix.Notify.success(`Welcome back ${user.email}!!!`);
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      Notiflix.Notify.failure('User does not exist, or wrong password!');
+    });
+}
+
+function onSigninFormSubmit(e) {
+  e.preventDefault();
+
   if (e.currentTarget.elements.password.value.trim().length < 6) {
-     Notiflix.Notify.failure('To small password...It must contain 6 characters');
+    Notiflix.Notify.failure('To small password...It must contain 6 characters');
   } else {
     createUserWithEmailAndPassword(
       auth,
@@ -94,30 +115,9 @@ function onLoginFormSubmit(e) {
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-         Notiflix.Notify.failure('User exists or invalid values...');
+        Notiflix.Notify.failure('User exists or invalid values...');
       });
   }
-}
-
-function onSigninFormSubmit(e) {
-  e.preventDefault();
-
-  signInWithEmailAndPassword(
-    auth,
-    e.currentTarget.elements.email.value.trim(),
-    e.currentTarget.elements.password.value.trim(),
-  )
-    .then(userCredential => {
-      const user = userCredential.user;
-      MicroModal.close('auth');
-
-       Notiflix.Notify.success(`Welcome back ${user.email}!!!`);
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-       Notiflix.Notify.failure('User does not exist, or wrong password!');
-    });
 }
 
 function onLogOutBtnClick() {
@@ -127,7 +127,7 @@ function onLogOutBtnClick() {
         refs.loginBtn.classList.toggle('is-hidden');
         refs.logOutBtn.classList.toggle('is-hidden');
         refs.libraryBtn.classList.toggle('is-hidden');
-         Notiflix.Notify.info(`Come back soon!!!`);
+        Notiflix.Notify.info(`Come back soon!!!`);
       } else {
         return;
       }
