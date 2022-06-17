@@ -4,8 +4,6 @@ refs = {
 
 refs.scrollUp.addEventListener('click', scrollUpFn);
 
-console.log(refs.scrollUp)
-
 function scrollUpFn() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
