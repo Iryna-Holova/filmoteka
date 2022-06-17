@@ -1,8 +1,3 @@
-// реализация запросов фильмов watched и queue с локалсторидж (или в будущем с firebase)
-// скрипт возвращает массивы популярных фильмов, поиск по имени, фильм по id
-import FetchMoviesApiService from "./fetch_movies_api";
-const fetchMoviesApiService = new FetchMoviesApiService();
-
 export default class MakeMarkup {
 
     makeMovieCardMarkup(movies) {
@@ -94,8 +89,7 @@ export default class MakeMarkup {
                 <button class="button modal-gallery-button" data-id="${id}">Add to watched</button>
                 <button class="button modal-gallery-button modal-button__queue" data-id="${id}">Add to queue</button>
             </div>
-        </div>
-        <div class="modal-gallery-buttons__nav"><button class='button__nav' type='button' data-prev>&laquo;</button><button class='button__nav' type='button' data-next>&raquo;</button></div>`;
+        </div>`;
     
         return movieDetailMarkup;
     };
