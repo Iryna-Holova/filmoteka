@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import Notiflix from 'notiflix';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -61,7 +62,7 @@ function onGoogleAuthClick() {
 
       MicroModal.close('auth');
 
-      alert(`Welcome ${user.email}!!! Enjoy`);
+       Notiflix.Notify.success(`Welcome ${user.email}!!! Enjoy uor service`);
     })
     .catch(error => {
       // Handle Errors here.
@@ -78,7 +79,7 @@ function onLoginFormSubmit(e) {
   e.preventDefault();
 
   if (e.currentTarget.elements.password.value.trim().length < 6) {
-    alert('To small password...');
+     Notiflix.Notify.failure('To small password...It must contain 6 characters');
   } else {
     createUserWithEmailAndPassword(
       auth,
@@ -88,12 +89,12 @@ function onLoginFormSubmit(e) {
       .then(userCredential => {
         const user = userCredential.user;
         MicroModal.close('auth');
-        alert(`Welcome ${user.email}!!! Enjoy`);
+        Notiflix.Notify.success(`Welcome ${user.email}!!! Enjoy our service`);
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert('User exists or invalid values...');
+         Notiflix.Notify.failure('User exists or invalid values...');
       });
   }
 }
@@ -110,12 +111,12 @@ function onSigninFormSubmit(e) {
       const user = userCredential.user;
       MicroModal.close('auth');
 
-      alert(`Welcome back ${user.email}!!!`);
+       Notiflix.Notify.success(`Welcome back ${user.email}!!!`);
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert('User does not exist, or wrong password!');
+       Notiflix.Notify.failure('User does not exist, or wrong password!');
     });
 }
 
@@ -126,7 +127,7 @@ function onLogOutBtnClick() {
         refs.loginBtn.classList.toggle('is-hidden');
         refs.logOutBtn.classList.toggle('is-hidden');
         refs.libraryBtn.classList.toggle('is-hidden');
-        alert(`Come back soon!!!`);
+         Notiflix.Notify.info(`Come back soon!!!`);
       } else {
         return;
       }
