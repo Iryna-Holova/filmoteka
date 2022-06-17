@@ -23,7 +23,9 @@ export default class MakeMarkup {
                         <h2 class="film-list__title">${title}</h2>
                         <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
                     </div>
-                </li>`   
+                    <button class="gallery-button" data-add='watched' data-id="${id}">&#128065;&#65039;</button>
+                    <button class="gallery-button" data-add='queque' data-id="${id}">&#9825;</button>
+                </li>`
             }).join('');
     
         return movieCardMarkup;
@@ -86,8 +88,8 @@ export default class MakeMarkup {
                 <p class="modal-gallery-about__text">${overview}</p>
             </article>
             <div class="modal-gallery-buttons__thumb">
-                <button class="button modal-gallery-button" data-id="${id}">Add to watched</button>
-                <button class="button modal-gallery-button modal-button__queue" data-id="${id}">Add to queue</button>
+                <button class="button modal-gallery-button" data-add=watched data-id="${id}">Add to watched</button>
+                <button class="button modal-gallery-button modal-button__queue" data-add=queque data-id="${id}">Add to queue</button>
             </div>
         </div>`;
     
