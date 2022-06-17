@@ -102,12 +102,20 @@
       letter-spacing: -0.05px;
     }
   }
+
+  &-item {
+
+    &__name {
+      width: 69px;
+    }
+  }
 }
 
 .modal-gallery-list {
   margin-bottom: 20px;
 
   &__item {
+    display: flex;
     color: $clr-modal-param;
 
     &:not(:last-child) {
