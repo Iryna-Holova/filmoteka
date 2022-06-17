@@ -30,6 +30,7 @@
 .modal-gallery {
   font-weight: 500;
   background-color: $clr-light;
+  overflow: scroll;
 
   &__flex-thumb {
     padding: 48px 20px 40px 20px;
