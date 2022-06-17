@@ -7,6 +7,7 @@ const makeMarkup = new MakeMarkup;
 const gallery = document.querySelector('.gallery__home .film-list');
 const searchForm = document.querySelector('.header-search__form');
 const modalMovieThumb = document.querySelector('.modal-gallery__flex-thumb');
+const navButtons = document.querySelector('.modal-gallery-buttons__nav');
 
 const options = {
     root: null,
@@ -21,7 +22,7 @@ gallery.addEventListener('click', onCardClick);
 
 renderHome();
 
-async function onFormSubmit(event) {
+function onFormSubmit(event) {
     event.preventDefault();
     gallery.innerHTML = '';
     getMoviesInfo.resetPage();
@@ -35,10 +36,9 @@ async function onFormSubmit(event) {
 function onCardClick(event) {
     if (event.target.nodeName === 'UL') return;
     openModal("modal_gallery");
-    const movieCard = event.target.closest('.film-list__item');
-    const id = movieCard.getAttribute('data-id');
+    const id = event.target.closest('.film-list__item').getAttribute('data-id');
     
-    renderMovieDetailMarkup(id, movieCard);
+    renderMovieDetailMarkup(id);
 }
 
 async function renderMovieDetailMarkup(id) {
@@ -47,27 +47,27 @@ async function renderMovieDetailMarkup(id) {
     modalMovieThumb.innerHTML = markup;
 
     const movieCard = document.querySelector(`[data-id="${id}"]`);
-    const navButtons = document.querySelector('.modal-gallery-buttons__nav');
-    navButtons.children.disabled = false;
-
-    let prevID;
-    let nextID;
+    navButtons.firstElementChild.disabled = false;
+    navButtons.lastElementChild.disabled = false;
+    console.log(navButtons.children);
 
     if (movieCard.previousSibling.nodeName === 'LI') {
-        prevID = movieCard.previousSibling.getAttribute('data-id');
+        const prevID = movieCard.previousSibling.getAttribute('data-id');
+        navButtons.firstElementChild.setAttribute('data-id', prevID);
     } else navButtons.firstElementChild.disabled = true;
 
     if (movieCard.nextSibling) {
-        nextID = movieCard.nextSibling.getAttribute('data-id');
+        const nextID = movieCard.nextSibling.getAttribute('data-id');
+        navButtons.lastElementChild.setAttribute('data-id', nextID);
     } else navButtons.lastElementChild.disabled = true;
+}
 
-    navButtons.addEventListener('click', ((event) => {
-        if (event.target.hasAttribute('data-next')) {
-            renderMovieDetailMarkup(nextID);
-        } else if (event.target.hasAttribute('data-prev')) {
-            renderMovieDetailMarkup(prevID);
-        }
-    }))
+navButtons.firstElementChild.addEventListener('click', onNavButtonClick)
+navButtons.lastElementChild.addEventListener('click', onNavButtonClick)
+
+function onNavButtonClick(event) {
+    const id = event.currentTarget.getAttribute('data-id')
+    renderMovieDetailMarkup(id);
 }
 
 async function renderHome() {
