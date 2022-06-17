@@ -4,7 +4,7 @@
   position: relative;
   margin: 0 auto;
   background-color: #fff;
-  padding: 10px;
+  padding: 50px 20px;
 
   @media screen and (min-width: 768px) {
     width: 420px;
@@ -21,7 +21,7 @@
 }
 .button-box {
   width: 100%;
-  margin: 35px auto;
+  margin-bottom: 35px;
   position: relative;
   box-shadow: 0 0 20px 9px $clr-bg-footer;
   border-radius: 30px;
@@ -35,23 +35,26 @@
   position: relative;
   width: 108px;
 }
+.login {
+  margin-right: 160px;
+}
 .btn-form {
   top: 0;
   left: 0;
   position: absolute;
-  width: 110px;
+  width: 200px;
   height: 100%;
   background: linear-gradient(to right, $clr-accent, $clr-accent-btn);
   border-radius: 50px;
   transition: $transition-time;
 }
 .social-icons {
-  margin: 30px auto;
+  margin-bottom: 35px;
   text-align: center;
 }
 .google-auth {
   display: inline-block;
-  width: 35px;
+  width: 50px;
   margin: 0 12px;
   box-shadow: 0 0 20px 0 $clr-accent;
   cursor: pointer;
@@ -71,8 +74,7 @@
   height: auto;
 
   @media screen and (min-width:768px) {
-    padding: 40px 10px;
-    width: 430px;
+    width: 100%;
   }
 }
 .input-field {
@@ -89,7 +91,7 @@
   }
 }
 .submit-btn {
-  width: 85%;
+  width: 200px;
   padding: 10px 30px;
   cursor: pointer;
   display: block;
@@ -112,8 +114,8 @@
 .sign-up {
   position: absolute;
   left: 450px;
-  top: 175px;
-  width: 100%;
+  top: 210px;
+  width: calc(100% - 40px);
 }
 
 .modal__terms {
@@ -121,7 +123,8 @@
   text-decoration: underline;
 }
 
-// .terms__container {
-//   width: 260px;
-//   padding: 20px 10px;
-// }
+.terms {
+  color: $clr-accent-btn;
+  text-decoration: underline;
+  cursor: pointer;
+}
