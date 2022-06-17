@@ -6,6 +6,11 @@
       aria-modal="true"
       aria-labelledby="modal-1-title"
     >
+      <button class="modal__button-close" aria-label="Close modal">
+        <svg class="modal__icon_cross" width="14" height="14" data-micromodal-close>
+          <use href="./images/icons.svg#icon-cross"></use>
+        </svg>
+      </button>
       <div class="modal-gallery-buttons__nav">
         <button class="button__nav prev" type="button" data-prev>
           <svg width="30" height="30">
@@ -18,12 +23,6 @@
           </svg>
         </button>
       </div>
-      <button class="modal-gallery__close" aria-label="close" data-micromodal-close>
-        <svg class="modal-gallery__cross" width="14" height="14" data-micromodal-close>
-          <use href="./images/icons.svg#icon-cross"></use>
-        </svg>
-      </button>
-
       <div class="modal-gallery__flex-thumb">
         <div class="modal-gallery__thumb">
           <img src="./images/default-thumbnail.jpg" alt="poster" />

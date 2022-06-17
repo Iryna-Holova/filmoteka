@@ -52,7 +52,7 @@ async function renderMovieDetailMarkup(id) {
     navButtons.firstElementChild.disabled = false;
     navButtons.lastElementChild.disabled = false;
 
-    if (movieCard.previousSibling.nodeName === 'LI') {
+    if ((movieCard.previousSibling) && (movieCard.previousSibling.nodeName === 'LI')) {
         const prevID = movieCard.previousSibling.getAttribute('data-id');
         navButtons.firstElementChild.setAttribute('data-id', prevID);
     } else navButtons.firstElementChild.disabled = true;

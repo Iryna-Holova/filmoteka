@@ -1,6 +1,6 @@
 .button__nav {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   position: absolute;
   display: flex;
@@ -16,91 +16,68 @@
  }
 
   &.prev {
-    top: 500px;
-    left: 10px;
+    top: 20%;
     transform: rotate(-90deg);
   }
 
   &.next {
-    top: 500px;
-    right: 10px;
+    top: 20%;
+    right: 0px;
     transform: rotate(90deg);
   }
 }
 
 .modal-gallery {
-  position: relative;
-  width: 280px;
-  padding: 48px 20px 40px;
   font-weight: 500;
   background-color: $clr-light;
 
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    padding: 40px 72px 40px 36px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    padding: 40px 16px;
-    width: 814px;
-  }
-
-  &__close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    padding: 7px;
-  }
-
-  // -------------start here-------------
   &__flex-thumb {
+    padding: 48px 20px 40px 20px;
+        // position: relative;
+    // max-width: 280px;
+
     @media screen and (min-width: 768px) {
       display: flex;
-      justify-content: space-between;
+      // max-width: 632px;
+      padding: 40px 72px 40px 36px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      // max-width: 814px;
+      padding: 40px 16px 40px 16px;
     }
   }
 
   &__thumb {
-    border-radius: 5px;
-    width: 100%;
+    max-width: 240px;
     margin-bottom: 20px;
 
     @media screen and (min-width: 768px) {
-      width: 264px;
-      height: 374px;
+      max-width: 264px;
+      margin-right: 68px;
       margin-bottom: 0;
     }
 
     @media screen and (min-width: 1024px) {
-      width: 375px;
-      height: 478px;
+      max-width: 375px;
+      margin-right: 16px;
     }
 
     img {
-      display: block;
+      border-radius: 5px;
       width: 100%;
-      height: 100%;
     }
   }
 
   &__thumb-text {
-    width: 100%;
-    margin-bottom: 20px;
-
+    max-width: 240px;
     @media screen and (min-width: 768px) {
-      width: 264px;
-
+      max-width: 264px;
       margin-bottom: 0;
     }
 
     @media screen and (min-width: 1024px) {
-      width: 391px;
+      max-width: 391px;
     }
   }
 
@@ -173,26 +150,39 @@
 
 .modal-gallery-buttons__thumb {
   display: flex;
+  // justify-content: space-between;
 }
 
 .modal-gallery-button {
-  background-color: $clr-accent-btn;
-  color: $clr-light;
-  flex-basis: calc((100% - 20px) / 2);
-  padding: 6px 27px;
-  text-transform: uppercase;
-  border: none;
+  background-color: $clr-light;
+  border: 1px solid $clr-main;
   border-radius: 5px;
+  color: $clr-main;
+  width: 110px;
+  height: 44px;
+  text-transform: uppercase;
+  font-weight: 500;
   cursor: pointer;
 
   &:not(:last-child) {
     margin-right: 20px;
   }
 
-  &__queue {
-    background-color: $clr-light;
-    border: 1px solid $clr-main;
-    color: $clr-main;
-    font-weight: 500;
+  &:hover {
+    background-color: $clr-accent-btn;
+    border: none;
+    color: $clr-light;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 125px;
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 136px;
   }
 }
