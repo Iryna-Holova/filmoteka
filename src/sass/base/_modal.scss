@@ -3,6 +3,7 @@
 \**************************/
 
 .modal__overlay {
+  padding: 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,10 +17,22 @@
 
 .modal__container {
   background-color: #fff;
-  max-height: 95vh;
+  max-height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
-  border-radius: 5px;
+}
+
+.modal__button-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 16px;
 }
 
 /**************************\
