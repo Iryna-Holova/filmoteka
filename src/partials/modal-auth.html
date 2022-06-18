@@ -1,27 +1,29 @@
 <div class="micromodal-slide" id="auth" aria-hidden="true">
   <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-    <div class="modal__container form-box" role="dialog" aria-modal="true" aria-labelledby="auth-title">
-      <div class="button-box">
-        <div class="btn-form"></div>
-        <button type="button" class="toggle-btn login">Log in</button>
-        <button type="button" class="toggle-btn register">Sign up</button>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <div class="form-box">
+        <div class="button-box">
+            <!-- <div class="btn-form"></div> -->
+            <button type="button" class="toggle-btn login active">Log in</button>
+            <button type="button" class="toggle-btn register">Sign up</button>
+        </div>
+        <div class="social-icons">
+            <img src="./images/g-symbol.png" alt="google+" class="google-auth" data-link="google">
+        </div>
+        <form id="login" class="input-group">
+            <input type="email" name="email" class="input-field" placeholder="Email ID" required>
+            <input type="password" name="password" class="input-field" placeholder="Enter password" required>
+            <button type="submit" class="submit-btn">Log in</button>
+        </form>
+        <form id="register" class="input-group sign-up">
+            <input type="email" name="email" class="input-field" placeholder="Email ID" required>
+            <input type="password" name="password" class="input-field" placeholder="Enter password" required>
+            <label class="checkbox-text">
+            <input type="checkbox" name="checkbox" class="check-box" required>
+            I agree with the <a href="#" class="terms">Terms</a></label>
+            <button type="submit" class="submit-btn">Sign up</button>
+        </form>
       </div>
-      <div class="social-icons">
-        <img src="./images/g-symbol.png" alt="google+" class="google-auth" data-link="google">
-      </div>
-      <form id="login" class="input-group">
-        <input type="email" name="email" class="input-field" placeholder="Email ID" required>
-        <input type="password" name="password" class="input-field" placeholder="Enter password" required>
-        <button type="submit" class="submit-btn">Log in</button>
-      </form>
-      <form id="register" class="input-group sign-up">
-        <input type="email" name="email" class="input-field" placeholder="Email ID" required>
-        <input type="password" name="password" class="input-field" placeholder="Enter password" required>
-        <label class="checkbox-text">
-          <input type="checkbox" name="checkbox" class="check-box" required>
-          I agree with the <a href="#" class="terms">Terms</a></label>
-        <button type="submit" class="submit-btn">Sign up</button>
-      </form>
     </div>
   </div>
 </div>

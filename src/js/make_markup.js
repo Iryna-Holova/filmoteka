@@ -1,97 +1,116 @@
 export default class MakeMarkup {
-
-    makeMovieCardMarkup(movies) {
-        let genres = [];
-        let releaseDate = "No date";
-        if (movies) {
-            const movieCardMarkup = movies
-            .map(({ title, poster_path, release_date, genre_ids, id }) => {
-                if (genre_ids.length === 0) {
-                genres = genre_ids.slice(0, 1);
-                genres.splice(0, 0, "No genre");
-            } else if (genre_ids.length > 2) {
-                genres = genre_ids.slice(0, 2);
-                genres.splice(2, 0, "Other");
-            } else {
-                genres = genre_ids;
-            };
-            if (release_date && release_date !== '') {
-                releaseDate = release_date.slice(0, 4);
-            };
-                if (poster_path) {
-                    return `<li class="film-list__item" data-id="${id}">
+  makeMovieCardMarkup(movies) {
+    let genres = [];
+    let releaseDate = 'No date';
+    if (movies) {
+      const movieCardMarkup = movies
+        .map(({ title, poster_path, release_date, genre_ids, id }) => {
+          if (genre_ids.length === 0) {
+            genres = genre_ids.slice(0, 1);
+            genres.splice(0, 0, 'No genre');
+          } else if (genre_ids.length > 2) {
+            genres = genre_ids.slice(0, 2);
+            genres.splice(2, 0, 'Other');
+          } else {
+            genres = genre_ids;
+          }
+          if (release_date && release_date !== '') {
+            releaseDate = release_date.slice(0, 4);
+          }
+          if (poster_path) {
+            return `<li class="film-list__item" data-id="${id}">
                     <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                     <div class="film-list__description">
                         <h2 class="film-list__title">${title}</h2>
-                        <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
+                        <p class="film-list__genres">${Object.values(genres).join(
+                          ', ',
+                        )}<span> | </span>${releaseDate}</p>
                     </div>
                     <button class="gallery-button" data-add='watched' data-id="${id}">&#128065;&#65039;</button>
                     <button class="gallery-button" data-add='queque' data-id="${id}">&#9825;</button>
-                </li>`
-                } else {
-                    return `<li class="film-list__item" data-id="${id}">
+                </li>`;
+          } else {
+            return `<li class="film-list__item" data-id="${id}">
                     <img src="https://bflix.biz/no-poster.png" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                     <div class="film-list__description">
                         <h2 class="film-list__title">${title}</h2>
-                        <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
+                        <p class="film-list__genres">${Object.values(genres).join(
+                          ', ',
+                        )}<span> | </span>${releaseDate}</p>
                     </div>
                     <button class="gallery-button" data-add='watched' data-id="${id}">&#128065;&#65039;</button>
                     <button class="gallery-button" data-add='queque' data-id="${id}">&#9825;</button>
-                </li>`
-                }
-            }).join('');
-    
-        return movieCardMarkup;
-        }
-    };
+                </li>`;
+          }
+        })
+        .join('');
 
-    makeLibraryMovieCardMarkup(movies) {
-        let genres = [];
-        let releaseDate = "No date";
-        if (movies) {
-                    const libraryMovieCardMarkup = movies.results
-            .map(({ title, poster_path, release_date, genre_ids, vote_average }) => {
-                if (genre_ids.length === 0) {
-                    genres = genre_ids.slice(0, 1);
-                    genres.splice(0, 0, "No genre");
-                } else if (genre_ids.length > 2) {
-                    genres = genre_ids.slice(0, 2);
-                    genres.splice(2, 0, "Other");
-                } else {
-                    genres = genre_ids;
-                };
-                if (release_date && release_date !== '') {
-                    releaseDate = release_date.slice(0, 4);
-                };
-                if (poster_path) {
-                    return `<li class="film-list__item">
+      return movieCardMarkup;
+    }
+  }
+
+  makeLibraryMovieCardMarkup(movies) {
+    let genres = [];
+    let releaseDate = 'No date';
+    if (movies) {
+      const libraryMovieCardMarkup = movies.results
+        .map(({ title, poster_path, release_date, genre_ids, vote_average }) => {
+          if (genre_ids.length === 0) {
+            genres = genre_ids.slice(0, 1);
+            genres.splice(0, 0, 'No genre');
+          } else if (genre_ids.length > 2) {
+            genres = genre_ids.slice(0, 2);
+            genres.splice(2, 0, 'Other');
+          } else {
+            genres = genre_ids;
+          }
+          if (release_date && release_date !== '') {
+            releaseDate = release_date.slice(0, 4);
+          }
+          if (poster_path) {
+            return `<li class="film-list__item">
                         <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                         <div class="film-list__description">
                             <h2 class="film-list__title">${title}</h2>
-                                <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
+                                <p class="film-list__genres">${Object.values(genres).join(
+                                  ', ',
+                                )}<span> | </span>${releaseDate}</p>
                                 <p class="film-list__rating">${vote_average}</p>
                             </div>
-                        </li>`
-                } else {
-                    return `<li class="film-list__item">
+                        </li>`;
+          } else {
+            return `<li class="film-list__item">
                         <img src="https://bflix.biz/no-poster.png" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                         <div class="film-list__description">
                             <h2 class="film-list__title">${title}</h2>
-                                <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
+                                <p class="film-list__genres">${Object.values(genres).join(
+                                  ', ',
+                                )}<span> | </span>${releaseDate}</p>
                                 <p class="film-list__rating">${vote_average}</p>
                             </div>
-                        </li>`
-                }
-            }).join('');
-    
-    return libraryMovieCardMarkup;
-        }
-    };
+                        </li>`;
+          }
+        })
+        .join('');
 
-    makeMovieDetailMarkup({poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview, id}) {
-        let movieDetailMarkup;
-        if (poster_path) {
-            movieDetailMarkup = `
+      return libraryMovieCardMarkup;
+    }
+  }
+
+  makeMovieDetailMarkup({
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genres,
+    overview,
+    id,
+  }) {
+    let movieDetailMarkup;
+    if (poster_path) {
+      movieDetailMarkup = `
         <div class="modal-gallery__thumb">
             <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
         </div>
@@ -99,17 +118,28 @@ export default class MakeMarkup {
             <h2 class="modal-gallery__title">${title}</h2>
             <ul class="modal-gallery-list">
                 <li class="modal-gallery-list__item">
-                    Vote / Votes <span class="modal-gallery-list__vote">${vote_average}</span> /
-                    <span class="modal-gallery-list__votes">${vote_count}</span>
+                    <div class="modal-gallery-item__name">Vote / Votes</div>
+                    <div>
+                        <span class="modal-gallery-list__vote">${vote_average}</span> /
+                        <span class="modal-gallery-list__votes modal-gallery-item__value">${vote_count}</span>
+                    </div>
                 </li>
+
                 <li class="modal-gallery-list__item">
-                    Popularity<span class="modal-gallery-list__popularity">${popularity}</span>
+                    <div class="modal-gallery-item__name">Popularity</div>
+                    <div class="modal-gallery-list__popularity modal-gallery-item__value">${popularity}</div>
                 </li>
+                
                 <li class="modal-gallery-list__item">
-                    Original Title<span class="modal-gallery-list__title">${original_title}</span>
+                    <div class="modal-gallery-item__name">Original Title</div>
+                    <div class="modal-gallery-list__title modal-gallery-item__value">${original_title}</div>
                 </li>
+
                 <li class="modal-gallery-list__item">
-                    Genre<span class="modal-gallery-list__genre">${genres.map(genre => genre.name).join(', ')}</span>
+                    <div class="modal-gallery-item__name">Genre</div>
+                    <div class="modal-gallery-list__genre">${genres
+                      .map(genre => genre.name)
+                      .join(', ')}</div>
                 </li>
             </ul>
             <article class="modal-gallery-about">
@@ -120,9 +150,9 @@ export default class MakeMarkup {
                 <button class="button modal-gallery-button" data-add=watched data-id="${id}">Add to watched</button>
                 <button class="button modal-gallery-button modal-button__queue" data-add=queque data-id="${id}">Add to queue</button>
             </div>
-        </div>`
-        } else {
-            movieDetailMarkup = `
+        </div>`;
+    } else {
+      movieDetailMarkup = `
         <div class="modal-gallery__thumb">
             <img src="https://bflix.biz/no-poster.png" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
         </div>
@@ -130,17 +160,28 @@ export default class MakeMarkup {
             <h2 class="modal-gallery__title">${title}</h2>
             <ul class="modal-gallery-list">
                 <li class="modal-gallery-list__item">
-                    Vote / Votes <span class="modal-gallery-list__vote">${vote_average}</span> /
-                    <span class="modal-gallery-list__votes">${vote_count}</span>
+                    <div class="modal-gallery-item__name">Vote / Votes</div>
+                    <div>
+                        <span class="modal-gallery-list__vote">${vote_average}</span> /
+                        <span class="modal-gallery-list__votes modal-gallery-item__value">${vote_count}</span>
+                    </div>
                 </li>
+
                 <li class="modal-gallery-list__item">
-                    Popularity<span class="modal-gallery-list__popularity">${popularity}</span>
+                    <div class="modal-gallery-item__name">Popularity</div>
+                    <div class="modal-gallery-list__popularity modal-gallery-item__value">${popularity}</div>
                 </li>
+
                 <li class="modal-gallery-list__item">
-                    Original Title<span class="modal-gallery-list__title">${original_title}</span>
+                    <div class="modal-gallery-item__name">Original Title</div>
+                    <div class="modal-gallery-list__title modal-gallery-item__value">${original_title}</div>
                 </li>
+
                 <li class="modal-gallery-list__item">
-                    Genre<span class="modal-gallery-list__genre">${genres.map(genre => genre.name).join(', ')}</span>
+                    <div class="modal-gallery-item__name">Genre</div>
+                    <div class="modal-gallery-list__genre">${genres
+                      .map(genre => genre.name)
+                      .join(', ')}</div>
                 </li>
             </ul>
             <article class="modal-gallery-about">
@@ -151,9 +192,9 @@ export default class MakeMarkup {
                 <button class="button modal-gallery-button" data-add=watched data-id="${id}">Add to watched</button>
                 <button class="button modal-gallery-button modal-button__queue" data-add=queque data-id="${id}">Add to queue</button>
             </div>
-        </div>`
-        }
-    
-        return movieDetailMarkup;
-    };
-};
+        </div>`;
+    }
+
+    return movieDetailMarkup;
+  }
+}
