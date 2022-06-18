@@ -169,6 +169,23 @@
   //   display: none;
   // }
 }
+.header-nav__link[data-page="log-out"] {
+  padding-bottom: 16px;
+  padding-top: 8px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+.header-nav__icon {
+  width: 24px;
+  height: 24px;
+  fill: $clr-light;
+  transition: fill $transition-time $cubic;
+
+  &:hover, &:focus {
+    fill: #ff6b08
+  }
+}
 .header-search {
   position: relative;
   padding-bottom: 92px;
@@ -188,6 +205,14 @@
 .header-search__form {
   position: relative;
 }
+
+.header-search__point {
+  stroke: #fff;
+ 
+  &:hover, &:focus {
+    stroke: #ff6b08;
+  }
+}
 .header-search__input {
   font-style: normal;
   font-weight: 400;
@@ -206,12 +231,15 @@
   color: $clr-light;
 
   transition: border-color $transition-time $cubic;
+  stroke: var(--color2, #fff);
+  transition: stroke $transition-time $cubic;
 
   outline: 0 none;
   outline-offset: 0;
     &:focus, &:hover {
       border: transparent;
       border-bottom: 1px solid $clr-accent;
+      stroke: $clr-accent;
     }
     &::placeholder {
       color: $clr-light;
@@ -236,6 +264,13 @@
   position: absolute;
   top: 24%;
   left: 24%;
+
+ /* stroke: var(--color2, #fff);
+  transition: stroke $transition-time $cubic;
+
+  &:hover, &:focus {
+    stroke: $clr-accent;
+  }*/
 }
 .headers-button {
   display: none;
