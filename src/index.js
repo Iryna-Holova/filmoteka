@@ -15,3 +15,4 @@ import './js/firebase-auth';
 import './js/modal-auth';
 
 import './js/scroll-up.js';
+import './js/cloud-firestore';
