@@ -10,21 +10,13 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
+import DataBase from './cloud-firestore';
 
-const refs = {
-  authFormLogin: document.querySelector('#login'),
-  authFormSignin: document.querySelector('#register'),
-  loginBtn: document.querySelector('[data-page="log-in"]'),
-  logOutBtn: document.querySelector('[data-page="log-out"]'),
-  libraryBtn: document.querySelector('[data-page="library"]'),
-  googleAuth: document.querySelector('[data-link="google"]'),
-};
+let userPromiseResolve;
 
-refs.authFormLogin.addEventListener('submit', onLoginFormSubmit);
-refs.authFormSignin.addEventListener('submit', onSigninFormSubmit);
-refs.logOutBtn.addEventListener('click', onLogOutBtnClick);
-refs.googleAuth.addEventListener('click', onGoogleAuthClick);
-
+export const userPromise = new Promise((res, rej) => {
+  userPromiseResolve = res;
+});
 // // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyCU6_agc0gRhFJSbUVpiyKOJT5Ax6DL3KA',
@@ -35,6 +27,22 @@ const firebaseConfig = {
   appId: '1:495169374192:web:0d8fac205d62fd05b8bf35',
 };
 
+const refs = {
+  authFormLogin: document.querySelector('#login'),
+  authFormSignin: document.querySelector('#register'),
+  loginBtn: document.querySelector('[data-page="log-in"]'),
+  logOutBtn: document.querySelector('[data-page="log-out"]'),
+  libraryBtn: document.querySelector('[data-page="library"]'),
+  googleAuth: document.querySelector('[data-link="google"]'),
+};
+
+const authDataBase = new DataBase();
+
+refs.authFormLogin.addEventListener('submit', onLoginFormSubmit);
+refs.authFormSignin.addEventListener('submit', onSigninFormSubmit);
+refs.logOutBtn.addEventListener('click', onLogOutBtnClick);
+refs.googleAuth.addEventListener('click', onGoogleAuthClick);
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
@@ -43,6 +51,7 @@ const auth = getAuth(app);
 onAuthStateChanged(auth, user => {
   if (user) {
     const uid = user.uid;
+    userPromiseResolve(uid);
     if (refs.loginBtn.classList.contains('is-hidden')) {
       return;
     } else {
@@ -63,6 +72,14 @@ function onGoogleAuthClick() {
       MicroModal.close('auth');
 
       Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
+
+      authDataBase.userIdPromise
+        .then(userId => {
+          authDataBase.setDefaultCell(userId);
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
     })
     .catch(error => {
       // Handle Errors here.
@@ -115,7 +132,15 @@ function onSigninFormSubmit(e) {
         const user = userCredential.user;
         MicroModal.close('auth');
         Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
+        authDataBase.userIdPromise
+          .then(userId => {
+            authDataBase.setDefaultCell(userId);
+          })
+          .catch(error => {
+            console.log(error.message);
+          });
       })
+
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
