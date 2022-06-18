@@ -208,6 +208,7 @@
 
 .header-search__point {
   stroke: #fff;
+  fill: transparent;
  
   &:hover, &:focus {
     stroke: #ff6b08;
@@ -251,6 +252,7 @@
   }
 }
 .header-search__button {
+  color: transparent;
   position: absolute;
   padding: 10px;
   top: -4%;
