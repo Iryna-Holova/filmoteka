@@ -34,16 +34,18 @@
 
   &__flex-thumb {
     padding: 48px 20px 40px 20px;
-        // position: relative;
+    width: 280px;
     max-width: 280px;
 
     @media screen and (min-width: 768px) {
       display: flex;
+      width: 632px;
       max-width: 632px;
       padding: 40px 72px 40px 36px;
     }
 
     @media screen and (min-width: 1024px) {
+      width: 814px;
       max-width: 814px;
       padding: 40px 16px 40px 16px;
     }
@@ -182,7 +184,7 @@
     border: none;
     color: $clr-light;
   }
-
+  
   @media screen and (min-width: 768px) {
     width: 125px;
 
