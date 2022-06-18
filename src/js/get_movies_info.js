@@ -1,4 +1,5 @@
 // скрипт возвращает массивы популярных фильмов, поиск по имени, фильм по id
+import Notiflix from 'notiflix';
 import FetchMoviesApiService from "./fetch_movies_api";
 const fetchMoviesApiService = new FetchMoviesApiService();
 
@@ -17,7 +18,7 @@ export default class GetMoviesInfo {
 
             return response.results;
         } catch (error) {
-            console.log(error.message);
+            Notiflix.Notify.failure(error.message);
         };
     };
 
@@ -27,11 +28,16 @@ export default class GetMoviesInfo {
             const genres = await fetchMoviesApiService.fetchGenres();
             this.#getGenres(response, genres);
             this.incrementPage();
-            
+
+            if (response.total_results === 0) {
+                Notiflix.Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
+                return;
+            };
+
             return response.results;
         }
         catch (error) {
-            console.log(error.message);
+            Notiflix.Notify.failure(error.message);
         };
     };
 
@@ -40,7 +46,7 @@ export default class GetMoviesInfo {
             const response = await fetchMoviesApiService.fetchMovieByID(id);
             return response;
         } catch (error) {
-            console.log(error.message);
+            Notiflix.Notify.failure(error.message);
         };
     };
 
