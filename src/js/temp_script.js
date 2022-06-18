@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import { openModal } from './modal';
 import GetMoviesInfo from './get_movies_info';
 const getMoviesInfo = new GetMoviesInfo;
@@ -7,6 +8,8 @@ const makeMarkup = new MakeMarkup;
 const galleryHome = document.querySelector('.gallery__home .film-list');
 const gallery = document.querySelector('.gallery')
 const searchForm = document.querySelector('.header-search__form');
+const searchInput = document.querySelector('.header-search__input');
+const searchBtn = document.querySelector('.header-search__button');
 const modalMovieThumb = document.querySelector('.modal-gallery__flex-thumb');
 const navButtons = document.querySelector('.modal-gallery-buttons__nav');
 // const 
@@ -21,6 +24,7 @@ const observerSearch = new IntersectionObserver(onIntersectSearch, options);
 
 searchForm.addEventListener('submit', onFormSubmit);
 galleryHome.addEventListener('click', onCardClick);
+searchInput.addEventListener('input', onInputChange);
 
 renderHome();
 
@@ -81,8 +85,17 @@ async function renderHome() {
 async function renderHomeSearch() {
     const movies = await getMoviesInfo.searchMoviesByName();
     const markup = await makeMarkup.makeMovieCardMarkup(movies);
-    galleryHome.insertAdjacentHTML('beforeend', markup);
-    observerSearch.observe(galleryHome.lastElementChild);
+    
+    if (movies) {
+        if (movies.length === 0) {
+        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+        observerSearch.disconnect();
+        return;
+        };
+        
+        galleryHome.insertAdjacentHTML('beforeend', markup);
+        observerSearch.observe(galleryHome.lastElementChild);
+    };
 };
 
 function onIntersectHome(entries) {
@@ -101,6 +114,15 @@ function onIntersectSearch(entries) {
     });
 };
 
+function onInputChange() {
+    if (searchInput.value !== '') {
+        searchBtn.disabled = false;
+    };
+
+    if (searchInput.value.trim() === '') {
+        searchBtn.disabled = true;
+    };
+};
 
 gallery.addEventListener('click', onAddButtonClick);
 gallery.addEventListener('click', onRemoveButtonClick);
