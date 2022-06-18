@@ -3,7 +3,8 @@ export default class MakeMarkup {
     makeMovieCardMarkup(movies) {
         let genres = [];
         let releaseDate = "No date";
-        const movieCardMarkup = movies
+        if (movies) {
+            const movieCardMarkup = movies
             .map(({ title, poster_path, release_date, genre_ids, id }) => {
                 if (genre_ids.length === 0) {
                 genres = genre_ids.slice(0, 1);
@@ -41,12 +42,14 @@ export default class MakeMarkup {
             }).join('');
     
         return movieCardMarkup;
+        }
     };
 
     makeLibraryMovieCardMarkup(movies) {
         let genres = [];
         let releaseDate = "No date";
-        const libraryMovieCardMarkup = movies.results
+        if (movies) {
+                    const libraryMovieCardMarkup = movies.results
             .map(({ title, poster_path, release_date, genre_ids, vote_average }) => {
                 if (genre_ids.length === 0) {
                     genres = genre_ids.slice(0, 1);
@@ -82,6 +85,7 @@ export default class MakeMarkup {
             }).join('');
     
     return libraryMovieCardMarkup;
+        }
     };
 
     makeMovieDetailMarkup({poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview, id}) {

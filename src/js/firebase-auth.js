@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import Notiflix from 'notiflix';
+import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -61,7 +62,7 @@ function onGoogleAuthClick() {
 
       MicroModal.close('auth');
 
-      Notiflix.Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
+      Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
     })
     .catch(error => {
       // Handle Errors here.
@@ -90,12 +91,12 @@ function onLoginFormSubmit(e) {
       const user = userCredential.user;
       MicroModal.close('auth');
 
-      Notiflix.Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
+      Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      Notiflix.Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
+      Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
     });
 }
 
@@ -103,7 +104,7 @@ function onSigninFormSubmit(e) {
   e.preventDefault();
 
   if (e.currentTarget.elements.password.value.trim().length < 6) {
-    Notiflix.Notify.failure('To small password... It must contain 6 characters', { timeout: 2000 });
+    Notify.failure('To small password... It must contain 6 characters', { timeout: 2000 });
   } else {
     createUserWithEmailAndPassword(
       auth,
@@ -113,18 +114,18 @@ function onSigninFormSubmit(e) {
       .then(userCredential => {
         const user = userCredential.user;
         MicroModal.close('auth');
-        Notiflix.Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
+        Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        Notiflix.Notify.failure('User exists or invalid values...', { timeout: 2000 });
+        Notify.failure('User exists or invalid values...', { timeout: 2000 });
       });
   }
 }
 
 function onLogOutBtnClick() {
-  Notiflix.Confirm.show(
+  Confirm.show(
     'Log Out Confirm',
     'Do you want to log out?',
     'Yes',
@@ -136,7 +137,7 @@ function onLogOutBtnClick() {
             refs.loginBtn.classList.toggle('is-hidden');
             refs.logOutBtn.classList.toggle('is-hidden');
             refs.libraryBtn.classList.toggle('is-hidden');
-            Notiflix.Notify.info(`Come back soon!!!`, { timeout: 1000 });
+            Notify.info(`Come back soon!!!`, { timeout: 1000 });
           } else {
             return;
           }
@@ -146,7 +147,7 @@ function onLogOutBtnClick() {
         });
     },
     function cancelCb() {
-      Notiflix.Notify.success('Good choice!', { timeout: 1000 });
+      Notify.success('Good choice!', { timeout: 1000 });
     },
     {
       borderRadius: '3px',
