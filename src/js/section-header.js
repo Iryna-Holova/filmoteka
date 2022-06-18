@@ -18,11 +18,14 @@ refs.homePage.addEventListener('click', homePageFilm);
 refs.buttonWatch.addEventListener('click', () => {
     refs.buttonQueue.style.backgroundColor = "";
     refs.buttonWatch.style.backgroundColor = "#FF6B01";
+    refs.buttonWatch.style.border = "#FF6B01";
+    refs.buttonQueue.style.border = "";
     gallery.showMylibraryWatch();
 });
 refs.buttonQueue.addEventListener('click', () => {
     refs.buttonQueue.style.backgroundColor = "#FF6B01";
     refs.buttonWatch.style.backgroundColor = "";
+    refs.buttonWatch.style.border = "";
     gallery.showMylibraryQueue();
 })
 
@@ -35,7 +38,8 @@ function myLibraryFilm(e) {
     refs.form.style.display = "none";
     refs.libButton.style.display = "flex";
     refs.buttonQueue.style.backgroundColor = "#FF6B01";
-    refs.buttonWatch.style.backgroundColor = "";
+    refs.buttonQueue.style.border = "#FF6B01";
+    refs.buttonWatch.style.backgroundColor = ""; 
     gallery.showMylibraryWatch();
 
 }
