@@ -151,16 +151,22 @@ function onRemoveButtonClick(event) {
 
 async function renderWatched() {
     const movies = await localStorage.getWatched();
-    const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
-    galleryWatched.innerHTML = markup;
+    if ((!movies) || (movies.length === 0)) {
+        console.log('пока нет добавленных фильмов watched');
+    } else {
+        const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
+        galleryWatched.innerHTML = markup;
+    }
 }
 
 async function renderQueue() {
     const movies = await localStorage.getQueue();
-    console.log(movies);
-    const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
-    console.log(markup);
-    galleryQueue.innerHTML = markup;
+    if ((!movies) || (movies.length === 0)) {
+        console.log('пока нет добавленных фильмов queue');
+    } else {
+        const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
+        galleryQueue.innerHTML = markup;
+    }
 }
 
 renderWatched();
