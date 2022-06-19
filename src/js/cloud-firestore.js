@@ -9,7 +9,7 @@ import {
   arrayRemove,
 } from 'firebase/firestore';
 // import { firebaseConfig } from './firebase-auth';
-import { userPromise } from './firebase-auth';
+import { userPromise, defaultCell } from './firebase-auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCU6_agc0gRhFJSbUVpiyKOJT5Ax6DL3KA',
@@ -26,11 +26,7 @@ const db = getFirestore(app);
 
 export default class DataBase {
   constructor() {
-    this.defaultCell = {
-      theme: 'day',
-      watched: [],
-      queue: [],
-    };
+    this.defaultCell = defaultCell;
     this.userIdPromise = userPromise;
   }
 
@@ -103,7 +99,7 @@ export default class DataBase {
     const docSnap = await getDoc(cellRef);
 
     if (docSnap.exists()) {
-      if (docSnap.data().watched.includes(movieId)) {
+      if (docSnap.data().watched.find(movie => movie.id === Number(movieId))) {
         return true;
       } else {
         return false;
@@ -119,7 +115,7 @@ export default class DataBase {
     const docSnap = await getDoc(cellRef);
 
     if (docSnap.exists()) {
-      if (docSnap.data().queue.includes(movieId)) {
+      if (docSnap.data().queue.find(movie => movie.id === Number(movieId))) {
         return true;
       } else {
         return false;
@@ -165,28 +161,3 @@ export default class DataBase {
     }
   }
 }
-
-// const myDataBase = new DataBase();
-
-// const refs = {
-//   addBtn: document.querySelector('.header-nav--current'),
-// };
-
-// const movieId = '123456789';
-
-// refs.addBtn.addEventListener('click', onAddBtnClick);
-
-// let filmId = '1234';
-
-// function onAddBtnClick() {
-//   myDataBase.userIdPromise
-//     .then(userId => {
-//       myDataBase.getTheme(userId).then(data => {
-//         console.log(data);
-//       });
-//     })
-
-//     .catch(error => {
-//       console.log(error.message);
-//     });
-// }
