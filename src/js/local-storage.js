@@ -44,10 +44,21 @@ export default class LocalStorage {
         };
     }
 
-    // removeQueue(id) {
-    //     const savedData = JSON.parse(localStorage.getItem(this.id));
-    //     this.formData = savedData;
-    // }
+    removeWatched(id) {
+        const savedData = JSON.parse(localStorage.getItem(this.id));
+        this.formData = savedData;
+        this.formData.watched = this.formData.watched.filter((elem) => elem.id != id);
+        localStorage.setItem(this.id, JSON.stringify(this.formData));
+        console.log('удален');
+    }
+
+    removeQueue(id) {
+        const savedData = JSON.parse(localStorage.getItem(this.id));
+        this.formData = savedData;
+        this.formData.queue = this.formData.queue.filter((elem) => elem.id != id);
+        localStorage.setItem(this.id, JSON.stringify(this.formData));
+        console.log('удален');
+    }
 
     getWatched() {
         const savedData = JSON.parse(localStorage.getItem(this.id));
