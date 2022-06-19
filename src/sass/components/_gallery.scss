@@ -120,15 +120,67 @@
 
     @media screen and (min-width: 320px) {
         top: 50%;
-        left: 80%;
+        left: 84%;
+        z-index: 1;
     }
     @media screen and (min-width: 768px) {
         top: 50%;
-        left: 90%;
+        left: 93%;
+        z-index: 1;
     }
     @media screen and (min-width: 1024px) {
         top: 50%;
         left: 95%;
     }
 }
+
+
+// icons
+
+.film-list__poster {
+    position: relative;
+}
+
+.film-list__icons {
+    display: flex;
+    position: absolute;
+    top: 92%;
+    
+    @media screen and (min-width: 320px) {
+        left: 73%;
+    }
+    @media screen and (min-width: 768px) {
+        left: 77%;
+    }
+    @media screen and (min-width: 1024px) {
+        left: 75%;
+    }
+    
+
+    button {
+        margin-right: 5px;
+        border: none;
+        border-radius: 40%;
+        width: 33px;
+        height: 30px;
+        cursor: pointer;
+        opacity: 0.5;
+        font-size: 20px;
+        color: $clr-modal-param;
+
+        &:hover {
+            color: $clr-accent-btn;
+            opacity: 1;
+        }
+    }
+}
+
+.watch::before {
+    content: '\1f441';
+}
+
+.queue::before {
+    content: '\2661';
+}
+
 
