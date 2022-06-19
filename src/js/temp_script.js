@@ -4,15 +4,17 @@ import GetMoviesInfo from './get_movies_info';
 const getMoviesInfo = new GetMoviesInfo;
 import MakeMarkup from './make_markup';
 const makeMarkup = new MakeMarkup;
+import LocalStorage from './local-storage';
+const localStorage = new LocalStorage;
 
 const galleryHome = document.querySelector('.gallery__home .film-list');
-const gallery = document.querySelector('.gallery')
+const galleryWatched = document.querySelector('.gallery__library--watched .film-list');
+const galleryQueue = document.querySelector('.gallery__library--queue .film-list');
 const searchForm = document.querySelector('.header-search__form');
 const searchInput = document.querySelector('.header-search__input');
 const searchBtn = document.querySelector('.header-search__button');
 const modalMovieThumb = document.querySelector('.modal-gallery__flex-thumb');
 const navButtons = document.querySelector('.modal-gallery-buttons__nav');
-// const 
 
 const options = {
     root: null,
@@ -56,7 +58,7 @@ async function renderMovieDetailMarkup(id) {
     navButtons.firstElementChild.disabled = false;
     navButtons.lastElementChild.disabled = false;
 
-    if ((movieCard.previousSibling) && (movieCard.previousSibling.nodeName === 'LI')) {
+    if (movieCard.previousSibling) {
         const prevID = movieCard.previousSibling.getAttribute('data-id');
         navButtons.firstElementChild.setAttribute('data-id', prevID);
     } else navButtons.firstElementChild.disabled = true;
@@ -124,27 +126,40 @@ function onInputChange() {
     };
 };
 
-gallery.addEventListener('click', onAddButtonClick);
-gallery.addEventListener('click', onRemoveButtonClick);
+
+const body = document.querySelector('body')
+body.addEventListener('click', onAddButtonClick);
+body.addEventListener('click', onRemoveButtonClick);
 
 async function onAddButtonClick(event) {
     if (!event.target.hasAttribute('data-add')) return;
     const id = event.target.getAttribute('data-id');
     const array = event.target.getAttribute('data-add');
     const movie = await getMoviesInfo.searchMovieByID(id);
-    console.log(`добавь фильм ${id} в массив ${array}`);
-    console.log(movie);
-    event.target.removeAttribute('data-add');
-    event.target.setAttribute('data-remove', array);
+    if (array === 'watched') {
+        localStorage.addWatched(movie, id);
+    } else localStorage.addQueue(movie, id);;
 }
 
-async function onRemoveButtonClick(event) {
+function onRemoveButtonClick(event) {
     if (!event.target.hasAttribute('data-remove')) return;
     const id = event.target.getAttribute('data-id');
     const array = event.target.getAttribute('data-remove');
-    const movie = await getMoviesInfo.searchMovieByID(id);
     console.log(`удали фильм ${id} из массива ${array}`);
     console.log(movie);
-    event.target.removeAttribute('data-remove');
-    event.target.setAttribute('data-add', array);
 }
+
+async function renderWatched() {
+    const movies = await localStorage.getWatched();
+    const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
+    galleryWatched.innerHTML = markup;
+}
+
+async function renderQueue() {
+    const movies = await localStorage.getQueue();
+    const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
+    galleryQueue.innerHTML = markup;
+}
+
+renderWatched();
+renderQueue();
