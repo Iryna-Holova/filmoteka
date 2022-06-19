@@ -162,4 +162,51 @@ export default class MakeMarkup {
     
         return movieDetailMarkup;
     };
+
+    makeMarkupForLibraryMovieCard({ title, poster_path, release_date, genres, vote_average }) {
+    let releaseDate = "No date";
+        let movieGenres = [];
+        let moviGenresNames = [];
+        let markupForLibraryMovieCard;
+        if ({ title, poster_path, release_date, genres, vote_average }) {
+                if (release_date && release_date !== '') {
+                    releaseDate = release_date.slice(0, 4);
+                };
+                if (genres.length === 0) {
+                    movieGenres = genres.slice(0, 1);
+                    movieGenres.splice(0, 0);
+                    moviGenresNames = [...movieGenres, { id: '', name: 'No genre' }];
+                    moviGenresNames = moviGenresNames.map(genre => genre.name);
+                } else if (genres.length > 2) {
+                    movieGenres = genres.slice(0, 2);
+                    moviGenresNames = [...movieGenres, { id: '', name: 'Other' }];
+                    moviGenresNames = moviGenresNames.map(genre => genre.name);
+                } else {
+                    movieGenres = genres;
+                    moviGenresNames = [...movieGenres];
+                    moviGenresNames = moviGenresNames.map(genre => genre.name);
+                };
+                if (poster_path) {
+                    markupForLibraryMovieCard = `<li class="film-list__item">
+                        <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+                        <div class="film-list__description">
+                            <h2 class="film-list__title">${title}</h2>
+                                <p class="film-list__genres">${moviGenresNames.join(', ')}<span> | </span>${releaseDate}</p>
+                                <p class="film-list__rating">${vote_average}</p>
+                            </div>
+                        </li>`
+                } else {
+                    markupForLibraryMovieCard = `<li class="film-list__item">
+                        <img src="https://bflix.biz/no-poster.png" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+                        <div class="film-list__description">
+                            <h2 class="film-list__title">${title}</h2>
+                                <p class="film-list__genres">${moviGenresNames.join(' ')}<span> | </span>${releaseDate}</p>
+                                <p class="film-list__rating">${vote_average}</p>
+                            </div>
+                        </li>`
+                };
+   
+        return libraryCardMarkup;
+        };
+    };
 };
