@@ -46,20 +46,10 @@ export default class MakeMarkup {
     };
 
     makeLibraryMovieCardMarkup(movies) {
-        let genres = [];
         let releaseDate = "No date";
         if (movies) {
-                    const libraryMovieCardMarkup = movies.results
-            .map(({ title, poster_path, release_date, genre_ids, vote_average }) => {
-                if (genre_ids.length === 0) {
-                    genres = genre_ids.slice(0, 1);
-                    genres.splice(0, 0, "No genre");
-                } else if (genre_ids.length > 2) {
-                    genres = genre_ids.slice(0, 2);
-                    genres.splice(2, 0, "Other");
-                } else {
-                    genres = genre_ids;
-                };
+                    const libraryMovieCardMarkup = movies
+            .map(({ title, poster_path, release_date, genres, vote_average }) => {
                 if (release_date && release_date !== '') {
                     releaseDate = release_date.slice(0, 4);
                 };
