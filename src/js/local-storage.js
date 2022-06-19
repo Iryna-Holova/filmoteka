@@ -47,12 +47,13 @@ export default class LocalStorage {
 
     getWatched() {
         const savedData = JSON.parse(localStorage.getItem(this.id));
+        if (!savedData) return;
         return savedData.watched;
     }
 
     getQueue() {
         const savedData = JSON.parse(localStorage.getItem(this.id));
-        console.log(savedData);
+        if (!savedData) return;
         return savedData.queue;
     }
 }
