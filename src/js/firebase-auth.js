@@ -10,7 +10,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import DataBase from './cloud-firestore';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 let userPromiseResolve;
 
@@ -27,6 +27,20 @@ const firebaseConfig = {
   appId: '1:495169374192:web:0d8fac205d62fd05b8bf35',
 };
 
+export const defaultCell = {
+  theme: 'day',
+  watched: [],
+  queue: [],
+};
+
+async function setDefaultCell(userId) {
+  try {
+    await setDoc(doc(db, 'users', userId), defaultCell);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 const refs = {
   authFormLogin: document.querySelector('#login'),
   authFormSignin: document.querySelector('#register'),
@@ -35,8 +49,6 @@ const refs = {
   libraryBtn: document.querySelector('[data-page="library"]'),
   googleAuth: document.querySelector('[data-link="google"]'),
 };
-
-const authDataBase = new DataBase();
 
 refs.authFormLogin.addEventListener('submit', onLoginFormSubmit);
 refs.authFormSignin.addEventListener('submit', onSigninFormSubmit);
@@ -47,6 +59,7 @@ refs.googleAuth.addEventListener('click', onGoogleAuthClick);
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 onAuthStateChanged(auth, user => {
   if (user) {
@@ -73,26 +86,27 @@ function onGoogleAuthClick() {
 
       Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
 
-      authDataBase.userIdPromise
+      userPromise
         .then(userId => {
-          authDataBase.setDefaultCell(userId);
+          setDefaultCell(userId);
         })
         .catch(error => {
           console.log(error.message);
         });
     })
     .catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(errorCode);
-      console.log(errorMessage);
-      console.log(email);
-      console.log(credential);
+      // // Handle Errors here.
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // // The email of the user's account used.
+      // const email = error.customData.email;
+      // // The AuthCredential type that was used.
+      // const credential = GoogleAuthProvider.credentialFromError(error);
+      // console.log(errorCode);
+      // console.log(errorMessage);
+      // console.log(email);
+      // console.log(credential);
+      console.log(error);
     });
 }
 
@@ -111,8 +125,11 @@ function onLoginFormSubmit(e) {
       Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
     })
     .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode);
+      // console.log(errorMessage);
+
       Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
     });
 }
@@ -132,9 +149,9 @@ function onSigninFormSubmit(e) {
         const user = userCredential.user;
         MicroModal.close('auth');
         Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
-        authDataBase.userIdPromise
+        userPromise
           .then(userId => {
-            authDataBase.setDefaultCell(userId);
+            setDefaultCell(userId);
           })
           .catch(error => {
             console.log(error.message);
@@ -142,8 +159,10 @@ function onSigninFormSubmit(e) {
       })
 
       .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(errorCode);
+        // console.log(errorMessage);
         Notify.failure('User exists or invalid values...', { timeout: 2000 });
       });
   }
