@@ -1,3 +1,6 @@
+.modal__overlay {
+  z-index: 10;
+}
 .form-box {
   width: 280px;
   height: 400px;
@@ -25,6 +28,22 @@
   position: relative;
   box-shadow: 0 0 20px 9px $clr-bg-footer;
   border-radius: 30px;
+  display: flex;
+
+  &.active {
+
+    & > .btn-form::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background-color: $clr-accent-btn;
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      transition: $transition-time;
+    }
+  }
 }
 .toggle-btn {
   padding: 10px 30px;
@@ -33,21 +52,40 @@
   border: 0;
   outline: none;
   position: relative;
-  width: 108px;
+  width: 50%;
+
+  @media screen and (min-width: 768px) {
+  width: 188px;
 }
-.login {
-  margin-right: 160px;
 }
+
 .btn-form {
   top: 0;
   left: 0;
   position: absolute;
-  width: 200px;
+  width: 50%;
   height: 100%;
-  background: linear-gradient(to right, $clr-accent, $clr-accent-btn);
+  // background: linear-gradient(to right, $clr-accent, $clr-accent-btn);
   border-radius: 50px;
   transition: $transition-time;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $clr-accent-btn;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    transition: $transition-time;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 190px;
+  }
 }
+
 .social-icons {
   margin-bottom: 35px;
   text-align: center;
@@ -68,10 +106,15 @@
   top: 0;
   left: 0;
   position: relative;
-  width: 260px;
+  width: 240px;
   transition: $transition-time;
   margin-bottom: 10px;
   height: auto;
+
+    .active ~ & {
+      left: -450px;
+      transition: $transition-time;
+    }
 
   @media screen and (min-width:768px) {
     width: 100%;
@@ -90,6 +133,7 @@
     margin-bottom: 15px;
   }
 }
+
 .submit-btn {
   width: 200px;
   padding: 10px 30px;
@@ -116,6 +160,10 @@
   left: 450px;
   top: 210px;
   width: calc(100% - 40px);
+
+  .active ~ & {
+    left: 20px;
+  }
 }
 
 .modal__terms {
