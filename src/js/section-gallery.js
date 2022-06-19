@@ -2,61 +2,51 @@
 
 export default class Gallery {
     constructor() {
-        this.refs = this.getRefs();
+        this.home = document.querySelector('.gallery__home');
+        this.libraryWatch = document.querySelector('.gallery__library--watched');
+        this.libraryQueue = document.querySelector('.gallery__library--queue');
+        this.errorHome = document.querySelector('.gallery__home--error');
+        this.errorlibraryWatch = document.querySelector('.gallery__library--watched-error');
+        this.errorlibraryQueue = document.querySelector('.gallery__library--queue-error');
+        this.homeFilmlist = this.home.firstElementChild;
+        this.queueFilmList = this.libraryQueue.firstElementChild;
+        this.watchFilmList = this.libraryWatch.firstElementChild;
     }
-    
-    getRefs() {
-        const refs = {};
-        refs.home = document.querySelector('.gallery__home');
-        refs.libraryWatch = document.querySelector('.gallery__library--watched');
-        refs.libraryQueue = document.querySelector('.gallery__library--queue');
-        refs.errorHome = document.querySelector('.gallery__home--error');
-        refs.errorlibraryWatch = document.querySelector('.gallery__library--watched-error');
-        refs.errorlibraryQueue = document.querySelector('.gallery__library--queue-error');
-        refs.filmList = document.querySelectorAll('.film-list');
 
-        return refs;
-    }
 
     showHome() {
-        this.refs.libraryWatch.style.display = "none";
-        this.refs.libraryQueue.style.display = "none";
-        this.refs.home.style.display = "block";
-        this.refs.errorHome.style.display = "none";
+        this.libraryWatch.style.display = "none";
+        this.libraryQueue.style.display = "none";
+        this.home.style.display = "block";
+        this.errorHome.style.display = "none";
     }
 
     showMylibraryWatch() {
-        this.refs.libraryWatch.style.display = "block";
-        this.refs.libraryQueue.style.display = "none";
-        this.refs.home.style.display = "none";
-        this.refs.errorlibraryWatch.style.display = "none";
+        this.libraryWatch.style.display = "block";
+        this.libraryQueue.style.display = "none";
+        this.home.style.display = "none";
+        this.errorlibraryWatch.style.display = "none";
     };
 
     showMylibraryQueue() {
-        this.refs.libraryWatch.style.display = "none";
-        this.refs.libraryQueue.style.display = "block";
-        this.refs.home.style.display = "none";
-        this.refs.errorlibraryQueue.style.display = "none";
+        this.libraryWatch.style.display = "none";
+        this.libraryQueue.style.display = "block";
+        this.home.style.display = "none";
+        this.errorlibraryQueue.style.display = "none";
     };
 
     showErrorHome() {
-        this.refs.libraryWatch.style.display = "none";
-        this.refs.libraryQueue.style.display = "none";
-        this.refs.filmList[0].style.display = "none";
-        this.refs.errorHome.style.display = "block";
+        this.homeFilmlist.style.display = "none";
+        this.errorHome.style.display = "block";
     }
 
     showErrorlibraryWatch() {
-        this.refs.home.style.display = "none";
-        this.refs.libraryQueue.style.display = "none";
-        this.refs.filmList[1].style.display = "none";
-        this.refs.errorlibraryWatch.style.display = "block";
+        this.watchFilmList.style.display = "none";
+        this.errorlibraryWatch.style.display = "block";
     }
 
     showErrorlibraryQueue() {
-        this.refs.home.style.display = "none";
-        this.refs.libraryQueue.style.display = "none";
-        this.refs.filmList[3].style.display = "none";
-        this.refs.errorlibraryQueue.style.display = "block";
+        this.queueFilmList.style.display = "none";
+        this.errorlibraryQueue.style.display = "block";
     }
 }
