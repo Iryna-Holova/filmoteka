@@ -69,14 +69,11 @@
   align-items: center;
 
   padding-top: 32px;
-  padding-bottom: 46px;
 
-  @media screen and (min-width: 768px) {
-    padding-bottom: 30px;
-  }
   @media screen and (min-width: 1024px) {
-    padding-bottom: 32px;
+    padding-top: 30px;
   }
+  
 }
 .header-container__link {
   display: flex;
@@ -88,7 +85,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
-  line-height: 1.16;
+  line-height: 1.172;
 
   display: flex;
   display: none;
@@ -145,6 +142,11 @@
   }
 }
 .header-nav__link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+
   color: $clr-light;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -155,8 +157,12 @@
   cursor: pointer;
 
   transition: color $transition-time $cubic;
-
+ 
     @media screen and (min-width: 768px) {
+      padding-bottom: 16px;
+      padding-top: 16px;
+    }
+    @media screen and (min-width: 1024px) {
       padding-bottom: 16px;
       padding-top: 16px;
     }
@@ -170,25 +176,44 @@
   // }
 }
 .header-nav__link[data-page="log-out"] {
-  padding-bottom: 16px;
-  padding-top: 8px;
-  width: 36px;
-  height: 36px;
+  padding-bottom: 0;
+    padding-top: 0;
+    width: 32px;
+    height: 32px;
   cursor: pointer;
+  @media screen and (min-width: 768px) {
+    
+    width: 54px;
+    height: 40px;
+  }
+}
+.header-nav__link[data-page="library"] {
+  @media screen and (min-width: 768px) {
+    padding-bottom: 16px;
+    padding-top: 16px;
+  }
+  
 }
 .header-nav__icon {
-  width: 24px;
-  height: 24px;
-  fill: $clr-light;
+  width: 32px;
+  height: 32px;
+  fill: #f4a026;
   transition: fill $transition-time $cubic;
 
+  @media screen and (min-width: 768px) {
+    width: 40px;
+    height: 44px;
+  }
+
   &:hover, &:focus {
-    fill: #ff6b08
+    fill: #ff6b08;
+    //background-color: #ff6b08;
   }
 }
 .header-search {
   position: relative;
   padding-bottom: 92px;
+  padding-top: 46px;
 
   display: flex;
   text-align: center;
@@ -199,7 +224,11 @@
   border-radius: 4px solid $clr-light;
 
   @media screen and (min-width: 768px) {
+    padding-top: 30px;
     padding-bottom: 80px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding-top: 33px;
   }
 }
 .header-search__form {
@@ -278,9 +307,14 @@
   display: none;
   justify-content: center;
   padding-bottom: 62px;
+  padding-top: 52px;
 
   @media screen and (min-width: 768px) {
+    padding-top: 30px;
     padding-bottom: 60px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding-top: 29px;
   }
 }
 .header-button__watch,
@@ -297,7 +331,7 @@
   color: $clr-light;
 
   width: 148px;
-  height: 42px;
+  height: 44px;
 
   background-color: transparent;
   border-radius: 3px;
@@ -327,4 +361,21 @@
 
 .is-hidden {
   display: none;
+}
+
+.is-active {
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid $clr-light;
+
+  transition-property: background-color, border-color, border-radius;
+  transition-duration: $transition-time;
+  transition-timing-function: $cubic;
+
+  &:focus, &:hover {
+    background-color: $clr-accent-btn;
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+    border-color: $clr-accent-btn;
+    border-radius: 5px;
+  }
 }
