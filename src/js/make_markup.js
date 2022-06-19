@@ -20,13 +20,17 @@ export default class MakeMarkup {
             };
                 if (poster_path) {
                     return `<li class="film-list__item" data-id="${id}">
-                    <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+                    <div class="film-list__poster">
+                        <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
+                        <div class="film-list__icons">
+                            <button class="gallery-button watch" data-add='watched' data-id="${id}"></button>
+                            <button class="gallery-button queue" data-add='queque' data-id="${id}"></button>
+                        </div>
+                    </div>
                     <div class="film-list__description">
                         <h2 class="film-list__title">${title}</h2>
                         <p class="film-list__genres">${Object.values(genres).join(', ')}<span> | </span>${releaseDate}</p>
                     </div>
-                    <button class="gallery-button" data-add='watched' data-id="${id}">&#128065;&#65039;</button>
-                    <button class="gallery-button" data-add='queque' data-id="${id}">&#9825;</button>
                 </li>`
                 } else {
                     return `<li class="film-list__item" data-id="${id}">

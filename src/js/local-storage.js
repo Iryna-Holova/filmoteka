@@ -18,9 +18,11 @@ export default class LocalStorage {
             this.formData = savedData;
             if (this.formData.watched.find((elem) => elem.id == id)) {
                 console.log('уже есть');
-            } else this.formData.watched.push(movie);
-            localStorage.setItem(this.id, JSON.stringify(this.formData));
-            console.log('добавлен');
+            } else {
+                this.formData.watched.push(movie);
+                localStorage.setItem(this.id, JSON.stringify(this.formData));
+                console.log('добавлен')
+            };
         };
     }
 
@@ -34,9 +36,11 @@ export default class LocalStorage {
             this.formData = savedData;
             if (this.formData.queue.find((elem) => elem.id == id)) {
                 console.log('уже есть');
-            } else this.formData.queue.push(movie);
-            localStorage.setItem(this.id, JSON.stringify(this.formData));
-            console.log('добавлен');
+            } else {
+                this.formData.queue.push(movie);
+                localStorage.setItem(this.id, JSON.stringify(this.formData));
+                console.log('добавлен')
+            };
         };
     }
 
