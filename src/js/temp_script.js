@@ -6,10 +6,10 @@ import MakeMarkup from './make_markup';
 const makeMarkup = new MakeMarkup;
 import LocalStorage from './local-storage';
 const localStorage = new LocalStorage;
+import Gallery from './section-gallery';
+const gallery = new Gallery;
 
-const galleryHome = document.querySelector('.gallery__home .film-list');
-const galleryWatched = document.querySelector('.gallery__library--watched .film-list');
-const galleryQueue = document.querySelector('.gallery__library--queue .film-list');
+
 const searchForm = document.querySelector('.header-search__form');
 const searchInput = document.querySelector('.header-search__input');
 const searchBtn = document.querySelector('.header-search__button');
@@ -25,14 +25,16 @@ const observerHome = new IntersectionObserver(onIntersectHome, options);
 const observerSearch = new IntersectionObserver(onIntersectSearch, options);
 
 searchForm.addEventListener('submit', onFormSubmit);
-galleryHome.addEventListener('click', onCardClick);
+gallery.homeFilmlist.addEventListener('click', onCardClick);
+gallery.watchFilmList.addEventListener('click', onCardClick);
+gallery.queueFilmList.addEventListener('click', onCardClick);
 searchInput.addEventListener('input', onInputChange);
 
 renderHome();
 
 function onFormSubmit(event) {
     event.preventDefault();
-    galleryHome.innerHTML = '';
+    gallery.homeFilmlist.innerHTML = '';
     getMoviesInfo.resetPage();
 
     const movieName = event.currentTarget.elements.q.value.trim();
@@ -45,11 +47,12 @@ function onCardClick(event) {
     if (event.target.nodeName === 'UL' || event.target.nodeName === 'BUTTON') return;
     openModal("modal_gallery");
     const id = event.target.closest('.film-list__item').getAttribute('data-id');
-    
-    renderMovieDetailMarkup(id);
+    const array = event.currentTarget;
+
+    renderMovieDetailMarkup(id, array);
 }
 
-async function renderMovieDetailMarkup(id) {
+async function renderMovieDetailMarkup(id, array) {
     const movie = await getMoviesInfo.searchMovieByID(id);
     const markup = makeMarkup.makeMovieDetailMarkup(movie);
     modalMovieThumb.innerHTML = markup;
@@ -64,6 +67,7 @@ async function renderMovieDetailMarkup(id) {
     } else navButtons.firstElementChild.disabled = true;
 
     if (movieCard.nextSibling) {
+        console.log((movieCard.nextElementSibling));
         const nextID = movieCard.nextSibling.getAttribute('data-id');
         navButtons.lastElementChild.setAttribute('data-id', nextID);
     } else navButtons.lastElementChild.disabled = true;
@@ -80,8 +84,8 @@ function onNavButtonClick(event) {
 async function renderHome() {
     const movies = await getMoviesInfo.searchTrendingsMovies();
     const markup = await makeMarkup.makeMovieCardMarkup(movies);
-    galleryHome.insertAdjacentHTML('beforeend', markup);
-    observerHome.observe(galleryHome.lastElementChild);
+    gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
+    observerHome.observe(gallery.homeFilmlist.lastElementChild);
 }
 
 async function renderHomeSearch() {
@@ -95,8 +99,8 @@ async function renderHomeSearch() {
         return;
         };
         
-        galleryHome.insertAdjacentHTML('beforeend', markup);
-        observerSearch.observe(galleryHome.lastElementChild);
+        gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
+        observerSearch.observe(gallery.homeFilmlist.lastElementChild);
     };
 };
 
@@ -145,8 +149,9 @@ function onRemoveButtonClick(event) {
     if (!event.target.hasAttribute('data-remove')) return;
     const id = event.target.getAttribute('data-id');
     const array = event.target.getAttribute('data-remove');
-    console.log(`удали фильм ${id} из массива ${array}`);
-    console.log(movie);
+    if (array === 'watched') {
+        localStorage.removeWatched(id);
+    } else localStorage.removeQueue(id);
 }
 
 async function renderWatched() {
@@ -154,8 +159,8 @@ async function renderWatched() {
     if ((!movies) || (movies.length === 0)) {
         console.log('пока нет добавленных фильмов watched');
     } else {
-        const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
-        galleryWatched.innerHTML = markup;
+        const markup = await makeMarkup.makeWatchedMovieCardMarkup(movies);
+        gallery.watchFilmList.innerHTML = markup;
     }
 }
 
@@ -164,8 +169,8 @@ async function renderQueue() {
     if ((!movies) || (movies.length === 0)) {
         console.log('пока нет добавленных фильмов queue');
     } else {
-        const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
-        galleryQueue.innerHTML = markup;
+        const markup = await makeMarkup.makeQueueMovieCardMarkup(movies);
+        gallery.queueFilmList.innerHTML = markup;
     }
 }
 
