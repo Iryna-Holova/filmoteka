@@ -2,29 +2,56 @@
 export default class LocalStorage {
     constructor() {
         this.formData = {
-            id: '',
-            film: [],
+            watched: [],
+            queque: [],
         };
-        this.LOCALSTORAGE_KEY = '';
+        this.id = 'userID';
     }
 
-    addLocalStorage(movie, array) {
-
-        this.formData['film'].push(movie)
-        localStorage.setItem(this.LOCALSTORAGE_KEY = array, JSON.stringify(this.formData))
+    addWatched(movie, id) {
+        const savedData = JSON.parse(localStorage.getItem(this.id))
+        if (!savedData) {
+            this.formData.watched.push(movie);
+            localStorage.setItem(this.id, JSON.stringify(this.formData));
+            console.log('добавлен');
+        } else {
+            this.formData = savedData;
+            if (this.formData.watched.find((elem) => elem.id == id)) {
+                console.log('уже есть');
+            } else this.formData.watched.push(movie);
+            localStorage.setItem(this.id, JSON.stringify(this.formData));
+            console.log('добавлен');
+        };
     }
 
-    removeLocalStorage() {
-        delete this.formData['film']
+    addQueue(movie, id) {
+        const savedData = JSON.parse(localStorage.getItem(this.id))
+        if (!savedData) {
+            this.formData.queque.push(movie);
+            localStorage.setItem(this.id, JSON.stringify(this.formData));
+            console.log('добавлен');
+        } else {
+            this.formData = savedData;
+            if (this.formData.queque.find((elem) => elem.id == id)) {
+                console.log('уже есть');
+            } else this.formData.queque.push(movie);
+            localStorage.setItem(this.id, JSON.stringify(this.formData));
+            console.log('добавлен');
+        };
     }
 
-    getLocalStorage() {
-        let savedFormData = localStorage.getItem(this.LOCALSTORAGE_KEY);
+    // removeQueue(id) {
+    //     const savedData = JSON.parse(localStorage.getItem(this.id));
+    //     this.formData = savedData;
+    // }
 
-        if (savedFormData) {
-            savedFormData = JSON.parse(savedFormData);
-        }
-        localStorage.clear()
-        return savedFormData;
+    getWatched() {
+        const savedData = JSON.parse(localStorage.getItem(this.id));
+        return savedData.watched;
+    }
+
+    getQueue() {
+        const savedData = JSON.parse(localStorage.getItem(this.id));
+        return savedData.queue;
     }
 }
