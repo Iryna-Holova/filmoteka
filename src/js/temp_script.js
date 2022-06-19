@@ -157,7 +157,9 @@ async function renderWatched() {
 
 async function renderQueue() {
     const movies = await localStorage.getQueue();
+    console.log(movies);
     const markup = await makeMarkup.makeLibraryMovieCardMarkup(movies);
+    console.log(markup);
     galleryQueue.innerHTML = markup;
 }
 

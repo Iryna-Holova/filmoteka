@@ -3,7 +3,7 @@ export default class LocalStorage {
     constructor() {
         this.formData = {
             watched: [],
-            queque: [],
+            queue: [],
         };
         this.id = 'userID';
     }
@@ -27,14 +27,14 @@ export default class LocalStorage {
     addQueue(movie, id) {
         const savedData = JSON.parse(localStorage.getItem(this.id))
         if (!savedData) {
-            this.formData.queque.push(movie);
+            this.formData.queue.push(movie);
             localStorage.setItem(this.id, JSON.stringify(this.formData));
             console.log('добавлен');
         } else {
             this.formData = savedData;
-            if (this.formData.queque.find((elem) => elem.id == id)) {
+            if (this.formData.queue.find((elem) => elem.id == id)) {
                 console.log('уже есть');
-            } else this.formData.queque.push(movie);
+            } else this.formData.queue.push(movie);
             localStorage.setItem(this.id, JSON.stringify(this.formData));
             console.log('добавлен');
         };
@@ -52,6 +52,7 @@ export default class LocalStorage {
 
     getQueue() {
         const savedData = JSON.parse(localStorage.getItem(this.id));
+        console.log(savedData);
         return savedData.queue;
     }
 }
