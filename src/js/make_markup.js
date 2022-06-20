@@ -88,7 +88,7 @@ export default class MakeMarkup {
                             <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                             <div class="film-list__icons">
                                 <button class="gallery-button queue" data-add='queque' data-id="${id}"></button>
-                                <button class="gallery-button remove" data-remove='watched' data-id="${id}">x</button>
+                                <button class="gallery-button remove" data-remove='watched' data-id="${id}"></button>
                             </div>
                         </div>
                         <div class="film-list__description">
@@ -105,7 +105,7 @@ export default class MakeMarkup {
                             <img src="https://bflix.biz/no-poster.png" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                             <div class="film-list__icons">
                                 <button class="gallery-button queue" data-add='queque' data-id="${id}"></button>
-                                <button class="gallery-button remove" data-remove='watched' data-id="${id}">x</button>
+                                <button class="gallery-button remove" data-remove='watched' data-id="${id}"></button>
                             </div>
                         </div>
                         <div class="film-list__description">
@@ -155,7 +155,7 @@ export default class MakeMarkup {
                             <img src="https://image.tmdb.org/t/p/w500${poster_path}" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                             <div class="film-list__icons">
                                 <button class="gallery-button watch" data-add='watched' data-id="${id}"></button>
-                                <button class="gallery-button remove" data-remove='queue' data-id="${id}">x</button>
+                                <button class="gallery-button remove" data-remove='queue' data-id="${id}"></button>
                             </div>
                         </div>
                         <div class="film-list__description">
@@ -172,7 +172,7 @@ export default class MakeMarkup {
                             <img src="https://bflix.biz/no-poster.png" loading=lazy alt="${title} poster" class="film-list__img" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'">
                             <div class="film-list__icons">
                                 <button class="gallery-button watch" data-add='watched' data-id="${id}"></button>
-                                <button class="gallery-button remove" data-remove='queue' data-id="${id}">x</button>
+                                <button class="gallery-button remove" data-remove='queue' data-id="${id}"></button>
                             </div>
                         </div>
                         <div class="film-list__description">

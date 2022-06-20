@@ -7,6 +7,7 @@ const makeMarkup = new MakeMarkup();
 import Gallery from './section-gallery';
 const gallery = new Gallery();
 import DataBase from './cloud-firestore';
+import MicroModal from 'micromodal';
 const userDataBase = new DataBase();
 
 const searchForm = document.querySelector('.header-search__form');
@@ -69,6 +70,7 @@ async function renderMovieDetailMarkup(id, array) {
             modalButtons.firstElementChild.setAttribute('data-remove', 'watched');
             modalButtons.firstElementChild.classList.add('remove');
             modalButtons.firstElementChild.textContent = 'Remove from Watched';
+            // modalButtons.firstElementChild.setAttribute('data-micromodal-close');
           }
         })
         .catch(error => {
@@ -211,6 +213,7 @@ async function onRemoveButtonClick(event) {
       .then(userId => {
         userDataBase.removeFromWatched(userId, movie);
         gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
+        MicroModal.close('modal_gallery')
       })
       .catch(error => {
         console.log(error);
