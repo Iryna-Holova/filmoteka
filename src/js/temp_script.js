@@ -46,23 +46,29 @@ function onCardClick(event) {
   if (event.target.nodeName === 'UL' || event.target.nodeName === 'BUTTON') return;
   openModal('modal_gallery');
   const id = event.target.closest('.film-list__item').getAttribute('data-id');
-  const array = event.currentTarget;
+  // const array = event.currentTarget;
 
-  renderMovieDetailMarkup(id, array);
+  renderMovieDetailMarkup(id);
 }
 
 async function renderMovieDetailMarkup(id, array) {
   const movie = await getMoviesInfo.searchMovieByID(id);
   const markup = makeMarkup.makeMovieDetailMarkup(movie);
+  modalMovieThumb.innerHTML = markup;
+  const modalButtons = document.querySelector('.modal-gallery-buttons__thumb');
+
   userDataBase.userIdPromise
     .then(userId => {
       userDataBase
         .isInWatched(userId, id)
         .then(result => {
-          if (result) {
-            console.log('фильм есть в watched', result);
+          if (!result) {
+            return;
           } else {
-            console.log('фильма нет в watched', result);
+            modalButtons.firstElementChild.removeAttribute('data-add');
+            modalButtons.firstElementChild.setAttribute('data-remove', 'watched');
+            modalButtons.firstElementChild.classList.add('remove');
+            modalButtons.firstElementChild.textContent = 'Remove from Watched';
           }
         })
         .catch(error => {
@@ -78,10 +84,13 @@ async function renderMovieDetailMarkup(id, array) {
       userDataBase
         .isInQueve(userId, id)
         .then(result => {
-          if (result) {
-            console.log('фильм есть в queue', result);
+          if (!result) {
+            return;
           } else {
-            console.log('фильма нет в queue', result);
+            modalButtons.lastElementChild.removeAttribute('data-add');
+            modalButtons.lastElementChild.setAttribute('data-remove', 'queue');
+            modalButtons.lastElementChild.classList.add('remove');
+            modalButtons.lastElementChild.textContent = 'Remove from Queue';
           }
         })
         .catch(error => {
@@ -91,8 +100,6 @@ async function renderMovieDetailMarkup(id, array) {
     .catch(error => {
       console.log(error);
     });
-
-  modalMovieThumb.innerHTML = markup;
 
   const movieCard = document.querySelector(`[data-id="${id}"]`);
   navButtons.firstElementChild.disabled = false;
@@ -203,6 +210,7 @@ async function onRemoveButtonClick(event) {
     userDataBase.userIdPromise
       .then(userId => {
         userDataBase.removeFromWatched(userId, movie);
+        gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
       })
       .catch(error => {
         console.log(error);
@@ -211,6 +219,7 @@ async function onRemoveButtonClick(event) {
     userDataBase.userIdPromise
       .then(userId => {
         userDataBase.removeFromQueue(userId, movie);
+        gallery.queueFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";       
       })
       .catch(error => {
         console.log(error);
