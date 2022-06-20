@@ -4,8 +4,6 @@ import GetMoviesInfo from './get_movies_info';
 const getMoviesInfo = new GetMoviesInfo();
 import MakeMarkup from './make_markup';
 const makeMarkup = new MakeMarkup();
-import LocalStorage from './local-storage';
-const localStorage = new LocalStorage();
 import Gallery from './section-gallery';
 const gallery = new Gallery();
 import DataBase from './cloud-firestore';

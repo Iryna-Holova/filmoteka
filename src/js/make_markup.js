@@ -196,19 +196,25 @@ export default class MakeMarkup {
             <h2 class="modal-gallery__title">${title}</h2>
             <ul class="modal-gallery-list">
                 <li class="modal-gallery-list__item">
-                    Vote / Votes <span class="modal-gallery-list__vote">${vote_average}</span> /
-                    <span class="modal-gallery-list__votes">${vote_count}</span>
+                    <div class="modal-gallery-item__name">Vote / Votes</div>
+                    <div class="modal-gallery-item__value">
+                        <span class="modal-gallery-list__vote">${vote_average.toFixed(1)}</span>&nbsp;/
+                        <span class="modal-gallery-list__votes modal-gallery-item__value">${vote_count}</span>
+                    </div>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Popularity<span class="modal-gallery-list__popularity">${popularity}</span>
+                    <div class="modal-gallery-item__name">Popularity</div>
+                    <div class="modal-gallery-list__popularity modal-gallery-item__value">${popularity.toFixed(1)}</div>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Original Title<span class="modal-gallery-list__title">${original_title}</span>
+                    <div class="modal-gallery-item__name">Original Title</div>
+                    <div class="modal-gallery-list__title modal-gallery-item__value">${original_title}</div>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Genre<span class="modal-gallery-list__genre">${genres
-                      .map(genre => genre.name)
-                      .join(', ')}</span>
+                    <div class="modal-gallery-item__name">Genre</div>
+                    <div class="modal-gallery-list__genre modal-gallery-item__value">${genres
+                        .map(genre => genre.name)
+                        .join(', ')}</div>
                 </li>
             </ul>
             <article class="modal-gallery-about">
@@ -229,19 +235,25 @@ export default class MakeMarkup {
             <h2 class="modal-gallery__title">${title}</h2>
             <ul class="modal-gallery-list">
                 <li class="modal-gallery-list__item">
-                    Vote / Votes <span class="modal-gallery-list__vote">${vote_average}</span> /
-                    <span class="modal-gallery-list__votes">${vote_count}</span>
+                    <div class="modal-gallery-item__name">Vote / Votes</div>
+                    <div class="modal-gallery-item__value">
+                        <span class="modal-gallery-list__vote">${vote_average.toFixed(1)}</span>&nbsp;/
+                        <span class="modal-gallery-list__votes modal-gallery-item__value">${vote_count}</span>
+                    </div>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Popularity<span class="modal-gallery-list__popularity">${popularity}</span>
+                    <div class="modal-gallery-item__name">Popularity</div>
+                    <div class="modal-gallery-list__popularity modal-gallery-item__value">${popularity.toFixed(1)}</div>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Original Title<span class="modal-gallery-list__title">${original_title}</span>
+                    <div class="modal-gallery-item__name">Original Title</div>
+                    <div class="modal-gallery-list__title modal-gallery-item__value">${original_title}</div>
                 </li>
                 <li class="modal-gallery-list__item">
-                    Genre<span class="modal-gallery-list__genre">${genres
+                    <div class="modal-gallery-item__name">Genre</div>
+                    <div class="modal-gallery-list__genre modal-gallery-item__value">${genres
                       .map(genre => genre.name)
-                      .join(', ')}</span>
+                      .join(', ')}</div>
                 </li>
             </ul>
             <article class="modal-gallery-about">
