@@ -44,12 +44,13 @@
         border-radius: 5px;
         transition-duration: $transition-time;
         transition-timing-function: $cubic;
+        transform: scale(1.01);
         cursor: pointer;
-
-        .film-list__description {
-            padding-left: 2px;
-        }
     }
+}
+
+.film-list__description {
+    padding-left: 2px;
 }
 
 .film-list__img {
@@ -117,26 +118,14 @@
 .scroll-up {
     position: fixed;
     fill-opacity: 0.5;
+    top: 50%;
+    right: 1%;
+    z-index: 1;
 
     &:hover {
         fill-opacity: 1;
         transition-duration: $transition-time;
         transition-timing-function: $cubic;
-    }
-
-    @media screen and (min-width: 320px) {
-        top: 50%;
-        left: 84%;
-        z-index: 1;
-    }
-    @media screen and (min-width: 768px) {
-        top: 50%;
-        left: 93%;
-        z-index: 1;
-    }
-    @media screen and (min-width: 1024px) {
-        top: 50%;
-        left: 95%;
     }
 }
 
@@ -150,18 +139,8 @@
 .film-list__icons {
     display: flex;
     position: absolute;
-    top: 92%;
-    
-    @media screen and (min-width: 320px) {
-        left: 73%;
-    }
-    @media screen and (min-width: 768px) {
-        left: 77%;
-    }
-    @media screen and (min-width: 1024px) {
-        left: 75%;
-    }
-    
+    bottom: 1%;
+    right: 1%;
 
     button {
         margin-right: 5px;
