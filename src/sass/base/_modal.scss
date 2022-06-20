@@ -3,6 +3,7 @@
 \**************************/
 
 .modal__overlay {
+  z-index: 10;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -16,14 +17,17 @@
 }
 
 .modal__container {
+  z-index: 11;
   background-color: #fff;
   max-height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;
   border-radius: 3px;
 }
 
 .modal__button-close {
+  z-index: 12;
   position: absolute;
   top: 0px;
   right: 0px;

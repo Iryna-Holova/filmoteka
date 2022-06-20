@@ -1,6 +1,3 @@
-.modal__overlay {
-  z-index: 10;
-}
 .form-box {
   width: 280px;
   height: 400px;
@@ -12,11 +9,6 @@
   @media screen and (min-width: 768px) {
     width: 420px;
   }
-
-  // @media screen and (min-width: 1024px) {
-        
-  // }
-  
 
   &::-webkit-scrollbar {
     width: 5px;
