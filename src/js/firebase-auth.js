@@ -10,7 +10,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 let userPromiseResolve;
 
@@ -35,7 +35,13 @@ export const defaultCell = {
 
 async function setDefaultCell(userId) {
   try {
-    await setDoc(doc(db, 'users', userId), defaultCell);
+    const cellRef = doc(db, 'users', userId);
+    const docSnap = await getDoc(cellRef);
+    if (!docSnap.exists()) {
+      await setDoc(doc(db, 'users', userId), defaultCell);
+    } else {
+      return false;
+    }
   } catch (error) {
     console.log(error.message);
   }
