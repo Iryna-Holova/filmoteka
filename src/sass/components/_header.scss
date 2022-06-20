@@ -197,7 +197,7 @@
 .header-nav__icon {
   width: 32px;
   height: 32px;
-  fill: #f4a026;
+  fill: $clr-light;
   transition: fill $transition-time $cubic;
 
   @media screen and (min-width: 768px) {
@@ -206,8 +206,7 @@
   }
 
   &:hover, &:focus {
-    fill: #ff6b08;
-    //background-color: #ff6b08;
+    fill: $clr-accent;
   }
 }
 .header-search {
