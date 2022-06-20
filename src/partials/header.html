@@ -1,7 +1,7 @@
 <header class="header home">
   <div class="container">
     <div class="header-menu">
-      <a class="header-container__link" aria-label="header page" href="">
+      <a class="header-container__link" aria-label="header page" href="https://iryna-holova.github.io/filmoteka/">
         <span class="header-container__title">Filmoteka</span>
         <svg class="header-container__icon" width="24" height="24">
           <use href="./images/icons.svg#icon-film"></use>
@@ -10,24 +10,18 @@
       <nav class="header-nav">
         <ul class="header-nav__list">
           <li class="header-nav__item">
-            <button type="button" class="header-nav__link header-nav--current" data-page="home">
-              home
-            </button>
+            <button type="button" class="header-nav__link header-nav--current" data-page="home">home</button>
           </li>
           <li class="header-nav__item">
-            <button type="button" class="header-nav__link is-hidden" data-page="library">
-              my library
-            </button>
+            <button type="button" class="header-nav__link is-hidden" data-page="library">my library</button>
           </li>
           <li class="header-nav__item">
             <button type="button" class="header-nav__link" data-page="log-in">log In</button>
           </li>
           <li class="header-nav__item">
-            <!--<button type="button" class="header-nav__link is-hidden" data-page="log-out"></button>
-              Log out-->
             <button type="button" class="header-nav__link is-hidden" data-page="log-out">
-              <svg class="header-nav__icon">
-                <use href="./images/icons.svg#exit-logout-svgrepo-com2"></use>
+              <svg class="header-nav__icon" >
+                <use href="./images/icons.svg#icon-exit"></use>
               </svg>
             </button>
           </li>
@@ -37,13 +31,7 @@
     <div class="header-search">
       <form class="header-search__form">
         <label class="header-search__point">
-          <input
-            class="header-search__input"
-            type="text"
-            name="q"
-            placeholder="Search..."
-            autocomplete="off"
-          />
+          <input class="header-search__input" type="text" name="search" autocomplete="off" placeholder="Search...">
           <button class="header-search__button">
             <svg class="header-search__icon" width="12" height="12">
               <use href="./images/icons.svg#icon-search"></use>
@@ -53,8 +41,13 @@
       </form>
     </div>
     <div class="headers-button">
-      <button type="button" class="header-button__watch">Watched</button>
-      <button type="button" class="header-button__que">Queue</button>
+      <button type="button" class="header-button__watch">
+        Watched
+      </button>
+      <button type="button" class="header-button__que">
+        Queue
+      </button>
     </div>
   </div>
+
 </header>
