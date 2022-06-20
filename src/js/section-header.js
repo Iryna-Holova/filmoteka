@@ -16,16 +16,13 @@ const refs = {
 refs.myLibrary.addEventListener('click', myLibraryFilm);
 refs.homePage.addEventListener('click', homePageFilm);
 refs.buttonWatch.addEventListener('click', () => {
-    refs.buttonQueue.style.backgroundColor = "";
-    refs.buttonWatch.style.backgroundColor = "#FF6B01";
-    refs.buttonWatch.style.border = "#FF6B01";
-    refs.buttonQueue.style.border = "";
+    refs.buttonWatch.classList.add('is-active-now');
+    refs.buttonQueue.classList.remove('is-active-now');
     gallery.showMylibraryWatch();
 });
-refs.buttonQueue.addEventListener('click', () => {
-    refs.buttonQueue.style.backgroundColor = "#FF6B01";
-    refs.buttonWatch.style.backgroundColor = "";
-    refs.buttonWatch.style.border = "";
+refs.buttonQueue.addEventListener('click', () =>{
+    refs.buttonQueue.classList.add('is-active-now');
+    refs.buttonWatch.classList.remove('is-active-now');
     gallery.showMylibraryQueue();
 })
 
@@ -35,12 +32,13 @@ function myLibraryFilm(e) {
     refs.myLibrary.classList.add('header-nav--current');
     refs.headerBgc.classList.remove('home');
     refs.headerBgc.classList.add('library');
-    refs.form.style.display = "none";
+    refs.form.classList.add('is-hidden');
+    refs.libButton.classList.remove('is-hidden');
+    refs.buttonQueue.classList.add('is-active-now');
+    refs.buttonQueue.classList.remove('is-hidden');
+    refs.buttonWatch.classList.remove('is-hidden');
     refs.libButton.style.display = "flex";
-    refs.buttonQueue.style.backgroundColor = "#FF6B01";
-    refs.buttonQueue.style.border = "#FF6B01";
-    refs.buttonWatch.style.backgroundColor = ""; 
-    gallery.showMylibraryWatch();
+    gallery.showMylibraryQueue();
 
 }
 function homePageFilm(e){
@@ -49,7 +47,11 @@ function homePageFilm(e){
     refs.myLibrary.classList.remove('header-nav--current');
     refs.headerBgc.classList.add('home');
     refs.headerBgc.classList.remove('library');
-    refs.form.style.display = "flex";
+    refs.form.classList.remove('is-hidden');
+    refs.buttonQueue.classList.add('is-hidden');
+    refs.buttonWatch.classList.add('is-hidden');
+    refs.buttonQueue.classList.remove('is-active-now');
+    refs.buttonWatch.classList.remove('is-active-now');
     refs.libButton.style.display = "none";
     gallery.showHome();
 }
