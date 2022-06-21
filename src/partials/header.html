@@ -7,9 +7,25 @@
           <use href="./images/icons.svg#icon-film"></use>
         </svg>
       </a>
+      <div class="toggle-button-cover">
+        <div class="button-cover">
+          <div class="button-toggle day night" id="button-1">
+            <input type="checkbox" class="button-toggle__checkbox" />
+            <div class="button-toggle__knobs"></div>
+            <div class="button-toggle__layer">
+              <svg class="toggle-base__icon star" width="12" height="12">
+              <use href="./images/icons.svg#icon-sun"></use>
+            </svg>
+            <svg class="toggle-base__icon moon" width="12" height="12">
+              <use href="./images/icons.svg#icon-moon"></use>
+            </svg></div>
+          </div>
+        </div>
+      </div>
       <nav class="header-nav">
         <ul class="header-nav__list">
           <li class="header-nav__item">
+            <div class=""></div>
             <button type="button" class="header-nav__link header-nav--current" data-page="home" aria-label="Home Page">home</button>
           </li>
           <li class="header-nav__item">
@@ -27,6 +43,7 @@
           </li>
         </ul>
       </nav>
+      
     </div>
     <div class="header-search">
       <form class="header-search__form">
