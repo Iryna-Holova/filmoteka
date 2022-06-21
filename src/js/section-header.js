@@ -1,57 +1,49 @@
-//основной скрипт хедера, импортирован в index.js
-import Gallery from "./section-gallery";
-const gallery = new Gallery();
+export default class Header {
+    constructor() {
+        this.headerSection = document.querySelector('.header');
+        this.libraryBtn = document.querySelector('[data-page="library"]');
+        this.homeBtn = document.querySelector('[data-page="home"]');
+        this.form = document.querySelector('.header-search');
+        this.searchForm = document.querySelector('.header-search__form');
+        this.searchInput = document.querySelector('.header-search__input');
+        this.libButtons = document.querySelector('.headers-button');
+        this.watchedBtn = document.querySelector('.header-button__watch');
+        this.queueBtn = document.querySelector('.header-button__que');
+    }
 
-const refs = {
-    headerBgc: document.querySelector('.header'),
-    myLibrary : document.querySelector('[data-page="library"]'),
-    homePage : document.querySelector('[data-page="home"]'),
-    form : document.querySelector('.header-search'),
-    libButton: document.querySelector(".headers-button"),
-    searchForm: document.querySelector('.header-search__input'),
-    gallery: document.querySelector('.film-list'),
-    buttonWatch: document.querySelector('.header-button__watch'),
-    buttonQueue: document.querySelector('.header-button__que'),
-}
-refs.myLibrary.addEventListener('click', myLibraryFilm);
-refs.homePage.addEventListener('click', homePageFilm);
-refs.buttonWatch.addEventListener('click', () => {
-    refs.buttonWatch.classList.add('is-active-now');
-    refs.buttonQueue.classList.remove('is-active-now');
-    gallery.showMylibraryWatch();
-});
-refs.buttonQueue.addEventListener('click', () =>{
-    refs.buttonQueue.classList.add('is-active-now');
-    refs.buttonWatch.classList.remove('is-active-now');
-    gallery.showMylibraryQueue();
-})
+    showLibrary() {
+        this.homeBtn.classList.remove('header-nav--current');
+        this.libraryBtn.classList.add('header-nav--current');
+        this.headerSection.classList.remove('home');
+        this.headerSection.classList.add('library');
+        this.form.classList.add('is-hidden');
+        this.libButtons.classList.remove('is-hidden');
+        this.queueBtn.classList.add('is-active-now');
+        this.queueBtn.classList.remove('is-hidden');
+        this.watchedBtn.classList.remove('is-hidden');
+        this.libButtons.style.display = "flex";
+    }
 
-function myLibraryFilm(e) {
-    e.preventDefault();
-    refs.homePage.classList.remove('header-nav--current');
-    refs.myLibrary.classList.add('header-nav--current');
-    refs.headerBgc.classList.remove('home');
-    refs.headerBgc.classList.add('library');
-    refs.form.classList.add('is-hidden');
-    refs.libButton.classList.remove('is-hidden');
-    refs.buttonQueue.classList.add('is-active-now');
-    refs.buttonQueue.classList.remove('is-hidden');
-    refs.buttonWatch.classList.remove('is-hidden');
-    refs.libButton.style.display = "flex";
-    gallery.showMylibraryQueue();
+    showHome() {
+        this.homeBtn.classList.add('header-nav--current');
+        this.libraryBtn.classList.remove('header-nav--current');
+        this.headerSection.classList.add('home');
+        this.headerSection.classList.remove('library');
+        this.form.classList.remove('is-hidden');
+        this.queueBtn.classList.add('is-hidden');
+        this.watchedBtn.classList.add('is-hidden');
+        this.queueBtn.classList.remove('is-active-now');
+        this.watchedBtn.classList.remove('is-active-now');
+        this.libButtons.style.display = "none";
+    }
 
-}
-function homePageFilm(e){
-    e.preventDefault();
-    refs.homePage.classList.add('header-nav--current');
-    refs.myLibrary.classList.remove('header-nav--current');
-    refs.headerBgc.classList.add('home');
-    refs.headerBgc.classList.remove('library');
-    refs.form.classList.remove('is-hidden');
-    refs.buttonQueue.classList.add('is-hidden');
-    refs.buttonWatch.classList.add('is-hidden');
-    refs.buttonQueue.classList.remove('is-active-now');
-    refs.buttonWatch.classList.remove('is-active-now');
-    refs.libButton.style.display = "none";
-    gallery.showHome();
+    showQueue() {
+        this.queueBtn.classList.add('is-active-now');
+        this.watchedBtn.classList.remove('is-active-now');
+    }
+
+    showWatched() {
+        this.watchedBtn.classList.add('is-active-now');
+        this.queueBtn.classList.remove('is-active-now');
+    }
 }

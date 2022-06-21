@@ -1,3 +1,7 @@
+.gallery {
+    position: relative;
+}
+
 .film-list {
     margin-top: 60px;
     padding-bottom: 60px;
@@ -93,7 +97,11 @@
 }
 
 .error {
-    padding: 200px 60px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
     font-size: 24px;
     font-weight: 700;
     text-align: center;
@@ -106,7 +114,6 @@
 }
 
 // Scroll Up
-
 .fa-arrow-circle-up {
     position: relative;
     background-color: transparent;
@@ -129,9 +136,7 @@
     }
 }
 
-
 // icons
-
 .film-list__poster {
     position: relative;
 }
@@ -173,5 +178,3 @@
 .remove::before {
     content: '\2716';
 }
-
-
