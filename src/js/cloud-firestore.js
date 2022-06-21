@@ -8,7 +8,6 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
-// import { firebaseConfig } from './firebase-auth';
 import { userPromise, defaultCell } from './firebase-auth';
 
 const firebaseConfig = {
@@ -49,22 +48,22 @@ export default class DataBase {
     }
   }
 
-  async addToWatched(userId, movieId) {
+  async addToWatched(userId, movie) {
     try {
       const cellRef = doc(db, 'users', userId);
       await updateDoc(cellRef, {
-        watched: arrayUnion(movieId),
+        watched: arrayUnion(movie),
       });
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  async addToQueue(userId, movieId) {
+  async addToQueue(userId, movie) {
     try {
       const cellRef = doc(db, 'users', userId);
       await updateDoc(cellRef, {
-        queue: arrayUnion(movieId),
+        queue: arrayUnion(movie),
       });
     } catch (error) {
       console.log(error.message);
@@ -72,24 +71,38 @@ export default class DataBase {
   }
 
   async removeFromWatched(userId, movieId) {
-    try {
-      const cellRef = doc(db, 'users', userId);
-      await updateDoc(cellRef, {
-        watched: arrayRemove(movieId),
-      });
-    } catch (error) {
-      console.log(error.message);
+    const cellRef = doc(db, 'users', userId);
+    const docSnap = await getDoc(cellRef);
+
+    if (docSnap.exists()) {
+      const movieToRemove = docSnap.data().watched.find(movie => movie.id === Number(movieId));
+      if (movieToRemove) {
+        try {
+          await updateDoc(cellRef, {
+            watched: arrayRemove(movieToRemove),
+          });
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
     }
   }
 
   async removeFromQueue(userId, movieId) {
-    try {
-      const objRef = doc(db, 'users', userId);
-      await updateDoc(objRef, {
-        queue: arrayRemove(movieId),
-      });
-    } catch (error) {
-      console.log(error.message);
+    const cellRef = doc(db, 'users', userId);
+    const docSnap = await getDoc(cellRef);
+
+    if (docSnap.exists()) {
+      const movieToRemove = docSnap.data().queue.find(movie => movie.id === Number(movieId));
+      if (movieToRemove) {
+        try {
+          await updateDoc(cellRef, {
+            queue: arrayRemove(movieToRemove),
+          });
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
     }
   }
 
