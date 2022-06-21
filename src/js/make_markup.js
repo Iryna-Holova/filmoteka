@@ -96,7 +96,7 @@ export default class MakeMarkup {
                                 <p class="film-list__genres">${moviGenresNames.join(
                                   ', ',
                                 )}<span> | </span>${releaseDate}</p>
-                                <p class="film-list__rating">${vote_average}</p>
+                                <p class="film-list__rating">${vote_average.toFixed(1)}</p>
                             </div>
                         </li>`;
           } else {
@@ -113,7 +113,7 @@ export default class MakeMarkup {
                                 <p class="film-list__genres">${moviGenresNames.join(
                                   ' ',
                                 )}<span> | </span>${releaseDate}</p>
-                                <p class="film-list__rating">${vote_average}</p>
+                                <p class="film-list__rating">${vote_average.toFixed(1)}</p>
                             </div>
                         </li>`;
           }
@@ -163,7 +163,7 @@ export default class MakeMarkup {
                                 <p class="film-list__genres">${moviGenresNames.join(
                                   ', ',
                                 )}<span> | </span>${releaseDate}</p>
-                                <p class="film-list__rating">${vote_average}</p>
+                                <p class="film-list__rating">${vote_average.toFixed(1)}</p>
                             </div>
                         </li>`;
           } else {
@@ -180,7 +180,7 @@ export default class MakeMarkup {
                                 <p class="film-list__genres">${moviGenresNames.join(
                                   ' ',
                                 )}<span> | </span>${releaseDate}</p>
-                                <p class="film-list__rating">${vote_average}</p>
+                                <p class="film-list__rating">${vote_average.toFixed(1)}</p>
                             </div>
                         </li>`;
           }
