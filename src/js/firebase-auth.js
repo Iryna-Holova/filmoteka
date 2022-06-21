@@ -11,7 +11,10 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { userThemeDefaultLoader } from './theme-toggle';
+import Header from './section-header';
+const header = new Header();
+import Gallery from './section-gallery';
+const gallery = new Gallery();
 
 let userPromiseResolve;
 
@@ -47,6 +50,106 @@ async function setDefaultCell(userId) {
     console.log(error.message);
   }
 }
+
+async function getTheme(userId) {
+  const cellRef = doc(db, 'users', userId);
+  const docSnap = await getDoc(cellRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data().theme;
+  } else {
+    return false;
+  }
+}
+
+function userThemeDefaultLoader() {
+  userPromise
+    .then(userId => {
+      getTheme(userId)
+        .then(theme => {
+          if (theme === 'day') {
+            return;
+          }
+          if (theme === 'night') {
+            toggleRefs.headerToggleBtn.classList.toggle('night');
+            toggleRefs.bodyTheme.classList.toggle('night');
+            // toggleRefs.footerTheme.classList.toggle('night');
+            // toggleRefs.filmListTitleTheme.classList.toggle('night');
+            // toggleRefs.footerTextTheme.classList.toggle('night');
+            // toggleRefs.footerLinkTheme.classList.toggle('night');
+            // toggleRefs.footerTextSpanTheme.classList.toggle('night');
+            // toggleRefs.contextBoxDescriptionTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryFlexThumbTheme.classList.toggle('night');
+            // toggleRefs.teamContainerTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryTitleTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryListPopTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryListTitleTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryListGenreTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryListAboutTextTheme.classList.toggle('night');
+            // toggleRefs.modalGalleryListAboutTitleTheme.classList.toggle('night');
+            // toggleRefs.modalIconCrossTheme.classList.toggle('night');
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+function setDefaultTheme() {
+  toggleRefs.headerToggleBtn.classList.remove('night');
+  toggleRefs.bodyTheme.classList.remove('night');
+  //   toggleRefs.footerTheme.classList.remove('night');
+  //   toggleRefs.filmListTitleTheme.classList.remove('night');
+  //   toggleRefs.footerTextTheme.classList.remove('night');
+  //   toggleRefs.footerLinkTheme.classList.remove('night');
+  //   toggleRefs.footerTextSpanTheme.classList.remove('night');
+  //   toggleRefs.contextBoxDescriptionTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryFlexThumbTheme.classList.remove('night');
+  //   toggleRefs.teamContainerTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryTitleTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryListPopTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryListTitleTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryListGenreTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryListAboutTextTheme.classList.remove('night');
+  //   toggleRefs.modalGalleryListAboutTitleTheme.classList.remove('night');
+  //   toggleRefs.modalIconCrossTheme.classList.remove('night');
+}
+
+function goHomePageDefault() {
+  header.showHome();
+  gallery.showHome();
+}
+
+const toggleRefs = {
+  headerToggleThumb: document.querySelector('.header__theme-thumb'),
+  headerToggleBtn: document.querySelector('.header__theme-toggle'),
+  bodyTheme: document.querySelector('body'),
+  // footerTheme: document.querySelector('footer'),
+  // filmListTitleTheme: document.querySelector('.film-list__title'),
+  // footerTextTheme: document.querySelector('.footer-text'),
+  // footerLinkTheme: document.querySelector('.footer__link'),
+  // footerTextSpanTheme: document.querySelector('.footer-text-span'),
+  // contextBoxDescriptionTheme: document.querySelector('.contentBox__description'),
+  // modalGalleryFlexThumbTheme: document.querySelector('.modal-gallery__flex-thumb'),
+  // teamContainerTheme: document.querySelector('.modal__container.team-container'),
+  // modalGalleryTitleTheme: document.querySelector('.modal-gallery__title'),
+  // modalGalleryListPopTheme: document.querySelector(
+  //   '.modal-gallery-list__popularity.modal-gallery-item__value',
+  // ),
+  // modalGalleryListTitleTheme: document.querySelector(
+  //   '.modal-gallery-list__title.modal-gallery-item__value',
+  // ),
+  // modalGalleryListGenreTheme: document.querySelector(
+  //   '.modal-gallery-list__genre.modal-gallery-item__value',
+  // ),
+  // modalGalleryListAboutTextTheme: document.querySelector('.modal-gallery-about__text'),
+  // modalGalleryListAboutTitleTheme: document.querySelector('.modal-gallery-about__title'),
+  // modalIconCrossTheme: document.querySelector('.modal__icon_cross'),
+};
 
 const refs = {
   authFormLogin: document.querySelector('#login'),
@@ -100,7 +203,7 @@ function onGoogleAuthClick() {
         .catch(error => {
           console.log(error.message);
         });
-      // userThemeDefaultLoader();
+      userThemeDefaultLoader();
     })
     .catch(error => {
       // // Handle Errors here.
@@ -129,8 +232,10 @@ function onLoginFormSubmit(e) {
     .then(userCredential => {
       const user = userCredential.user;
       MicroModal.close('auth');
-      // userThemeDefaultLoader();
+
       Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
+
+      userThemeDefaultLoader();
     })
     .catch(error => {
       // const errorCode = error.code;
@@ -190,6 +295,8 @@ function onLogOutBtnClick() {
             refs.logOutBtn.classList.toggle('is-hidden');
             refs.libraryBtn.classList.toggle('is-hidden');
             Notify.info(`Come back soon!!!`, { timeout: 1000 });
+            setDefaultTheme();
+            goHomePageDefault();
           } else {
             return;
           }
