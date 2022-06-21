@@ -71,23 +71,23 @@ function userThemeDefaultLoader() {
             return;
           }
           if (theme === 'night') {
-            toggleRefs.headerToggleBtn.classList.toggle('night');
-            toggleRefs.bodyTheme.classList.toggle('night');
-            // toggleRefs.footerTheme.classList.toggle('night');
-            // toggleRefs.filmListTitleTheme.classList.toggle('night');
-            // toggleRefs.footerTextTheme.classList.toggle('night');
-            // toggleRefs.footerLinkTheme.classList.toggle('night');
-            // toggleRefs.footerTextSpanTheme.classList.toggle('night');
-            // toggleRefs.contextBoxDescriptionTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryFlexThumbTheme.classList.toggle('night');
-            // toggleRefs.teamContainerTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryTitleTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryListPopTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryListTitleTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryListGenreTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryListAboutTextTheme.classList.toggle('night');
-            // toggleRefs.modalGalleryListAboutTitleTheme.classList.toggle('night');
-            // toggleRefs.modalIconCrossTheme.classList.toggle('night');
+            toggleRefs.headerToggleBtn.classList.add('night');
+            toggleRefs.bodyTheme.classList.add('night');
+            toggleRefs.footerTheme.classList.add('night');
+            // toggleRefs.filmListTitleTheme.classList.add('night');
+            toggleRefs.footerTextTheme.classList.add('night');
+            toggleRefs.footerLinkTheme.classList.add('night');
+            toggleRefs.footerTextSpanTheme.classList.add('night');
+            toggleRefs.contextBoxDescriptionTheme.classList.add('night');
+            toggleRefs.modalGalleryFlexThumbTheme.classList.add('night');
+            toggleRefs.teamContainerTheme.classList.add('night');
+            // toggleRefs.modalGalleryTitleTheme.classList.add('night');
+            // toggleRefs.modalGalleryListPopTheme.classList.add('night');
+            // toggleRefs.modalGalleryListTitleTheme.classList.add('night');
+            // toggleRefs.modalGalleryListGenreTheme.classList.add('night');
+            // toggleRefs.modalGalleryListAboutTextTheme.classList.add('night');
+            // toggleRefs.modalGalleryListAboutTitleTheme.classList.v('night');
+            toggleRefs.modalIconCrossTheme.classList.add('night');
           }
         })
         .catch(error => {
@@ -102,21 +102,21 @@ function userThemeDefaultLoader() {
 function setDefaultTheme() {
   toggleRefs.headerToggleBtn.classList.remove('night');
   toggleRefs.bodyTheme.classList.remove('night');
-  //   toggleRefs.footerTheme.classList.remove('night');
+  toggleRefs.footerTheme.classList.remove('night');
   //   toggleRefs.filmListTitleTheme.classList.remove('night');
-  //   toggleRefs.footerTextTheme.classList.remove('night');
-  //   toggleRefs.footerLinkTheme.classList.remove('night');
-  //   toggleRefs.footerTextSpanTheme.classList.remove('night');
-  //   toggleRefs.contextBoxDescriptionTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryFlexThumbTheme.classList.remove('night');
-  //   toggleRefs.teamContainerTheme.classList.remove('night');
+  toggleRefs.footerTextTheme.classList.remove('night');
+  toggleRefs.footerLinkTheme.classList.remove('night');
+  toggleRefs.footerTextSpanTheme.classList.remove('night');
+  toggleRefs.contextBoxDescriptionTheme.classList.remove('night');
+  toggleRefs.modalGalleryFlexThumbTheme.classList.remove('night');
+  toggleRefs.teamContainerTheme.classList.remove('night');
   //   toggleRefs.modalGalleryTitleTheme.classList.remove('night');
   //   toggleRefs.modalGalleryListPopTheme.classList.remove('night');
   //   toggleRefs.modalGalleryListTitleTheme.classList.remove('night');
   //   toggleRefs.modalGalleryListGenreTheme.classList.remove('night');
   //   toggleRefs.modalGalleryListAboutTextTheme.classList.remove('night');
   //   toggleRefs.modalGalleryListAboutTitleTheme.classList.remove('night');
-  //   toggleRefs.modalIconCrossTheme.classList.remove('night');
+  toggleRefs.modalIconCrossTheme.classList.remove('night');
 }
 
 function goHomePageDefault() {
@@ -128,14 +128,14 @@ const toggleRefs = {
   headerToggleThumb: document.querySelector('.header__theme-thumb'),
   headerToggleBtn: document.querySelector('.header__theme-toggle'),
   bodyTheme: document.querySelector('body'),
-  // footerTheme: document.querySelector('footer'),
+  footerTheme: document.querySelector('footer'),
   // filmListTitleTheme: document.querySelector('.film-list__title'),
-  // footerTextTheme: document.querySelector('.footer-text'),
-  // footerLinkTheme: document.querySelector('.footer__link'),
-  // footerTextSpanTheme: document.querySelector('.footer-text-span'),
-  // contextBoxDescriptionTheme: document.querySelector('.contentBox__description'),
-  // modalGalleryFlexThumbTheme: document.querySelector('.modal-gallery__flex-thumb'),
-  // teamContainerTheme: document.querySelector('.modal__container.team-container'),
+  footerTextTheme: document.querySelector('.footer-text'),
+  footerLinkTheme: document.querySelector('.footer__link'),
+  footerTextSpanTheme: document.querySelector('.footer-text-span'),
+  contextBoxDescriptionTheme: document.querySelector('.contentBox__description'),
+  modalGalleryFlexThumbTheme: document.querySelector('.modal-gallery__flex-thumb'),
+  teamContainerTheme: document.querySelector('.modal__container.team-container'),
   // modalGalleryTitleTheme: document.querySelector('.modal-gallery__title'),
   // modalGalleryListPopTheme: document.querySelector(
   //   '.modal-gallery-list__popularity.modal-gallery-item__value',
@@ -148,7 +148,7 @@ const toggleRefs = {
   // ),
   // modalGalleryListAboutTextTheme: document.querySelector('.modal-gallery-about__text'),
   // modalGalleryListAboutTitleTheme: document.querySelector('.modal-gallery-about__title'),
-  // modalIconCrossTheme: document.querySelector('.modal__icon_cross'),
+  modalIconCrossTheme: document.querySelector('.modal__icon_cross'),
 };
 
 const refs = {
