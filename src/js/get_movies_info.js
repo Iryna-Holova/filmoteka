@@ -10,35 +10,21 @@ export default class GetMoviesInfo {
     };
 
     async searchTrendingsMovies() {
-        try {
-            const response = await fetchMoviesApiService.fetchTrendingMovies(this.page);
-            const genres = await fetchMoviesApiService.fetchGenres();
-            this.#getGenres(response, genres);
-            this.incrementPage();
+        const response = await fetchMoviesApiService.fetchTrendingMovies(this.page);
+        const genres = await fetchMoviesApiService.fetchGenres();
+        this.#getGenres(response, genres);
+        this.incrementPage();
 
-            return response.results;
-        } catch (error) {
-            Notiflix.Notify.failure(error.message);
-        };
+        return response.results;
     };
 
     async searchMoviesByName() {
-        try {
-            const response = await fetchMoviesApiService.fetchMoviesByName(this.searchQuery, this.page);
-            const genres = await fetchMoviesApiService.fetchGenres();
-            this.#getGenres(response, genres);
-            this.incrementPage();
+        const response = await fetchMoviesApiService.fetchMoviesByName(this.searchQuery, this.page);
+        const genres = await fetchMoviesApiService.fetchGenres();
+        this.#getGenres(response, genres);
+        this.incrementPage();
 
-            if (response.total_results === 0) {
-                Notiflix.Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
-                return;
-            };
-
-            return response.results;
-        }
-        catch (error) {
-            Notiflix.Notify.failure(error.message);
-        };
+        return response.results;
     };
 
     async searchMovieByID(id) {
@@ -67,21 +53,6 @@ export default class GetMoviesInfo {
          };
      });   
     };
-
-    #movieDetail(poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview) {
-        const movieDetail = {
-            title,
-            poster: poster_path,
-            rating: vote_average,
-            votes: vote_count,
-            popularity,
-            original_title,
-            genres,
-            about: overview,
-        };
-
-        return movieDetail;
-    };   
     
     incrementPage() {
         this.page += 1;

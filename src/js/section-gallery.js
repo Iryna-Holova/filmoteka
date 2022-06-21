@@ -1,7 +1,6 @@
-//основной скрипт галереи, импортирован в index.js
-
 export default class Gallery {
     constructor() {
+        this.gallerySection = document.querySelector('.gallery');
         this.home = document.querySelector('.gallery__home');
         this.libraryWatch = document.querySelector('.gallery__library--watched');
         this.libraryQueue = document.querySelector('.gallery__library--queue');
@@ -26,6 +25,7 @@ export default class Gallery {
         this.libraryQueue.style.display = "none";
         this.home.style.display = "none";
         this.errorlibraryWatch.style.display = "none";
+        this.watchFilmList.style.display = 'flex';
     };
 
     showMylibraryQueue() {
@@ -33,6 +33,7 @@ export default class Gallery {
         this.libraryQueue.style.display = "block";
         this.home.style.display = "none";
         this.errorlibraryQueue.style.display = "none";
+        this.queueFilmList.style.display = 'flex';
     };
 
     showErrorHome() {
