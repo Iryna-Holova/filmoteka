@@ -11,6 +11,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { userThemeDefaultLoader } from './theme-toggle';
 
 let userPromiseResolve;
 
@@ -99,6 +100,7 @@ function onGoogleAuthClick() {
         .catch(error => {
           console.log(error.message);
         });
+      // userThemeDefaultLoader();
     })
     .catch(error => {
       // // Handle Errors here.
@@ -127,7 +129,7 @@ function onLoginFormSubmit(e) {
     .then(userCredential => {
       const user = userCredential.user;
       MicroModal.close('auth');
-
+      // userThemeDefaultLoader();
       Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
     })
     .catch(error => {
