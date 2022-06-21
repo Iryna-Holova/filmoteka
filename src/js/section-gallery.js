@@ -17,6 +17,7 @@ export default class Gallery {
         this.libraryWatch.style.display = "none";
         this.libraryQueue.style.display = "none";
         this.home.style.display = "block";
+        this.homeFilmlist.style.display = 'flex';
         this.errorHome.style.display = "none";
     }
 

@@ -3,7 +3,6 @@ import DataBase from './cloud-firestore';
 import GetMoviesInfo from './get_movies_info';
 import { renderMovieDetailMarkup } from './render_markup';
 import Gallery from './section-gallery';
-// import MicroModal from 'micromodal';
 import { openModal } from './modal';
 import MicroModal from 'micromodal';
 const userDataBase = new DataBase();

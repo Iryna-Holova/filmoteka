@@ -14,10 +14,11 @@ header.queueBtn.addEventListener('click', goQueuePage);
 
 function onFormSubmit(event) {
     event.preventDefault();
-    const searchQuery = event.currentTarget.elements.q.value.trim();
+    const searchQuery = event.currentTarget.elements.search.value.trim();
+
     event.currentTarget.reset();
     if (!searchQuery) return;
-
+    
     gallery.showHome();
     gallery.homeFilmlist.innerHTML = '';
     setNewSearch(searchQuery);
