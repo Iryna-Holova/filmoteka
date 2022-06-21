@@ -78,12 +78,11 @@ async function onAddButtonClick(event) {
 async function onRemoveButtonClick(event) {
     if (!event.target.hasAttribute('data-remove')) return;
     const id = event.target.getAttribute('data-id');
-    const movie = await getMoviesInfo.searchMovieByID(id);
     const array = event.target.getAttribute('data-remove');
     if (array === 'watched') {
         userDataBase.userIdPromise
             .then(userId => {
-                userDataBase.removeFromWatched(userId, movie);
+                userDataBase.removeFromWatched(userId, id);
                 Notiflix.Notify.success('The movie was successfully deleted from your library Watched');
                 if ((event.target.textContent) && (gallery.watchFilmList.querySelector(`[data-id="${id}"]`))) {
                     gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
@@ -103,7 +102,7 @@ async function onRemoveButtonClick(event) {
     } else {
         userDataBase.userIdPromise
             .then(userId => {
-                userDataBase.removeFromQueue(userId, movie);
+                userDataBase.removeFromQueue(userId, id);
                 Notiflix.Notify.success('The movie was successfully deleted from your library Queue');
                 if ((event.target.textContent) && (gallery.queueFilmList.querySelector(`[data-id="${id}"]`))) {
                     gallery.queueFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
@@ -163,52 +162,4 @@ function setNavButtons(id, array) {
         const nextID = movieCard.nextSibling.getAttribute('data-id');
         navButtons.lastElementChild.setAttribute('data-id', nextID);
     } else navButtons.lastElementChild.disabled = true;
-}
-
-async function setModalButtons(id) {
-    const modalButtons = document.querySelector('.modal-gallery-buttons__thumb');
-    console.log(modalButtons);
-    userDataBase.userIdPromise
-        .then(userId => {
-            userDataBase
-                .isInWatched(userId, id)
-                .then(result => {
-                    if (!result) {
-                        return;
-                    } else {
-                        modalButtons.firstElementChild.removeAttribute('data-add');
-                        modalButtons.firstElementChild.setAttribute('data-remove', 'watched');
-                        modalButtons.firstElementChild.classList.add('remove-btn');
-                        modalButtons.firstElementChild.textContent = 'Remove from Watched';
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    
-    userDataBase.userIdPromise
-        .then(userId => {
-            userDataBase
-                .isInQueve(userId, id)
-                .then(result => {
-                    if (!result) {
-                        return;
-                    } else {
-                        modalButtons.lastElementChild.removeAttribute('data-add');
-                        modalButtons.lastElementChild.setAttribute('data-remove', 'queue');
-                        modalButtons.lastElementChild.classList.add('remove-btn');
-                        modalButtons.lastElementChild.textContent = 'Remove from Queue';
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        })
-        .catch(error => {
-            console.log(error);
-        });
 }
