@@ -48,30 +48,29 @@ export default class DataBase {
     }
   }
 
-  async addToWatched(userId, movieId) {
+  async addToWatched(userId, movie) {
     try {
       const cellRef = doc(db, 'users', userId);
       await updateDoc(cellRef, {
-        watched: arrayUnion(movieId),
+        watched: arrayUnion(movie),
       });
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  async addToQueue(userId, movieId) {
+  async addToQueue(userId, movie) {
     try {
       const cellRef = doc(db, 'users', userId);
       await updateDoc(cellRef, {
-        queue: arrayUnion(movieId),
+        queue: arrayUnion(movie),
       });
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  async removeFromWatched(userId, movie) {
-    const movieId = movie.id;
+  async removeFromWatched(userId, movieId) {
     const cellRef = doc(db, 'users', userId);
     const docSnap = await getDoc(cellRef);
 
@@ -89,8 +88,7 @@ export default class DataBase {
     }
   }
 
-  async removeFromQueue(userId, movie) {
-    const movieId = movie.id;
+  async removeFromQueue(userId, movieId) {
     const cellRef = doc(db, 'users', userId);
     const docSnap = await getDoc(cellRef);
 
