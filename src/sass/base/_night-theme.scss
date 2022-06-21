@@ -1,0 +1,43 @@
+body.night {
+    background-color: $clr-night-main;
+
+    ::-webkit-scrollbar {
+        background-color: $clr-night-main;
+    }
+}
+
+footer.night {
+    background-color: $clr-footer;
+}
+
+.film-list__title.night {
+    color: $clr-text-main;
+}
+
+.footer-text.night,
+.footer__link.night,
+.footer-text-span.night,
+.contentBox__description.night {
+    color: $clr-text-lighter;
+}
+
+.modal-gallery__flex-thumb.night,
+.modal__container.team-container.night {
+    background-color: $clr-night-main;
+}
+
+.modal-gallery__title.night,
+.modal-gallery-list__popularity.modal-gallery-item__value.night,
+.modal-gallery-list__title.modal-gallery-item__value.night,
+.modal-gallery-list__genre.modal-gallery-item__value.night,
+.modal-gallery-about__text.night {
+    color: $clr-text-main;
+}
+
+.modal-gallery-about__title.night {
+    color: $clr-modal-param;
+}
+
+.modal__icon_cross.night {
+    fill: $clr-text-lighter;
+}
