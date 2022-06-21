@@ -157,6 +157,140 @@ export async function renderMovieDetailMarkup(id) {
     });
 }
 
+export async function renderMovieDetailMarkupNightTheme(id) {
+  const movie = await getMoviesInfo.searchMovieByID(id);
+  const markup = makeMarkup.makeMovieDetailMarkupNightTheme(movie);
+  modalMovieThumb.innerHTML = markup;
+  const modalButtons = document.querySelector('.modal-gallery-buttons__thumb');
+
+  userDataBase.userIdPromise
+    .then(userId => {
+      userDataBase
+        .isInWatched(userId, id)
+        .then(result => {
+          if (!result) {
+            return;
+          } else {
+            modalButtons.firstElementChild.removeAttribute('data-add');
+            modalButtons.firstElementChild.setAttribute('data-remove', 'watched');
+            modalButtons.firstElementChild.classList.add('remove-btn');
+            modalButtons.firstElementChild.textContent = 'Remove from Watched';
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+  userDataBase.userIdPromise
+    .then(userId => {
+      userDataBase
+        .isInQueve(userId, id)
+        .then(result => {
+          if (!result) {
+            return;
+          } else {
+            modalButtons.lastElementChild.removeAttribute('data-add');
+            modalButtons.lastElementChild.setAttribute('data-remove', 'queue');
+            modalButtons.lastElementChild.classList.add('remove-btn');
+            modalButtons.lastElementChild.textContent = 'Remove from Queue';
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+export function renderWatchedNightTheme() {
+    gallery.watchFilmList.innerHTML = '';
+    spinner.spin(gallery.gallerySection);
+    userDataBase.userIdPromise
+        .then(userId => {
+            userDataBase
+                .getWatched(userId)
+                .then(async movies => {
+                    if (movies.length === 0) {
+                        gallery.showErrorlibraryWatch();
+                        spinner.stop(gallery.gallerySection);
+                    } else {
+                        const markup = await makeMarkup.makeWatchedMovieCardMarkupNightTheme(movies);
+                        gallery.watchFilmList.innerHTML = markup;
+                        spinner.stop(gallery.gallerySection);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export function renderQueueNightTheme() {
+    gallery.queueFilmList.innerHTML = '';
+    spinner.spin(gallery.gallerySection);
+    userDataBase.userIdPromise
+        .then(userId => {
+            userDataBase
+                .getQueue(userId)
+                .then(async movies => {
+                    if (movies.length === 0) {
+                        gallery.showErrorlibraryQueue();
+                        spinner.stop(gallery.gallerySection);
+                    } else {
+                        const markup = await makeMarkup.makeQueueMovieCardMarkupNightTheme(movies);
+                        gallery.queueFilmList.innerHTML = markup;
+                        spinner.stop(gallery.gallerySection);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export async function renderHomeSearchNightTheme() {
+    spinner.spin(gallery.gallerySection);
+    getMoviesInfo.searchMoviesByName()
+        .then(movies => makeMarkup.makeMovieCardMarkupNightTheme(movies))
+        .then(markup => {
+            gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
+            observerSearch.observe(gallery.homeFilmlist.lastElementChild);
+            spinner.stop(gallery.gallerySection);
+        })
+        .catch(() => {
+            gallery.showErrorHome();
+            observerSearch.disconnect();
+            spinner.stop(gallery.gallerySection);
+        });
+}
+
+export async function renderHomeNightTheme() {
+    spinner.spin(gallery.gallerySection);
+    getMoviesInfo.searchTrendingsMovies()
+        .then(movies => makeMarkup.makeMovieCardMarkupNightTheme(movies))
+        .then(markup => {
+            gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
+            observerHome.observe(gallery.homeFilmlist.lastElementChild);
+            spinner.stop(gallery.gallerySection);
+        })
+        .catch(() => {
+            gallery.showErrorHome();
+            spinner.stop(gallery.gallerySection);
+        });
+}
+
 function onIntersectHome(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

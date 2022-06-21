@@ -22,8 +22,9 @@ footer.night {
 }
 
 .modal-gallery__flex-thumb.night,
-.modal__container.team-container.night {
+.modal__container.night {
     background-color: $clr-night-main;
+    color: $clr-text-main;
 }
 
 .modal-gallery__title.night,
