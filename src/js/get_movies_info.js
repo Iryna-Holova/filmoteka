@@ -11,7 +11,10 @@ export default class GetMoviesInfo {
 
     async searchTrendingsMovies() {
         const response = await fetchMoviesApiService.fetchTrendingMovies(this.page);
-        const genres = await fetchMoviesApiService.fetchGenres();
+        let genres = JSON.parse(localStorage.getItem('genres'));
+        if (!genres) {
+            genres = await fetchMoviesApiService.fetchGenres();
+        }
         this.#getGenres(response, genres);
         this.incrementPage();
 
@@ -20,7 +23,10 @@ export default class GetMoviesInfo {
 
     async searchMoviesByName() {
         const response = await fetchMoviesApiService.fetchMoviesByName(this.searchQuery, this.page);
-        const genres = await fetchMoviesApiService.fetchGenres();
+        let genres = JSON.parse(localStorage.getItem('genres'));
+        if (!genres) {
+            genres = await fetchMoviesApiService.fetchGenres();
+        }
         this.#getGenres(response, genres);
         this.incrementPage();
 
