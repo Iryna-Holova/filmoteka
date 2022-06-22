@@ -49,6 +49,7 @@ export default class MakeMarkup {
     let releaseDate = 'No date';
     let movieGenres = [];
     let moviGenresNames = [];
+    let poster;
     if (movies) {
       const libraryMovieCardMarkup = movies
         .reverse()
@@ -102,6 +103,7 @@ export default class MakeMarkup {
     let releaseDate = 'No date';
     let movieGenres = [];
     let moviGenresNames = [];
+    let poster;
     if (movies) {
       const libraryMovieCardMarkup = movies
         .reverse()
@@ -163,6 +165,7 @@ export default class MakeMarkup {
     id,
   }) {
     let movieDetailMarkup;
+    let poster;
     let moviGenresNames;
     const moveiGenres = genres.map(genre => genre.name);
     if (moveiGenres.length === 0) {
@@ -178,7 +181,7 @@ export default class MakeMarkup {
           }
       movieDetailMarkup = `
         <div class="modal-gallery__thumb">
-            <img src="${poster}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
+            <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
         </div>
         <div class="modal-gallery__thumb-text">
             <h2 class="modal-gallery__title">${title}</h2>
