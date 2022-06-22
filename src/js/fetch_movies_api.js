@@ -29,6 +29,7 @@ export default class FetchMoviesApiService {
 
     async fetchGenres() {
         const response = await axios.get(`/genre/movie/list?api_key=${API_KEY}`);
+        localStorage.setItem('genres', JSON.stringify(response.data.genres)); 
         return response.data.genres;
     };
 }

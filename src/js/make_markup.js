@@ -203,6 +203,14 @@ export default class MakeMarkup {
     id,
   }) {
     let movieDetailMarkup;
+    let moviGenresNames;
+    const moveiGenres = genres.map(genre => genre.name);
+    if (moveiGenres.length === 0) {
+            moviGenresNames = moveiGenres.slice(0, 1);
+            moviGenresNames.splice(0, 0, 'No genre');
+    } else {
+      moviGenresNames = moveiGenres;
+    }
     if (poster_path) {
       movieDetailMarkup = `
         <div class="modal-gallery__thumb">
@@ -228,9 +236,7 @@ export default class MakeMarkup {
                 </li>
                 <li class="modal-gallery-list__item">
                     <div class="modal-gallery-item__name">Genre</div>
-                    <div class="modal-gallery-list__genre modal-gallery-item__value">${genres
-                        .map(genre => genre.name)
-                        .join(', ')}</div>
+                    <div class="modal-gallery-list__genre modal-gallery-item__value">${moviGenresNames.join(', ')}</div>
                 </li>
             </ul>
             <article class="modal-gallery-about">
@@ -267,9 +273,7 @@ export default class MakeMarkup {
                 </li>
                 <li class="modal-gallery-list__item">
                     <div class="modal-gallery-item__name">Genre</div>
-                    <div class="modal-gallery-list__genre modal-gallery-item__value">${genres
-                      .map(genre => genre.name)
-                      .join(', ')}</div>
+                    <div class="modal-gallery-list__genre modal-gallery-item__value">${moviGenresNames.join(', ')}</div>
                 </li>
             </ul>
             <article class="modal-gallery-about">
