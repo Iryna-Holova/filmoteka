@@ -14,13 +14,9 @@ export const toggleRefs = {
 toggleRefs.headerToggleThumb.addEventListener('click', onHeaderToggleBtnClick);
 
 function onHeaderToggleBtnClick() {
-  toggleRefs.headerToggleBtn.classList.toggle('night');
-  toggleRefs.bodyTheme.classList.toggle('night');
-  toggleRefs.htmlTheme.classList.toggle('night');
-  toggleRefs.footerTheme.classList.toggle('night');
-  toggleRefs.galleryTheme.classList.toggle('night');
-  toggleRefs.modalContainerTheme.classList.toggle('night');
+  switchTheme();
   if (toggleRefs.headerToggleBtn.classList.contains('night')) {
+    localStorage.setItem('theme', 'night');
     userThemeBase.userIdPromise
       .then(userId => {
         userThemeBase.changeTheme(userId, 'night');
@@ -30,6 +26,7 @@ function onHeaderToggleBtnClick() {
       });
   }
   if (!toggleRefs.headerToggleBtn.classList.contains('night')) {
+    localStorage.setItem('theme', 'day');
     userThemeBase.userIdPromise
       .then(userId => {
         userThemeBase.changeTheme(userId, 'day');
@@ -40,8 +37,20 @@ function onHeaderToggleBtnClick() {
   }
 }
 
+function switchTheme() {
+  toggleRefs.headerToggleBtn.classList.toggle('night');
+  toggleRefs.bodyTheme.classList.toggle('night');
+  toggleRefs.htmlTheme.classList.toggle('night');
+  toggleRefs.footerTheme.classList.toggle('night');
+  toggleRefs.galleryTheme.classList.toggle('night');
+  toggleRefs.modalContainerTheme.classList.toggle('night');
+}
+
 function userThemeDefault() {
-  if (userThemeBase.userIdPromise) {
+  if (localStorage.getItem('theme') === 'night') {
+    switchTheme();
+    return;
+  } else if (userThemeBase.userIdPromise) {
     userThemeBase.userIdPromise
       .then(userId => {
         userThemeBase
@@ -51,11 +60,8 @@ function userThemeDefault() {
               return;
             }
             if (theme === 'night' && !toggleRefs.headerToggleBtn.classList.contains('night')) {
-              toggleRefs.headerToggleBtn.classList.add('night');
-              toggleRefs.bodyTheme.classList.add('night');
-              toggleRefs.footerTheme.classList.add('night');
-              toggleRefs.galleryTheme.classList.add('night');
-              toggleRefs.modalContainerTheme.classList.add('night');
+              localStorage.setItem('theme', 'night');
+              switchTheme();
             }
           })
           .catch(error => {
