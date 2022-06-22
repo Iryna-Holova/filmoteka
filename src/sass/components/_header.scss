@@ -162,19 +162,12 @@
     padding-bottom: 16px;
     padding-top: 16px;
   }
-  @media screen and (min-width: 1024px) {
-    padding-bottom: 16px;
-    padding-top: 16px;
-  }
 
   &:focus,
   &:hover {
     color: $clr-accent;
     filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
   }
-  // &[data-page="library"] {
-  //   display: none;
-  // }
 }
 .header-nav__link[data-page='log-out'] {
   padding-bottom: 0;
@@ -211,9 +204,8 @@
   }
 }
 .header-search {
-  position: relative;
   padding-bottom: 92px;
-  padding-top: 46px;
+  padding-top: 45px;
 
   display: flex;
   text-align: center;
@@ -233,18 +225,11 @@
 }
 .header-search__form {
   position: relative;
+  width: 280px;
 }
 
-.header-search__point {
-  stroke: #fff;
-  fill: transparent;
-
-  &:hover,
-  &:focus {
-    stroke: #ff6b08;
-  }
-}
 .header-search__input {
+  padding: 0 14px 4px 0;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -262,16 +247,12 @@
   color: $clr-light;
 
   transition: border-color $transition-time $cubic;
-  stroke: var(--color2, #fff);
-  transition: stroke $transition-time $cubic;
-
   outline: 0 none;
   outline-offset: 0;
   &:focus,
   &:hover {
     border: transparent;
     border-bottom: 1px solid $clr-accent;
-    stroke: $clr-accent;
   }
   &::placeholder {
     color: $clr-light;
@@ -285,24 +266,31 @@
 .header-search__button {
   color: transparent;
   position: absolute;
-  padding: 10px;
-  top: -4%;
-  left: 94%;
+  justify-content: end;
+  text-align: right;
+  width: 24px;
+  height: 24px;
+  right: 0;
+  bottom: 0;
+  stroke: $clr-light;
+  transition: stroke $transition-time $cubic;
 
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    stroke: $clr-accent;
+  }
 }
 .header-search__icon {
-  position: absolute;
-  top: 24%;
-  left: 24%;
+  stroke: inherit;
 }
 .headers-button {
   display: none;
   justify-content: center;
   padding-bottom: 62px;
-  padding-top: 52px;
+  padding-top: 51px;
 
   @media screen and (min-width: 768px) {
     padding-top: 30px;
@@ -318,6 +306,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  cursor: pointer;
 
   align-items: center;
   text-align: center;
