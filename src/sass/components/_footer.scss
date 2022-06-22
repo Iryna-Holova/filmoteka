@@ -6,7 +6,6 @@
   bottom: 0;
   overflow: hidden;
   width: 100%;
-  opacity: 0.5;
 
   transition: background-color $transition-time $cubic color $transition-time $cubic;
 
@@ -23,7 +22,8 @@
   &:hover {
       padding-top: 20px;
       padding-bottom: 28px;
-      opacity: 1;
+
+      transition: background-color $transition-time $cubic color $transition-time $cubic;
     }
 }
 
