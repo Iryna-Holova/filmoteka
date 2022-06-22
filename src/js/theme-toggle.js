@@ -4,6 +4,7 @@ const userThemeBase = new DataBase();
 export const toggleRefs = {
   headerToggleThumb: document.querySelector('.header__theme-thumb'),
   headerToggleBtn: document.querySelector('.header__theme-toggle'),
+  htmlTheme: document.querySelector('html'),
   bodyTheme: document.querySelector('body'),
   footerTheme: document.querySelector('footer'),
   galleryTheme: document.querySelector('.gallery'),
@@ -30,6 +31,7 @@ toggleRefs.headerToggleThumb.addEventListener('click', onHeaderToggleBtnClick);
 function onHeaderToggleBtnClick() {
   toggleRefs.headerToggleBtn.classList.toggle('night');
   toggleRefs.bodyTheme.classList.toggle('night');
+  toggleRefs.htmlTheme.classList.toggle('night');
   toggleRefs.footerTheme.classList.toggle('night');
   toggleRefs.galleryTheme.classList.toggle('night');
   // toggleRefs.contextBoxDescriptionTheme.classList.toggle('night');
