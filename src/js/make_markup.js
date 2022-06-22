@@ -49,6 +49,7 @@ export default class MakeMarkup {
     let releaseDate = 'No date';
     let movieGenres = [];
     let moviGenresNames = [];
+    let poster;
     if (movies) {
       const libraryMovieCardMarkup = movies
         .reverse()
@@ -102,6 +103,7 @@ export default class MakeMarkup {
     let releaseDate = 'No date';
     let movieGenres = [];
     let moviGenresNames = [];
+    let poster;
     if (movies) {
       const libraryMovieCardMarkup = movies
         .reverse()
@@ -163,6 +165,7 @@ export default class MakeMarkup {
     id,
   }) {
     let movieDetailMarkup;
+    let poster;
     let moviGenresNames;
     const moveiGenres = genres.map(genre => genre.name);
     if (moveiGenres.length === 0) {
