@@ -1,6 +1,8 @@
 html.night {
     ::-webkit-scrollbar {
         background-color: $clr-night-main;
+        transition-duration: $transition-time;
+        transition-timing-function: $cubic;
     }
 }
 
