@@ -19,6 +19,8 @@ export default class Gallery {
         this.home.style.display = "block";
         this.homeFilmlist.style.display = 'flex';
         this.errorHome.style.display = "none";
+        this.queueFilmList.textContent = '';
+        this.watchFilmList.textContent = '';
     }
 
     showMylibraryWatch() {
@@ -27,6 +29,7 @@ export default class Gallery {
         this.home.style.display = "none";
         this.errorlibraryWatch.style.display = "none";
         this.watchFilmList.style.display = 'flex';
+        this.queueFilmList.textContent = '';
     };
 
     showMylibraryQueue() {
@@ -35,6 +38,7 @@ export default class Gallery {
         this.home.style.display = "none";
         this.errorlibraryQueue.style.display = "none";
         this.queueFilmList.style.display = 'flex';
+        this.watchFilmList.textContent = '';
     };
 
     showErrorHome() {

@@ -8,15 +8,13 @@ body.night {
 
 footer.night {
     background-color: $clr-footer;
+    color: $clr-text-lighter;
 }
 
 .film-list__title.night {
     color: $clr-text-main;
 }
 
-.footer-text.night,
-.footer__link.night,
-.footer-text-span.night,
 .contentBox__description.night {
     color: $clr-text-lighter;
 }

@@ -1,5 +1,6 @@
 .footer {
   background-color: $clr-bg-footer;
+  color: $clr-footer;
   text-align: center;
   position: fixed;
   bottom: 0;
@@ -39,19 +40,12 @@
   font-style: normal;
   font-size: 14px;
   line-height: 1.14;
-  color: $clr-footer;
 
   @media screen and (min-width: 768px) {
     flex-wrap: nowrap;
     font-size: 16px;
     line-height: 1.19;
   }
-}
-
-.footer-text,
-.footer-heart,
-.footer__link {
-  color: $clr-footer;
 }
 
 .footer-heart {

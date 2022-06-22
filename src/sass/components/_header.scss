@@ -213,7 +213,7 @@
   justify-content: center;
 
   color: $clr-light;
-  border-radius: 4px solid $clr-light;
+  // border-radius: 4px solid $clr-light;
 
   @media screen and (min-width: 768px) {
     padding-top: 30px;
@@ -376,6 +376,7 @@
 //styles for toggle
 
 .header__theme-thumb {
+  cursor: pointer;
   margin-top: 2px;
   width: 40px;
   height: 20px;
