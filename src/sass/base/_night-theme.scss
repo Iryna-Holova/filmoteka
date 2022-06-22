@@ -1,20 +1,28 @@
 html.night {
     ::-webkit-scrollbar {
         background-color: $clr-night-main;
+        transition-duration: $transition-time;
+        transition-timing-function: $cubic;
     }
 }
 
 body.night {
     background-color: $clr-night-main;
+    transition-duration: $transition-time;
+    transition-timing-function: $cubic;
 }
 
 footer.night {
     background-color: $clr-footer;
     color: $clr-text-lighter;
+    transition-duration: $transition-time;
+    transition-timing-function: $cubic;
 }
 
 .gallery.night {
     color: $clr-text-main;
+    transition-duration: $transition-time;
+    transition-timing-function: $cubic;
 }
 
 .contentBox__description.night {
