@@ -6,7 +6,7 @@ export const toggleRefs = {
   headerToggleBtn: document.querySelector('.header__theme-toggle'),
   bodyTheme: document.querySelector('body'),
   footerTheme: document.querySelector('footer'),
-  // filmListTitleTheme: document.querySelector('.film-list__title'),
+  galleryTheme: document.querySelector('.gallery'),
   // contextBoxDescriptionTheme: document.querySelector('.contentBox__description'),
   // modalGalleryFlexThumbTheme: document.querySelector('.modal-gallery__flex-thumb'),
   // teamContainerTheme: document.querySelector('.modal__container.team-container'),
@@ -31,7 +31,7 @@ function onHeaderToggleBtnClick() {
   toggleRefs.headerToggleBtn.classList.toggle('night');
   toggleRefs.bodyTheme.classList.toggle('night');
   toggleRefs.footerTheme.classList.toggle('night');
-  // toggleRefs.filmListTitleTheme.classList.toggle('night');
+  toggleRefs.galleryTheme.classList.toggle('night');
   // toggleRefs.contextBoxDescriptionTheme.classList.toggle('night');
   // toggleRefs.modalGalleryFlexThumbTheme.classList.toggle('night');
   // toggleRefs.teamContainerTheme.classList.toggle('night');
@@ -76,7 +76,7 @@ function userThemeDefault() {
               toggleRefs.headerToggleBtn.classList.add('night');
               toggleRefs.bodyTheme.classList.add('night');
               toggleRefs.footerTheme.classList.add('night');
-              // toggleRefs.filmListTitleTheme.classList.add('night');
+              toggleRefs.galleryTheme.classList.add('night');
               // toggleRefs.contextBoxDescriptionTheme.classList.add('night');
               // toggleRefs.modalGalleryFlexThumbTheme.classList.add('night');
               // toggleRefs.teamContainerTheme.classList.add('night');

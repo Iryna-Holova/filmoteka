@@ -1,5 +1,6 @@
 .gallery {
     position: relative;
+    color: $clr-main;
 }
 
 .film-list {
@@ -66,7 +67,7 @@
 
 .film-list__title {
     margin: 8px 0;
-    color: $clr-main;
+    // color: $clr-main;
     font-size: inherit;
     font-weight: 500;
     text-transform: uppercase;
