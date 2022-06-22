@@ -181,7 +181,7 @@ export default class MakeMarkup {
           }
       movieDetailMarkup = `
         <div class="modal-gallery__thumb">
-            <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
+            <img src="${poster}" alt="${title} poster" onerror="this.onerror=null;this.src='https://bflix.biz/no-poster.png'" />
         </div>
         <div class="modal-gallery__thumb-text">
             <h2 class="modal-gallery__title">${title}</h2>
