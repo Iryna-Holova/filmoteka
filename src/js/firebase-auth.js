@@ -51,6 +51,16 @@ async function setDefaultCell(userId) {
   }
 }
 
+const toggleRefs = {
+  headerToggleThumb: document.querySelector('.header__theme-thumb'),
+  headerToggleBtn: document.querySelector('.header__theme-toggle'),
+  htmlTheme: document.querySelector('html'),
+  bodyTheme: document.querySelector('body'),
+  footerTheme: document.querySelector('footer'),
+  galleryTheme: document.querySelector('.gallery'),
+  modalContainerTheme: document.querySelector('.modal__container'),
+};
+
 async function getTheme(userId) {
   const cellRef = doc(db, 'users', userId);
   const docSnap = await getDoc(cellRef);
@@ -74,20 +84,8 @@ function userThemeDefaultLoader() {
             toggleRefs.headerToggleBtn.classList.add('night');
             toggleRefs.bodyTheme.classList.add('night');
             toggleRefs.footerTheme.classList.add('night');
-            // toggleRefs.filmListTitleTheme.classList.add('night');
-            toggleRefs.footerTextTheme.classList.add('night');
-            toggleRefs.footerLinkTheme.classList.add('night');
-            toggleRefs.footerTextSpanTheme.classList.add('night');
-            toggleRefs.contextBoxDescriptionTheme.classList.add('night');
-            toggleRefs.modalGalleryFlexThumbTheme.classList.add('night');
-            toggleRefs.teamContainerTheme.classList.add('night');
-            // toggleRefs.modalGalleryTitleTheme.classList.add('night');
-            // toggleRefs.modalGalleryListPopTheme.classList.add('night');
-            // toggleRefs.modalGalleryListTitleTheme.classList.add('night');
-            // toggleRefs.modalGalleryListGenreTheme.classList.add('night');
-            // toggleRefs.modalGalleryListAboutTextTheme.classList.add('night');
-            // toggleRefs.modalGalleryListAboutTitleTheme.classList.v('night');
-            toggleRefs.modalIconCrossTheme.classList.add('night');
+            toggleRefs.galleryTheme.classList.add('night');
+            toggleRefs.modalContainerTheme.classList.add('night');
           }
         })
         .catch(error => {
@@ -103,53 +101,14 @@ function setDefaultTheme() {
   toggleRefs.headerToggleBtn.classList.remove('night');
   toggleRefs.bodyTheme.classList.remove('night');
   toggleRefs.footerTheme.classList.remove('night');
-  //   toggleRefs.filmListTitleTheme.classList.remove('night');
-  toggleRefs.footerTextTheme.classList.remove('night');
-  toggleRefs.footerLinkTheme.classList.remove('night');
-  toggleRefs.footerTextSpanTheme.classList.remove('night');
-  toggleRefs.contextBoxDescriptionTheme.classList.remove('night');
-  toggleRefs.modalGalleryFlexThumbTheme.classList.remove('night');
-  toggleRefs.teamContainerTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryTitleTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryListPopTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryListTitleTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryListGenreTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryListAboutTextTheme.classList.remove('night');
-  //   toggleRefs.modalGalleryListAboutTitleTheme.classList.remove('night');
-  toggleRefs.modalIconCrossTheme.classList.remove('night');
+  toggleRefs.galleryTheme.classList.remove('night');
+  toggleRefs.modalContainerTheme.classList.remove('night');
 }
 
 function goHomePageDefault() {
   header.showHome();
   gallery.showHome();
 }
-
-const toggleRefs = {
-  headerToggleThumb: document.querySelector('.header__theme-thumb'),
-  headerToggleBtn: document.querySelector('.header__theme-toggle'),
-  bodyTheme: document.querySelector('body'),
-  footerTheme: document.querySelector('footer'),
-  // filmListTitleTheme: document.querySelector('.film-list__title'),
-  footerTextTheme: document.querySelector('.footer-text'),
-  footerLinkTheme: document.querySelector('.footer__link'),
-  footerTextSpanTheme: document.querySelector('.footer-text-span'),
-  contextBoxDescriptionTheme: document.querySelector('.contentBox__description'),
-  modalGalleryFlexThumbTheme: document.querySelector('.modal-gallery__flex-thumb'),
-  teamContainerTheme: document.querySelector('.modal__container.team-container'),
-  // modalGalleryTitleTheme: document.querySelector('.modal-gallery__title'),
-  // modalGalleryListPopTheme: document.querySelector(
-  //   '.modal-gallery-list__popularity.modal-gallery-item__value',
-  // ),
-  // modalGalleryListTitleTheme: document.querySelector(
-  //   '.modal-gallery-list__title.modal-gallery-item__value',
-  // ),
-  // modalGalleryListGenreTheme: document.querySelector(
-  //   '.modal-gallery-list__genre.modal-gallery-item__value',
-  // ),
-  // modalGalleryListAboutTextTheme: document.querySelector('.modal-gallery-about__text'),
-  // modalGalleryListAboutTitleTheme: document.querySelector('.modal-gallery-about__title'),
-  modalIconCrossTheme: document.querySelector('.modal__icon_cross'),
-};
 
 const refs = {
   authFormLogin: document.querySelector('#login'),
@@ -206,12 +165,9 @@ function onGoogleAuthClick() {
       userThemeDefaultLoader();
     })
     .catch(error => {
-      // // Handle Errors here.
       // const errorCode = error.code;
       // const errorMessage = error.message;
-      // // The email of the user's account used.
       // const email = error.customData.email;
-      // // The AuthCredential type that was used.
       // const credential = GoogleAuthProvider.credentialFromError(error);
       // console.log(errorCode);
       // console.log(errorMessage);
@@ -242,7 +198,6 @@ function onLoginFormSubmit(e) {
       // const errorMessage = error.message;
       // console.log(errorCode);
       // console.log(errorMessage);
-
       Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
     });
 }
