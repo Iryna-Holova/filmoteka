@@ -35,11 +35,11 @@ async function onAddButtonClick(event) {
                         } else {
                             userDataBase
                                 .addToWatched(userId, movie)
+                            event.target.removeAttribute('data-add');
+                            event.target.setAttribute('data-remove', 'watched')
+                            event.target.classList.add('remove-btn');
                             Notiflix.Notify.success('The movie has been successfully added to your library Watched')
                             if (event.target.textContent) {
-                                event.target.removeAttribute('data-add');
-                                event.target.setAttribute('data-remove', 'watched');
-                                event.target.classList.add('remove-btn');
                                 event.target.textContent = 'Remove from Watched';
                             }
                         }
@@ -59,11 +59,11 @@ async function onAddButtonClick(event) {
                         } else {
                             userDataBase
                                 .addToQueue(userId, movie);
+                            event.target.removeAttribute('data-add');
+                            event.target.setAttribute('data-remove', 'queue');
+                            event.target.classList.add('remove-btn');
                             Notiflix.Notify.success('The movie has been successfully added to your library Queue');
                             if (event.target.textContent) {
-                                event.target.removeAttribute('data-add');
-                                event.target.setAttribute('data-remove', 'queue');
-                                event.target.classList.add('remove-btn');
                                 event.target.textContent = 'Remove from Queue';
                             }
                         }
@@ -83,6 +83,9 @@ async function onRemoveButtonClick(event) {
         userDataBase.userIdPromise
             .then(userId => {
                 userDataBase.removeFromWatched(userId, id);
+                event.target.removeAttribute('data-remove');
+                event.target.setAttribute('data-add', 'watched');
+                event.target.classList.remove('remove-btn');
                 Notiflix.Notify.success('The movie was successfully deleted from your library Watched');
                 if ((event.target.textContent) && (gallery.watchFilmList.querySelector(`[data-id="${id}"]`))) {
                     gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
@@ -90,9 +93,6 @@ async function onRemoveButtonClick(event) {
                 } else if (gallery.watchFilmList.querySelector(`[data-id="${id}"]`)) {
                     gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
                 } else if (event.target.textContent) {
-                    event.target.removeAttribute('data-remove');
-                    event.target.setAttribute('data-add', 'watched');
-                    event.target.classList.remove('remove-btn');
                     event.target.textContent = 'Add to watched';
                 }
             })
@@ -103,6 +103,9 @@ async function onRemoveButtonClick(event) {
         userDataBase.userIdPromise
             .then(userId => {
                 userDataBase.removeFromQueue(userId, id);
+                event.target.removeAttribute('data-remove');
+                event.target.setAttribute('data-add', 'queue');
+                event.target.classList.remove('remove-btn');
                 Notiflix.Notify.success('The movie was successfully deleted from your library Queue');
                 if ((event.target.textContent) && (gallery.queueFilmList.querySelector(`[data-id="${id}"]`))) {
                     gallery.queueFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
@@ -110,9 +113,6 @@ async function onRemoveButtonClick(event) {
                 } else if (gallery.queueFilmList.querySelector(`[data-id="${id}"]`)) {
                     gallery.queueFilmList.querySelector(`[data-id="${id}"]`).style.display = "none";
                 } else if (event.target.textContent) {
-                    event.target.removeAttribute('data-remove');
-                    event.target.setAttribute('data-add', 'queue');
-                    event.target.classList.remove('remove-btn');
                     event.target.textContent = 'Add to queue';
                 }
             })

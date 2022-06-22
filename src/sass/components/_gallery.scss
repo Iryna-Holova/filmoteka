@@ -180,3 +180,13 @@
 .remove::before {
     content: '\2716';
 }
+
+.watch.remove-btn {
+    color: $clr-accent-btn;
+    opacity: 1;
+}
+
+.queue.remove-btn {
+    color: $clr-accent-btn;
+    opacity: 1;
+}

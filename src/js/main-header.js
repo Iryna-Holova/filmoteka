@@ -28,7 +28,6 @@ function onFormSubmit(event) {
 function goHomePage() {
     header.showHome();
     gallery.showHome();
-    console.log();
     if (!gallery.homeFilmlist.innerHTML) renderHome();
 }
 
