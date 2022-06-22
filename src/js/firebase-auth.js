@@ -15,6 +15,7 @@ import Header from './section-header';
 const header = new Header();
 import Gallery from './section-gallery';
 const gallery = new Gallery();
+import { userThemeDefault } from './theme-toggle';
 
 let userPromiseResolve;
 
@@ -51,16 +52,6 @@ async function setDefaultCell(userId) {
   }
 }
 
-const toggleRefs = {
-  headerToggleThumb: document.querySelector('.header__theme-thumb'),
-  headerToggleBtn: document.querySelector('.header__theme-toggle'),
-  htmlTheme: document.querySelector('html'),
-  bodyTheme: document.querySelector('body'),
-  footerTheme: document.querySelector('footer'),
-  galleryTheme: document.querySelector('.gallery'),
-  modalContainerTheme: document.querySelector('.modal__container'),
-};
-
 async function getTheme(userId) {
   const cellRef = doc(db, 'users', userId);
   const docSnap = await getDoc(cellRef);
@@ -70,39 +61,6 @@ async function getTheme(userId) {
   } else {
     return false;
   }
-}
-
-function userThemeDefaultLoader() {
-  userPromise
-    .then(userId => {
-      getTheme(userId)
-        .then(theme => {
-          if (theme === 'day') {
-            return;
-          }
-          if (theme === 'night') {
-            toggleRefs.headerToggleBtn.classList.add('night');
-            toggleRefs.bodyTheme.classList.add('night');
-            toggleRefs.footerTheme.classList.add('night');
-            toggleRefs.galleryTheme.classList.add('night');
-            toggleRefs.modalContainerTheme.classList.add('night');
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}
-
-function setDefaultTheme() {
-  toggleRefs.headerToggleBtn.classList.remove('night');
-  toggleRefs.bodyTheme.classList.remove('night');
-  toggleRefs.footerTheme.classList.remove('night');
-  toggleRefs.galleryTheme.classList.remove('night');
-  toggleRefs.modalContainerTheme.classList.remove('night');
 }
 
 function goHomePageDefault() {
@@ -150,7 +108,7 @@ function onGoogleAuthClick() {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-
+      userThemeDefault();
       MicroModal.close('auth');
 
       Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
@@ -162,7 +120,6 @@ function onGoogleAuthClick() {
         .catch(error => {
           console.log(error.message);
         });
-      userThemeDefaultLoader();
     })
     .catch(error => {
       // const errorCode = error.code;
@@ -187,11 +144,10 @@ function onLoginFormSubmit(e) {
   )
     .then(userCredential => {
       const user = userCredential.user;
+      userThemeDefault();
       MicroModal.close('auth');
 
       Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
-
-      userThemeDefaultLoader();
     })
     .catch(error => {
       // const errorCode = error.code;
@@ -250,7 +206,7 @@ function onLogOutBtnClick() {
             refs.logOutBtn.classList.toggle('is-hidden');
             refs.libraryBtn.classList.toggle('is-hidden');
             Notify.info(`Come back soon!!!`, { timeout: 1000 });
-            setDefaultTheme();
+
             goHomePageDefault();
           } else {
             return;
