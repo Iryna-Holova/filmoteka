@@ -30,6 +30,7 @@ export default class Gallery {
         this.errorlibraryWatch.style.display = "none";
         this.watchFilmList.style.display = 'flex';
         this.queueFilmList.textContent = '';
+        this.homeFilmlist.textContent = '';
     };
 
     showMylibraryQueue() {
@@ -39,6 +40,7 @@ export default class Gallery {
         this.errorlibraryQueue.style.display = "none";
         this.queueFilmList.style.display = 'flex';
         this.watchFilmList.textContent = '';
+        this.homeFilmlist.textContent = '';
     };
 
     showErrorHome() {

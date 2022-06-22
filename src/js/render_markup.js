@@ -20,12 +20,14 @@ const observerSearch = new IntersectionObserver(onIntersectSearch, options);
 
 export async function renderHome() {
   spinner.spin(gallery.gallerySection);
+  setNewSearch('')
   
   try {
     const movies = await getMoviesInfo.searchTrendingsMovies();
     const markup = await makeMarkup.makeMovieCardMarkup(movies);
     gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
-    checkUserLibrary(movies);
+    checkInWatched(movies);
+    checkInQueue(movies);
     observerHome.observe(gallery.homeFilmlist.lastElementChild);
     spinner.stop(gallery.gallerySection);
   } catch {
@@ -40,124 +42,73 @@ export function setNewSearch(searchQuery) {
 }
 
 export async function renderHomeSearch() {
-    spinner.spin(gallery.gallerySection);
-    getMoviesInfo.searchMoviesByName()
-      .then(movies => {
-        makeMarkup.makeMovieCardMarkup(movies);
-      })
-        .then(markup => {
-            gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
-            observerSearch.observe(gallery.homeFilmlist.lastElementChild);
-            spinner.stop(gallery.gallerySection);
-        })
-        .catch(() => {
-            gallery.showErrorHome();
-            observerSearch.disconnect();
-            spinner.stop(gallery.gallerySection);
-        });
-}
+  spinner.spin(gallery.gallerySection);
 
-function checkUserLibrary(movies) {
-  movies.forEach(movie => {
-    const id = movie.id;
-
-    userDataBase.userIdPromise
-      .then(userId => {
-        userDataBase
-          .isInWatched(userId, id)
-          .then(result => {
-            if (!result) {
-              return;
-            } else {
-              const buttonAddWatched = document.querySelector(`[data-id='${id}'].watch`)
-              console.log(buttonAddWatched);
-              buttonAddWatched.removeAttribute('data-add');
-              buttonAddWatched.setAttribute('data-remove', 'watched');
-              buttonAddWatched.classList.add('remove-btn');
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    
-    userDataBase.userIdPromise
-      .then(userId => {
-        userDataBase
-          .isInQueve(userId, id)
-          .then(result => {
-            if (!result) {
-              return;
-            } else {
-              const buttonAddQueue = document.querySelector(`[data-id='${id}'].queue`)
-              buttonAddQueue.removeAttribute('data-add');
-              buttonAddQueue.setAttribute('data-remove', 'queue');
-              buttonAddQueue.classList.add('remove-btn');
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      })
-      .catch(error => {
-        console.log(error);
-      }); 
-  })
+  try {
+    const movies = await getMoviesInfo.searchMoviesByName();
+    const markup = await makeMarkup.makeMovieCardMarkup(movies);
+    gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
+    checkInWatched(movies);
+    checkInQueue(movies);
+    observerSearch.observe(gallery.homeFilmlist.lastElementChild);
+    spinner.stop(gallery.gallerySection);
+  } catch {
+    gallery.showErrorHome();
+    observerSearch.disconnect();
+    spinner.stop(gallery.gallerySection);
+  };
 }
 
 export function renderQueue() {
-    gallery.queueFilmList.innerHTML = '';
-    spinner.spin(gallery.gallerySection);
-    userDataBase.userIdPromise
-        .then(userId => {
-            userDataBase
-                .getQueue(userId)
-                .then(async movies => {
-                    if (movies.length === 0) {
-                        gallery.showErrorlibraryQueue();
-                        spinner.stop(gallery.gallerySection);
-                    } else {
-                        const markup = await makeMarkup.makeQueueMovieCardMarkup(movies);
-                        gallery.queueFilmList.innerHTML = markup;
-                        spinner.stop(gallery.gallerySection);
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+  spinner.spin(gallery.gallerySection);
+  userDataBase.userIdPromise
+    .then(userId => {
+      userDataBase
+        .getQueue(userId)
+        .then(async movies => {
+          if (movies.length === 0) {
+            gallery.showErrorlibraryQueue();
+            spinner.stop(gallery.gallerySection);
+          } else {
+            const markup = await makeMarkup.makeQueueMovieCardMarkup(movies);
+            gallery.queueFilmList.innerHTML = markup;
+            checkInWatched(movies);
+            spinner.stop(gallery.gallerySection);
+          }
         })
         .catch(error => {
-            console.log(error);
+          console.log(error);
         });
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 export function renderWatched() {
-    gallery.watchFilmList.innerHTML = '';
-    spinner.spin(gallery.gallerySection);
-    userDataBase.userIdPromise
-        .then(userId => {
-            userDataBase
-                .getWatched(userId)
-                .then(async movies => {
-                    if (movies.length === 0) {
-                        gallery.showErrorlibraryWatch();
-                        spinner.stop(gallery.gallerySection);
-                    } else {
-                        const markup = await makeMarkup.makeWatchedMovieCardMarkup(movies);
-                        gallery.watchFilmList.innerHTML = markup;
-                        spinner.stop(gallery.gallerySection);
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+  spinner.spin(gallery.gallerySection);
+  userDataBase.userIdPromise
+    .then(userId => {
+      userDataBase
+        .getWatched(userId)
+        .then(async movies => {
+          if (movies.length === 0) {
+            gallery.showErrorlibraryWatch();
+            spinner.stop(gallery.gallerySection);
+          } else {
+            const markup = await makeMarkup.makeWatchedMovieCardMarkup(movies);
+            gallery.watchFilmList.innerHTML = markup;
+            checkInQueue(movies);
+            spinner.stop(gallery.gallerySection);
+          }
         })
         .catch(error => {
-            console.log(error);
+          console.log(error);
         });
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 export async function renderMovieDetailMarkup(id) {
@@ -209,6 +160,62 @@ export async function renderMovieDetailMarkup(id) {
     .catch(error => {
       console.log(error);
     });
+}
+
+function checkInWatched(movies) {
+  movies.forEach(movie => {
+    const id = movie.id;
+
+    userDataBase.userIdPromise
+      .then(userId => {
+        userDataBase
+          .isInWatched(userId, id)
+          .then(result => {
+            if (!result) {
+              return;
+            } else {
+              const buttonAddWatched = document.querySelector(`[data-id='${id}'].watch`)
+              buttonAddWatched.removeAttribute('data-add');
+              buttonAddWatched.setAttribute('data-remove', 'watched');
+              buttonAddWatched.classList.add('remove-btn');
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  })
+}
+
+function checkInQueue(movies) {
+  movies.forEach(movie => {
+    const id = movie.id;
+    
+    userDataBase.userIdPromise
+      .then(userId => {
+        userDataBase
+          .isInQueve(userId, id)
+          .then(result => {
+            if (!result) {
+              return;
+            } else {
+              const buttonAddQueue = document.querySelector(`[data-id='${id}'].queue`)
+              buttonAddQueue.removeAttribute('data-add');
+              buttonAddQueue.setAttribute('data-remove', 'queue');
+              buttonAddQueue.classList.add('remove-btn');
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      })
+      .catch(error => {
+        console.log(error);
+      }); 
+  })
 }
 
 function onIntersectHome(entries) {
