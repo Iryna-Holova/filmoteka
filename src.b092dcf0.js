@@ -163,4 +163,4 @@ module.exports=require("./lib/axios");
 },{"./modal":"RSqK"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/scroll-up.js"),require("./js/theme-toggle"),require("./js/modal-auth"),require("./js/firebase-auth"),require("./js/main-header"),require("./js/main-gallery"),require("./js/section-footer");
 },{"./sass/main.scss":"clu1","./js/scroll-up.js":"GVd3","./js/theme-toggle":"GZy1","./js/modal-auth":"vD0S","./js/firebase-auth":"B3uV","./js/main-header":"ImVH","./js/main-gallery":"P1Nl","./js/section-footer":"UWRJ"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.d156037b.js.map
+//# sourceMappingURL=/filmoteka/src.b092dcf0.js.map
