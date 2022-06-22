@@ -1,9 +1,11 @@
-body.night {
-    background-color: $clr-night-main;
-
+html.night {
     ::-webkit-scrollbar {
         background-color: $clr-night-main;
     }
+}
+
+body.night {
+    background-color: $clr-night-main;
 }
 
 footer.night {
