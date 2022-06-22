@@ -99,7 +99,7 @@
 
 .error {
     position: absolute;
-    top: 50%;
+    top: 150px;
     left: 0;
     right: 0;
     margin: auto;
@@ -126,8 +126,8 @@
 .scroll-up {
     position: fixed;
     fill-opacity: 0.5;
-    top: 50%;
-    right: 1%;
+    top: 350px;
+    right: 10px;
     z-index: 1;
 
     &:hover {
@@ -145,13 +145,13 @@
 .film-list__icons {
     display: flex;
     position: absolute;
-    bottom: 1%;
-    right: 1%;
+    bottom: 5px;
+    right: 0;
 
     button {
         margin-right: 5px;
         border: none;
-        border-radius: 40%;
+        border-radius: 50px;
         width: 33px;
         height: 30px;
         cursor: pointer;
