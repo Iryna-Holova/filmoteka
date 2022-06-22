@@ -1,6 +1,8 @@
 .gallery {
     position: relative;
     color: $clr-main;
+
+    transition: color $transition-time $cubic;
 }
 
 .film-list {
