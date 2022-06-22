@@ -8,22 +8,7 @@ export const toggleRefs = {
   bodyTheme: document.querySelector('body'),
   footerTheme: document.querySelector('footer'),
   galleryTheme: document.querySelector('.gallery'),
-  // contextBoxDescriptionTheme: document.querySelector('.contentBox__description'),
-  // modalGalleryFlexThumbTheme: document.querySelector('.modal-gallery__flex-thumb'),
-  // teamContainerTheme: document.querySelector('.modal__container.team-container'),
-  // modalGalleryTitleTheme: document.querySelector('.modal-gallery__title'),
-  // modalGalleryListPopTheme: document.querySelector(
-  //   '.modal-gallery-list__popularity.modal-gallery-item__value',
-  // ),
-  // modalGalleryListTitleTheme: document.querySelector(
-  //   '.modal-gallery-list__title.modal-gallery-item__value',
-  // ),
-  // modalGalleryListGenreTheme: document.querySelector(
-  //   '.modal-gallery-list__genre.modal-gallery-item__value',
-  // ),
-  // modalGalleryListAboutTextTheme: document.querySelector('.modal-gallery-about__text'),
-  // modalGalleryListAboutTitleTheme: document.querySelector('.modal-gallery-about__title'),
-  // modalIconCrossTheme: document.querySelector('.modal__icon_cross'),
+  modalContainerTheme: document.querySelector('.modal__container'),
 };
 
 toggleRefs.headerToggleThumb.addEventListener('click', onHeaderToggleBtnClick);
@@ -34,16 +19,7 @@ function onHeaderToggleBtnClick() {
   toggleRefs.htmlTheme.classList.toggle('night');
   toggleRefs.footerTheme.classList.toggle('night');
   toggleRefs.galleryTheme.classList.toggle('night');
-  // toggleRefs.contextBoxDescriptionTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryFlexThumbTheme.classList.toggle('night');
-  // toggleRefs.teamContainerTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryTitleTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryListPopTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryListTitleTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryListGenreTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryListAboutTextTheme.classList.toggle('night');
-  // toggleRefs.modalGalleryListAboutTitleTheme.classList.toggle('night');
-  // toggleRefs.modalIconCrossTheme.classList.toggle('night');
+  toggleRefs.modalContainerTheme.classList.toggle('night');
   if (toggleRefs.headerToggleBtn.classList.contains('night')) {
     userThemeBase.userIdPromise
       .then(userId => {
@@ -79,16 +55,7 @@ function userThemeDefault() {
               toggleRefs.bodyTheme.classList.add('night');
               toggleRefs.footerTheme.classList.add('night');
               toggleRefs.galleryTheme.classList.add('night');
-              // toggleRefs.contextBoxDescriptionTheme.classList.add('night');
-              // toggleRefs.modalGalleryFlexThumbTheme.classList.add('night');
-              // toggleRefs.teamContainerTheme.classList.add('night');
-              // toggleRefs.modalGalleryTitleTheme.classList.add('night');
-              // toggleRefs.modalGalleryListPopTheme.classList.add('night');
-              // toggleRefs.modalGalleryListTitleTheme.classList.add('night');
-              // toggleRefs.modalGalleryListGenreTheme.classList.add('night');
-              // toggleRefs.modalGalleryListAboutTextTheme.classList.add('night');
-              // toggleRefs.modalGalleryListAboutTitleTheme.classList.add('night');
-              // toggleRefs.modalIconCrossTheme.classList.add('night');
+              toggleRefs.modalContainerTheme.classList.add('night');
             }
           })
           .catch(error => {
