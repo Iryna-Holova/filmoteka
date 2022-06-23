@@ -103,8 +103,6 @@ function onGoogleAuthClick() {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      if (!localStorage.getItem('theme')) userThemeDefault();
-      header.homeBtn.click();
       MicroModal.close('auth');
       Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
 
@@ -139,16 +137,14 @@ function onLoginFormSubmit(e) {
   )
     .then(userCredential => {
       const user = userCredential.user;
-      if (!localStorage.getItem('theme')) userThemeDefault();
-      header.homeBtn.click();
       MicroModal.close('auth');
       Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
     })
     .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode);
+      // console.log(errorMessage);
       Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
     });
 }
@@ -200,7 +196,6 @@ function onLogOutBtnClick() {
             refs.loginBtn.classList.toggle('is-hidden');
             refs.logOutBtn.classList.toggle('is-hidden');
             refs.libraryBtn.classList.toggle('is-hidden');
-            header.homeBtn.click();
             Notify.info(`Come back soon!!!`, { timeout: 1000 });
           } else {
             return;
