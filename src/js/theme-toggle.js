@@ -8,7 +8,8 @@ export const toggleRefs = {
   bodyTheme: document.querySelector('body'),
   footerTheme: document.querySelector('footer'),
   galleryTheme: document.querySelector('.gallery'),
-  modalContainerTheme: document.querySelector('.modal__container'),
+  modalContainerTheme: document.querySelectorAll('.modal__container'),
+  modalFooterTextTheme: document.querySelectorAll('.contentBox__description'),
 }
 
 toggleRefs.headerToggleThumb.addEventListener('click', onHeaderToggleBtnClick);
@@ -44,7 +45,8 @@ function switchTheme() {
   toggleRefs.htmlTheme.classList.toggle('night');
   toggleRefs.footerTheme.classList.toggle('night');
   toggleRefs.galleryTheme.classList.toggle('night');
-  toggleRefs.modalContainerTheme.classList.toggle('night');
+  toggleRefs.modalContainerTheme.forEach(item => item.classList.toggle('night'));
+  toggleRefs.modalFooterTextTheme.forEach(item => item.classList.toggle('night'));
 }
 
 export function userThemeDefault() {

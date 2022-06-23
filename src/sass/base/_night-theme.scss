@@ -29,7 +29,6 @@ footer.night {
     color: $clr-text-lighter;
 }
 
-.modal-gallery__flex-thumb.night,
 .modal__container.team-container.night {
     background-color: $clr-night-main;
 }
@@ -48,4 +47,12 @@ footer.night {
 
 .modal__icon_cross.night {
     fill: $clr-text-lighter;
+}
+
+.modal__container.night {
+    background-color: $clr-night-light;
+
+    -webkit-box-shadow: 0px -1px 31px 2px rgba(156, 90, 33, 0.65);
+        -moz-box-shadow: 0px -1px 31px 2px rgba(156, 90, 33, 0.65);
+        box-shadow: 0px -1px 31px 2px rgba(156, 90, 33, 0.65);
 }
