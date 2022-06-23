@@ -8,6 +8,7 @@ const getMoviesInfo = new GetMoviesInfo();
 const makeMarkup = new MakeMarkup();
 const gallery = new Gallery();
 const userDataBase = new DataBase();
+const loginBtn = document.querySelector('[data-page="log-in"]')
 const modalMovieThumb = document.querySelector('.modal-gallery__flex-thumb');
 
 const options = {
@@ -18,27 +19,28 @@ const options = {
 const observerHome = new IntersectionObserver(onIntersectHome, options);
 const observerSearch = new IntersectionObserver(onIntersectSearch, options);
 
+export function setNewSearch(searchQuery) {
+    getMoviesInfo.resetPage();
+    getMoviesInfo.query = searchQuery;
+}
+
 export async function renderHome() {
   spinner.spin(gallery.gallerySection);
-  setNewSearch('')
   
   try {
     const movies = await getMoviesInfo.searchTrendingsMovies();
     const markup = await makeMarkup.makeMovieCardMarkup(movies);
     gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
-    checkInWatched(movies);
-    checkInQueue(movies);
+    if (loginBtn.classList.contains('is-hidden')) {
+      checkInWatched(movies);
+      checkInQueue(movies);
+    }
     observerHome.observe(gallery.homeFilmlist.lastElementChild);
     spinner.stop(gallery.gallerySection);
   } catch {
     gallery.showErrorHome();
     spinner.stop(gallery.gallerySection);
   };
-}
-
-export function setNewSearch(searchQuery) {
-    getMoviesInfo.resetPage();
-    getMoviesInfo.query = searchQuery;
 }
 
 export async function renderHomeSearch() {
@@ -48,8 +50,10 @@ export async function renderHomeSearch() {
     const movies = await getMoviesInfo.searchMoviesByName();
     const markup = await makeMarkup.makeMovieCardMarkup(movies);
     gallery.homeFilmlist.insertAdjacentHTML('beforeend', markup);
-    checkInWatched(movies);
-    checkInQueue(movies);
+    if (loginBtn.classList.contains('is-hidden')) {
+      checkInWatched(movies);
+      checkInQueue(movies);
+    }
     observerSearch.observe(gallery.homeFilmlist.lastElementChild);
     spinner.stop(gallery.gallerySection);
   } catch {

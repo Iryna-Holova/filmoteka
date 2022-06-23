@@ -12,10 +12,9 @@ import {
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import Header from './section-header';
-const header = new Header();
-import Gallery from './section-gallery';
-const gallery = new Gallery();
 import { userThemeDefault } from './theme-toggle';
+const header = new Header();
+// import { userThemeDefault } from './theme-toggle';
 
 let userPromiseResolve;
 
@@ -52,22 +51,6 @@ async function setDefaultCell(userId) {
   }
 }
 
-async function getTheme(userId) {
-  const cellRef = doc(db, 'users', userId);
-  const docSnap = await getDoc(cellRef);
-
-  if (docSnap.exists()) {
-    return docSnap.data().theme;
-  } else {
-    return false;
-  }
-}
-
-function goHomePageDefault() {
-  header.showHome();
-  gallery.showHome();
-}
-
 const refs = {
   authFormLogin: document.querySelector('#login'),
   authFormSignin: document.querySelector('#register'),
@@ -92,6 +75,8 @@ onAuthStateChanged(auth, user => {
   if (user) {
     const uid = user.uid;
     userPromiseResolve(uid);
+    header.homeBtn.click();
+    if (!localStorage.getItem('theme')) userThemeDefault();
     if (refs.loginBtn.classList.contains('is-hidden')) {
       return;
     } else {
@@ -99,8 +84,18 @@ onAuthStateChanged(auth, user => {
       refs.logOutBtn.classList.toggle('is-hidden');
       refs.libraryBtn.classList.toggle('is-hidden');
     }
-  }
+  } else header.homeBtn.click();
 });
+
+async function getTheme(userId) {
+  const cellRef = doc(db, 'users', userId);
+  const docSnap = await getDoc(cellRef);
+  if (docSnap.exists()) {
+    return docSnap.data().theme;
+  } else {
+    return false;
+  }
+}
 
 function onGoogleAuthClick() {
   signInWithPopup(auth, provider)
@@ -108,9 +103,9 @@ function onGoogleAuthClick() {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      userThemeDefault();
+      if (!localStorage.getItem('theme')) userThemeDefault();
+      header.homeBtn.click();
       MicroModal.close('auth');
-
       Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
 
       userPromise
@@ -144,16 +139,16 @@ function onLoginFormSubmit(e) {
   )
     .then(userCredential => {
       const user = userCredential.user;
-      userThemeDefault();
+      if (!localStorage.getItem('theme')) userThemeDefault();
+      header.homeBtn.click();
       MicroModal.close('auth');
-
       Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
     })
     .catch(error => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // console.log(errorCode);
-      // console.log(errorMessage);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
       Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
     });
 }
@@ -205,9 +200,8 @@ function onLogOutBtnClick() {
             refs.loginBtn.classList.toggle('is-hidden');
             refs.logOutBtn.classList.toggle('is-hidden');
             refs.libraryBtn.classList.toggle('is-hidden');
+            header.homeBtn.click();
             Notify.info(`Come back soon!!!`, { timeout: 1000 });
-
-            goHomePageDefault();
           } else {
             return;
           }
