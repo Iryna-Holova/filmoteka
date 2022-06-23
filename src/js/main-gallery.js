@@ -5,13 +5,14 @@ import { renderMovieDetailMarkup } from './render_markup';
 import Gallery from './section-gallery';
 import { openModal } from './modal';
 import MicroModal from 'micromodal';
+
 const userDataBase = new DataBase();
 const getMoviesInfo = new GetMoviesInfo();
 const gallery = new Gallery();
 const navButtons = document.querySelector('.modal-gallery-buttons__nav');
-
+const loginBtn = document.querySelector('[data-page="log-in"]')
 const body = document.querySelector('body');
-const headerLibrary = document.querySelector('[data-page="library"]');
+
 body.addEventListener('click', onAddButtonClick);
 body.addEventListener('click', onRemoveButtonClick);
 gallery.homeFilmlist.addEventListener('click', onCardClick);
@@ -22,60 +23,44 @@ navButtons.lastElementChild.addEventListener('click', onNavButtonClick);
 
 async function onAddButtonClick(event) {
   if (!event.target.hasAttribute('data-add')) return;
+  if (!loginBtn.classList.contains('is-hidden')) {
+    Notiflix.Notify.info('Please sign in to add movies to your library');
+    return;
+  }
   const id = event.target.getAttribute('data-id');
   const array = event.target.getAttribute('data-add');
+  event.target.removeAttribute('data-add');
+  event.target.classList.add('remove-btn');
   const movie = await getMoviesInfo.searchMovieByID(id);
-  let userLogout = headerLibrary.classList.contains('is-hidden');
-  if (!userLogout) {
-    if (array === 'watched') {
-      userDataBase.userIdPromise
-        .then(userId => {
-          userDataBase.isInWatched(userId, id).then(result => {
-            if (result) {
-              Notiflix.Notify.info('This movie has already been added to your library Watched');
-            } else {
-              userDataBase.addToWatched(userId, movie);
-              event.target.removeAttribute('data-add');
-              event.target.setAttribute('data-remove', 'watched');
-              event.target.classList.add('remove-btn');
-              Notiflix.Notify.success(
-                'The movie has been successfully added to your library Watched',
-              );
-              if (event.target.textContent) {
-                event.target.textContent = 'Remove from Watched';
-              }
-            }
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      userDataBase.userIdPromise
-        .then(userId => {
-          userDataBase.isInQueve(userId, id).then(result => {
-            if (result) {
-              Notiflix.Notify.info('This movie has already been added to your library Queue');
-            } else {
-              userDataBase.addToQueue(userId, movie);
-              event.target.removeAttribute('data-add');
-              event.target.setAttribute('data-remove', 'queue');
-              event.target.classList.add('remove-btn');
-              Notiflix.Notify.success(
-                'The movie has been successfully added to your library Queue',
-              );
-              if (event.target.textContent) {
-                event.target.textContent = 'Remove from Queue';
-              }
-            }
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+  if (array === 'watched') {
+    userDataBase.userIdPromise
+      .then(userId => {
+        userDataBase
+          .addToWatched(userId, movie)
+        event.target.setAttribute('data-remove', 'watched');
+        Notiflix.Notify.success('The movie has been successfully added to your library Watched')
+        if (event.target.textContent) {
+          event.target.textContent = 'Remove from Watched';
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
   } else {
-    Notiflix.Notify.info('You have to login');
+    userDataBase.userIdPromise
+      .then(userId => {
+        userDataBase
+          .addToQueue(userId, movie);
+        event.target.setAttribute('data-remove', 'queue');
+        Notiflix.Notify.success('The movie has been successfully added to your library Queue');
+        if (event.target.textContent) {
+          event.target.textContent = 'Remove from Queue';
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }
 
@@ -83,57 +68,52 @@ async function onRemoveButtonClick(event) {
   if (!event.target.hasAttribute('data-remove')) return;
   const id = event.target.getAttribute('data-id');
   const array = event.target.getAttribute('data-remove');
-  let userLogout = headerLibrary.classList.contains('is-hidden');
-  if (!userLogout) {
-    if (array === 'watched') {
-      userDataBase.userIdPromise
-        .then(userId => {
-          userDataBase.removeFromWatched(userId, id);
-          event.target.removeAttribute('data-remove');
-          event.target.setAttribute('data-add', 'watched');
-          event.target.classList.remove('remove-btn');
-          Notiflix.Notify.success('The movie was successfully deleted from your library Watched');
-          if (
-            event.target.textContent &&
-            gallery.watchFilmList.querySelector(`[data-id="${id}"]`)
-          ) {
-            gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = 'none';
-            MicroModal.close('modal_gallery');
-          } else if (gallery.watchFilmList.querySelector(`[data-id="${id}"]`)) {
-            gallery.watchFilmList.querySelector(`[data-id="${id}"]`).style.display = 'none';
-          } else if (event.target.textContent) {
-            event.target.textContent = 'Add to watched';
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      userDataBase.userIdPromise
-        .then(userId => {
-          userDataBase.removeFromQueue(userId, id);
-          event.target.removeAttribute('data-remove');
-          event.target.setAttribute('data-add', 'queue');
-          event.target.classList.remove('remove-btn');
-          Notiflix.Notify.success('The movie was successfully deleted from your library Queue');
-          if (
-            event.target.textContent &&
-            gallery.queueFilmList.querySelector(`[data-id="${id}"]`)
-          ) {
-            gallery.queueFilmList.querySelector(`[data-id="${id}"]`).style.display = 'none';
-            MicroModal.close('modal_gallery');
-          } else if (gallery.queueFilmList.querySelector(`[data-id="${id}"]`)) {
-            gallery.queueFilmList.querySelector(`[data-id="${id}"]`).style.display = 'none';
-          } else if (event.target.textContent) {
-            event.target.textContent = 'Add to queue';
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+  event.target.removeAttribute('data-remove');
+  event.target.classList.remove('remove-btn');
+
+  if (array === 'watched') {
+    userDataBase.userIdPromise
+      .then(userId => {
+        userDataBase.removeFromWatched(userId, id);
+        event.target.setAttribute('data-add', 'watched');
+        Notiflix.Notify.success('The movie was successfully deleted from your library Watched');
+
+        if ((event.target.textContent) && (gallery.watchFilmList.querySelector(`[data-id="${id}"]`))) {
+          MicroModal.close('modal_gallery');
+          gallery.watchFilmList.removeChild(gallery.watchFilmList.querySelector(`[data-id="${id}"]`));
+          if (!gallery.watchFilmList.innerHTML) gallery.showErrorlibraryWatch();
+        } else if (gallery.watchFilmList.querySelector(`[data-id="${id}"]`)) {
+          gallery.watchFilmList.removeChild(gallery.watchFilmList.querySelector(`[data-id="${id}"]`));
+          if (!gallery.watchFilmList.innerHTML) gallery.showErrorlibraryWatch();
+        } else if (event.target.textContent) {
+          event.target.textContent = 'Add to watched';
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
   } else {
-    Notiflix.Notify.info('You have to login');
+    userDataBase.userIdPromise
+      .then(userId => {
+        userDataBase.removeFromQueue(userId, id);
+        event.target.setAttribute('data-add', 'queue');
+        Notiflix.Notify.success('The movie was successfully deleted from your library Queue');
+
+        if ((event.target.textContent) && (gallery.queueFilmList.querySelector(`[data-id="${id}"]`))) {
+          MicroModal.close('modal_gallery');
+          gallery.queueFilmList.removeChild(gallery.queueFilmList.querySelector(`[data-id="${id}"]`));
+          if (!gallery.queueFilmList.innerHTML) gallery.showErrorlibraryQueue();
+        } else if (gallery.queueFilmList.querySelector(`[data-id="${id}"]`)) {
+          gallery.queueFilmList.removeChild(gallery.queueFilmList.querySelector(`[data-id="${id}"]`));
+          if (!gallery.queueFilmList.innerHTML) gallery.showErrorlibraryQueue();
+        } else if (event.target.textContent) {
+          event.target.textContent = 'Add to queue';
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }
 

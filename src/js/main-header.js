@@ -4,13 +4,19 @@ import Gallery from "./section-gallery";
 import { renderHome, renderHomeSearch, renderQueue, renderWatched, setNewSearch } from "./render_markup";
 const gallery = new Gallery;
 
-renderHome();
-
 header.searchForm.addEventListener('submit', onFormSubmit);
 header.homeBtn.addEventListener('click', goHomePage);
 header.libraryBtn.addEventListener('click', goLibraryPage);
 header.watchedBtn.addEventListener('click', goWatchedPage);
 header.queueBtn.addEventListener('click', goQueuePage);
+
+export function goHomePage() {
+    header.showHome();
+    gallery.showHome();
+    gallery.homeFilmlist.innerHTML = '';
+    setNewSearch('');
+    renderHome();
+}
 
 function onFormSubmit(event) {
     event.preventDefault();
@@ -23,12 +29,6 @@ function onFormSubmit(event) {
     gallery.homeFilmlist.innerHTML = '';
     setNewSearch(searchQuery);
     renderHomeSearch();
-}
-
-function goHomePage() {
-    header.showHome();
-    gallery.showHome();
-    renderHome();
 }
 
 function goLibraryPage() {

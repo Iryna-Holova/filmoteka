@@ -17,7 +17,7 @@ export default class GetMoviesInfo {
         }
         this.#getGenres(response, genres);
         this.incrementPage();
-
+        
         return response.results;
     };
 
