@@ -121,7 +121,8 @@ export async function renderMovieDetailMarkup(id) {
   modalMovieThumb.innerHTML = markup;
   const modalButtons = document.querySelector('.modal-gallery-buttons__thumb');
 
-  userDataBase.userIdPromise
+  if (loginBtn.classList.contains('is-hidden')) {
+      userDataBase.userIdPromise
     .then(userId => {
       userDataBase
         .isInWatched(userId, id)
@@ -164,6 +165,7 @@ export async function renderMovieDetailMarkup(id) {
     .catch(error => {
       console.log(error);
     });
+  }
 }
 
 function checkInWatched(movies) {
