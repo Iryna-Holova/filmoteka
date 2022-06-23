@@ -104,7 +104,7 @@ function onGoogleAuthClick() {
       const token = credential.accessToken;
       const user = result.user;
       MicroModal.close('auth');
-      Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
+      Notify.success(`Welcome ${user.email}! Enjoy our service`);
 
       userPromise
         .then(userId => {
@@ -138,14 +138,14 @@ function onLoginFormSubmit(e) {
     .then(userCredential => {
       const user = userCredential.user;
       MicroModal.close('auth');
-      Notify.success(`Welcome back ${user.email}!`, { timeout: 1000 });
+      Notify.success(`Welcome back ${user.email}!`);
     })
     .catch(error => {
       // const errorCode = error.code;
       // const errorMessage = error.message;
       // console.log(errorCode);
       // console.log(errorMessage);
-      Notify.failure('User does not exist, or wrong password!', { timeout: 2000 });
+      Notify.failure('User does not exist, or wrong password!');
     });
 }
 
@@ -153,7 +153,7 @@ function onSigninFormSubmit(e) {
   e.preventDefault();
 
   if (e.currentTarget.elements.password.value.trim().length < 6) {
-    Notify.failure('To small password... It must contain 6 characters', { timeout: 2000 });
+    Notify.failure('To small password... It must contain 6 characters');
   } else {
     createUserWithEmailAndPassword(
       auth,
@@ -163,7 +163,7 @@ function onSigninFormSubmit(e) {
       .then(userCredential => {
         const user = userCredential.user;
         MicroModal.close('auth');
-        Notify.success(`Welcome ${user.email}! Enjoy our service`, { timeout: 2000 });
+        Notify.success(`Welcome ${user.email}! Enjoy our service`);
         userPromise
           .then(userId => {
             setDefaultCell(userId);
@@ -178,7 +178,7 @@ function onSigninFormSubmit(e) {
         // const errorMessage = error.message;
         // console.log(errorCode);
         // console.log(errorMessage);
-        Notify.failure('User exists or invalid values...', { timeout: 2000 });
+        Notify.failure('User exists or invalid values...');
       });
   }
 }
@@ -196,7 +196,7 @@ function onLogOutBtnClick() {
             refs.loginBtn.classList.toggle('is-hidden');
             refs.logOutBtn.classList.toggle('is-hidden');
             refs.libraryBtn.classList.toggle('is-hidden');
-            Notify.info(`Come back soon!!!`, { timeout: 1000 });
+            Notify.info(`Come back soon!!!`);
           } else {
             return;
           }
@@ -206,7 +206,7 @@ function onLogOutBtnClick() {
         });
     },
     function cancelCb() {
-      Notify.success('Good choice!', { timeout: 1000 });
+      Notify.success('Good choice!');
     },
     {
       borderRadius: '3px',
