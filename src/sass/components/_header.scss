@@ -267,11 +267,11 @@
   color: transparent;
   position: absolute;
   justify-content: end;
-  text-align: right;
-  width: 24px;
-  height: 24px;
-  right: 0;
-  bottom: 0;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  right: -8px;
+  bottom: -4px;
   stroke: $clr-light;
   transition: stroke $transition-time $cubic;
 
