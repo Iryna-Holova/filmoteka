@@ -14,7 +14,6 @@ export function goHomePage() {
     header.showHome();
     gallery.showHome();
     gallery.homeFilmlist.innerHTML = '';
-    console.log('ggg');
     setNewSearch('');
     renderHome();
 }
